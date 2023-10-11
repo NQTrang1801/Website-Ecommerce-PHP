@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="styles/shared/general.css">
+  <link rel="stylesheet" href="styles/pages/index.css">
+  <link rel="stylesheet" href="styles/pages/nav.css">
+  <link rel="stylesheet" href="styles/pages/media-header.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="private-header">
+      <div class="private-header-left-section">
+        <div class="header-menu js-menu-btn">
+          <i class="ri-menu-line"></i>
+          <span>Menu</span>
+        </div>
+        <div class="header-search">
+          <i class="ri-search-line"></i>
+          <span>Search</span>
+        </div>
+      </div>
+
+      <div class="private-header-middle-section">
+        <a href="" class="title">Private</a>
+      </div>
+
+      <div class="private-header-right-section">
+        <a href="">
+          <i class="ri-user-line icon--small"></i>
+          <span>Account</span>
+        </a>
+        <a href="">
+          <i class="ri-shopping-bag-line icon--small"></i>
+          <span>Cart</span>
+        </a>
+      </div>
+    </div>
+      <div class="header-search-container">
+        <div class="search-container">
+          <div class="search-input">
+            <input type="text" placeholder="Search">
+            <i class="ri-search-line search-icon"></i>
+          </div>
+
+          <div class="search-hint">
+            <p>Trending Searches:</p>
+            <div>
+              <a href="">
+                <i class="ri-search-line"></i>
+                Jeans
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <i class="ri-search-line"></i>
+                Jackets
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <i class="ri-search-line"></i>
+                Bags
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <i class="ri-search-line"></i>
+                Hoodie
+              </a>
+            </div>
+          </div>
+
+          <div class="search-matched-title">
+            <p>Popular Categories</p>
+          </div>
+
+          <div class="search-matched-categories">
+            <div class="categories-item">
+              <img src="pictures/categories/female-model.jpg" alt="">
+              <div class="categories-name">
+                <p>Women</p>
+                <a href="">Shop now</a>
+              </div>
+            </div>
+            <div class="categories-item">
+              <img src="pictures/categories/male-model.jpg" alt="">
+              <div class="categories-name">
+                <p>Men</p>
+                <a href="">Shop now</a>
+              </div>
+            </div>
+            <div class="categories-item">
+              <img src="pictures/categories/children-model.jpg" alt="">
+              <div class="categories-name">
+                <p>Kids</p>
+                <a href="">Shop now</a>
+              </div>
+            </div>
+            <div class="categories-item">
+              <img src="pictures/categories/home-decoration.jpg" alt="">
+              <div class="categories-name">
+                <p>Home</p>
+                <a href="">Shop now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+  <div class="private-header-video">
+    <video width="100%" controls autoplay loop>
+      <source src="videos/1104251_1080p_Standard_Teen_1920x1080.mp4">
+    </video>
+  </div>
+
+  <div id="overlay"></div>
+  <nav id="js-navbar">
+    <div class="nav-close js-nav-close">
+      <i class="ri-close-line"></i>
+      Close
+    </div>
+    <ul class="nav--categories">
+      <li>
+        <span for="btn-1">Women</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>Men</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>Kids & Baby</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>Home</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>Gifts</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>New</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+      <li>
+        <span>Sale</span>
+        <i class="ri-arrow-right-s-line"></i>
+      </li>
+    </ul>
+    <ul class="nav--infor">
+      <li>
+        <a href="">About Private</a>
+      </li>
+      <li>
+        <a href="">Services</a>
+      </li>
+      <li>
+        <a href="">Call us</a>
+      </li>
+      <li>
+        <a href="">Find a Store</a>
+      </li>
+    </ul>
+  </nav>
+  <script src="scripts/index.js"></script>
+</body>
+</html>
