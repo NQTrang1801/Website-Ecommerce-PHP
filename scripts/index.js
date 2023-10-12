@@ -23,7 +23,6 @@ $(document).ready(function () {
     $('#js-navbar').css({ "left": "0px" });
     $("#overlay").css({ "display": "block" });
     $("body").css({ "overflow": "hidden" });
-    console.log($("#js-navbar"));
   });
 
   $(".nav-close").click(function () {

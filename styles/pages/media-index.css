@@ -1,6 +1,5 @@
-
+/* MEDIA HEADER */
 @media (max-width: 770px) {
-
   .private-header-left-section span {
     display: none;
   }
@@ -55,3 +54,6 @@
     width: 100%;
   }
 }
+
+/* MEDIA BODY */
+/* MEDIA FOOTER */
