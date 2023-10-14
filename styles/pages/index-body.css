@@ -1,0 +1,240 @@
+/* First introduce */
+main {
+  height: auto;
+  margin-bottom: 100px;
+}
+
+.first-introduce-products {
+  background-image: url(/pictures/display-products/crinkled-cardboard-texture.jpg);
+  width: 100%;
+  height: 870px;
+
+  margin-top: -5px;
+  display: flex;
+  align-items: center;
+}
+
+.first-introduce-wrapper {
+  height: 730px;
+  margin: 0 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.introduce-left-container {
+  text-align: center;
+}
+
+.introduce-left-container img {
+  width: 60%;
+  object-fit: cover;
+}
+
+.first-introduce-left-info a {
+  text-decoration: underline;
+}
+
+/* Stack image */
+.first-introduce-right-title,
+.first-introduce-left-info p {
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Cinzel', 'Arial', serif;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.first-introduce-right-cardstack {
+  position: relative;
+  height: 100%;
+}
+
+.cardstack {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  margin: auto;
+}
+
+.cardstack-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cardstack-btn .btn {
+  position: absolute;
+  color: var(--primary-color);
+  font-size: 22px;
+  background-color: var(--light-bg-color);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.btn i {
+  position: absolute;
+  margin: 9px 0 0 8px;
+}
+
+.arrow-right {
+  right: 10px;
+  top: 33%;
+}
+
+.arrow-left {
+  left: 10px;
+  top: 33%;
+}
+
+.pause {
+  right: 10px;
+  top: 10px;
+}
+
+.cardstack-picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cardstack-picture img {
+  width: 100%;
+  object-fit: cover;
+
+}
+
+.card-slide {
+  position: absolute;
+  transition: transform 200ms;
+}
+
+.card-slide-info {
+  position: absolute;
+  bottom: 14px;
+  color: white;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-slide-info span {
+  font-size: 10px;
+}
+
+.card-slide:nth-child(4) {
+  transform: translate(0px, 0px);
+}
+
+.card-slide:nth-child(3) {
+  transform: translate(40px, 2px);
+  scale: 0.9;
+}
+
+.card-slide:nth-child(2) {
+  transform: translate(90px, 2px);
+  scale: 0.8;
+} 
+
+/* .card-slide:nth-child(1) {
+  transform: translate(70px, 2px);
+  scale: 0.7;
+} */
+
+.cardstack-timer {
+  width: 50%;
+  height: 1.5px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  bottom: 180px;
+  left: 174px;
+  z-index: 2;
+}
+
+.cardstack-timer-run {
+  width: 40%;
+  height: 1.5px;
+  background-color: white;
+}
+
+/* Second introduce */
+.second-introduce-title,
+.third-introduce-title {
+  text-align: center;
+  padding: 60px 0 30px 0;
+  line-height: 46px;
+}
+
+.second-introduce-title a {
+  text-decoration: underline;
+}
+
+.second-introduce-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 110px;
+  margin: 0 150px;
+}
+
+.second-introduce-left {
+  width: 555px;
+  height: 555px;
+}
+
+.second-introduce-left img,
+.third-introduce img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.second-introduce-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 110px;
+  row-gap: 50px;
+}
+
+.second-introduce-right > div {
+  width: 220px;
+  height: 220px;
+}
+
+.second-introduce-right img,
+.third-introduce-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.second-introduce-name,
+.third-introduce-name {
+  font-weight: 500;
+}
+
+.second-introduce-price {
+  font-size: 14px;
+}
+
+.second-introduce-price del {
+  color: var(--secondary-light-color);
+}
+
+/* Third introduce */
+.third-introduce-products {
+  margin-top: 100px;
+}
+
+.third-introduce {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 150px;
+  column-gap: 50px;
+  row-gap: 50px;
+}
+
+.third-introduce > div {
+  width: 270px;
+  height: 270px;
+}

@@ -1,6 +1,6 @@
 /* NAV BAR */
 /* Menu icon */
-nav {
+.menu-navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,18 +28,18 @@ nav {
   overflow: hidden;
 }
 
-nav div {
+.menu-navbar div {
   padding: 44px 0 24px 50px;
   cursor: pointer;
   font-size: 12px;
 }
 
-nav span {
+.menu-navbar span {
   font-size: 20px;
   position: relative;
 }
 
-nav span:after {
+.menu-navbar span:after {
   content: "";
   position: absolute;
   background-color: #444444;
@@ -50,15 +50,15 @@ nav span:after {
   transition: 0.3s;
 }
 
-nav span:hover:after {
+.menu-navbar span:hover:after {
   width: 100%;
 }
 
-nav img {
+.menu-navbar img {
   width: 12px;
 }
 
-nav ul li {
+.menu-navbar ul li {
   list-style: none;
 
   display: flex;
@@ -98,3 +98,7 @@ nav ul li {
   font-size: 12px;
   padding: 8px 50px;
 }
+
+/* .delivery-shipping-container div {
+  display: flex;
+} */

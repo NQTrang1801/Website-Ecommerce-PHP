@@ -1,26 +1,38 @@
 // Scroll header
-
 $(document).ready(function () {
   const headerElement = $(".private-header");
-  const searchContainer = $(".header-search-container");
+  const searchContainer = $(".js-search-navbar");
+  const cartContainer = $(".js-cart-navbar");
 
-  document.addEventListener('scroll', () => {
+  $(document).scroll(function() {
     if (window.scrollY > 0) {
       headerElement.addClass("scrolled");
       searchContainer.addClass("scrolled");
+      cartContainer.addClass("scrolled");
     } else {
       headerElement.removeClass("scrolled");
       searchContainer.removeClass("scrolled");
+      cartContainer.removeClass("scrolled");
     }
   });
 
+  // Search container
   $(".header-search").click(function () {
-    $(".header-search-container").slideToggle("slow");
+    $(".js-search-navbar").slideToggle("slow");
     $(".private-header").addClass("hovered");
+    $(document).on("click", function(event) {
+      const elementBox = $(".js-search-navbar");
+      const elementIcon = $(".header-search");
+      if (!elementBox.is(event.target) && elementBox.has(event.target).length === 0
+        && !elementIcon.is(event.target) && elementIcon.has(event.target).length === 0) {
+          $(".js-search-navbar").css({"display": "none"});
+        }
+    })
   });
 
+  // Menu container
   $(".js-menu-btn").click(function () {
-    $('#js-navbar').css({ "left": "0px" });
+    $('.js-menu-navbar').css({ "left": "0px" });
     $("#overlay").css({ "display": "block" });
     $("body").css({ "overflow": "hidden" });
   });
@@ -34,7 +46,7 @@ $(document).ready(function () {
   });
 
   function closeMenuBar() {
-    $("#js-navbar").css({ "left": "-500px" });
+    $(".js-menu-navbar").css({ "left": "-500px" });
     $("#overlay").css({ "display": "none" });
     $("body").css({ "overflow": "scroll" });
   }
