@@ -6,6 +6,7 @@
   --secondary-light-color: #b7b7b7;
 
   --bg-color: #f6f1eb;
+  --light-color: #fffcf7;
   --secondary-bg-color: #faf6f1;
   --light-bg-color: rgba(255, 251, 243, 0.7);
   --dark-bg-color: rgba(0, 0, 0, 0.8);
@@ -29,6 +30,11 @@ body {
   color: var(--primary-color);
   background-color: var(--bg-color);
   height: 3000px;
+}
+
+pre {
+  font-family: 'Red Hat Display', 'Arial', sans-serif;
+  font-size: 13px;
 }
 
 a {

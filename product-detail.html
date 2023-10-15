@@ -4,19 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="styles/pages/index.css">
+  <title>Product Details</title>
+
   <link rel="stylesheet" href="styles/shared/general.css">
-  <link rel="stylesheet" href="styles/pages/media-index.css">
+  <link rel="stylesheet" href="styles/pages/index.css">
   <link rel="stylesheet" href="styles/pages/nav.css">
-  <link rel="stylesheet" href="styles/pages/account.css">
+  <link rel="stylesheet" href="styles/pages/product-detail.css">
   <link rel="stylesheet" href="styles/pages/footer.css">
+  <link rel="stylesheet" href="styles/pages/media-index.css">
   <link rel="stylesheet" href="styles/pages/media-footer.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <div class="private-header">
       <div class="private-header-left-section">
@@ -226,93 +228,176 @@
     </nav>
     <div id="overlay"></div>
   </header>
+  <!-- MAIN -->
+  <main>
+    <div class="button-back">
+      <a href="#">
+        <i class="ri-arrow-left-line"></i>
+        Back
+      </a>
+    </div>
+    <div class="product-detail-container">
+      <div class="product-detail-info">
+        <div class="product-detail-image">
+          <div class="detail-image-left">
+            <div>
+              <img src="pictures/products/jacket-man-1.1.jpg" alt="">
+            </div>
+            <div>
+              <img src="pictures/products/jacket-man-1.2.jpg" alt="">
+            </div>
+            <div>
+              <img src="pictures/products/jacket-man-1.3.jpg" alt="">
+            </div>
+            <div>
+              <img src="pictures/products/jacket-man-1.4.jpg" alt="">
+            </div>
 
-  <body>
-    <div class="account-container">
-      <div class="account">
-        <!-----------------Form box----------------->
-        <div class="form-account">
-          <!---------------dang nhap------------------------->
-          <div class="login-container" id="login">
-            <form action="">
-              <div class="top">
-                <span>Don't have account? <a href="#" onclick="create()">Sign Up</a> </span>
-                <header class="header-ac">Login</header>
-              </div>
-              <div class="input-box">
-                <input type="email" class="input-field" placeholder="Email" required="">
-              </div>
-              <div class="input-box">
-                <input type="password" class="input-field" id="logPassword" placeholder="Password" required="">
-                <div class="eye-area">
-                  <div class="eye-box" onclick="myLogPassword()">
-                    <i class="ri-eye-fill" id="eye"></i>
-                    <i class="ri-eye-off-fill" id="eye-slash"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-box">
-                <input type="submit" class="submit" value="Sign In">
-
-              </div>
-              <div class="two-col">
-                <div class="one">
-                  <input type="checkbox" id="login-check">
-                  <label for="login-check">Remember Me</label>
-                </div>
-                <div class="two">
-                  <label><a href="#">|Forgot password?</a> </label>
-                </div>
-              </div>
-            </form>
           </div>
-          <!---------------dang ky------------------------->
-          <div class="create-container" id="create">
-            <form>
-              <div class="top">
-                <span>Have an account? <a href="#" onclick="login()">Sign In</a> </span>
-                <header class="header-ac">Sign Up</header>
-              </div>
-              <div class="two-form">
-                <div class="input-box">
-                  <input type="text" class="input-field" placeholder="Firstname" required="">
-                </div>
-                <div class="input-box">
-                  <input type="text" class="input-field" placeholder="Lastname" required="">
-                </div>
-              </div>
-              <div class="input-box">
-                <input type="email" class="input-field" placeholder="Email" required="">
-              </div>
-              <div class="input-box">
-                <input type="password" class="input-field" id="regPassword" placeholder="Password" required="">
-                <div class="eye-area">
-                  <div class="eye-box" onclick="myRegPassword()">
-                    <i class="ri-eye-fill" id="eye-2"></i>
-                    <i class="ri-eye-off-fill" id="eye-slash-2"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-box">
-                <input type="submit" class="submit" value="Create Account">
-              </div>
-              <div class="two-col">
-                <div class="one">
-                  <input type="checkbox" id="create-check">
-                  <label for="create-check">Remember Me</label>
-                </div>
-
-              </div>
-            </form>
+          <div class="detail-image-right">
+            <img src="pictures/products/jacket-man-1.1.jpg" alt="">
           </div>
         </div>
       </div>
 
-      <div>
-        <img src="pictures/display-products/children-model.jpg" style="width: 100%;" alt="">
+      <div class="product-detail-summary">
+        <div class="detail-summary">
+          <div class="summary-name">
+            <p>LEATHER BIKER JACKET</p>
+            <p class="detail-price">$100</p>
+          </div>
+          <div class="summary-color">
+            <div>
+              <p>Color</p>
+              <p>Blue</p>
+            </div>
+            <div>
+              <img src="pictures/products/jacket-man-1.3.jpg" alt="">
+            </div>
+          </div>
+          <div class="summary-size">
+            <div>
+              Size
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <div>
+              <p class="product-size-guide">Size Guide</p>
+              <div class="product-size">
+                <div>S</div>
+                <div>M</div>
+                <div>L</div>
+              </div>
+            </div>
+          </div>
+          <div class="summary-button">
+            <button>Add to cart</button>
+          </div>
+          <div>
+            <pre>Leather jacket (100% sheep leather)
+
+  - Lapel collar and long sleeves 
+  - Jetted hip pockets and inside pocket 
+  detail 
+  - Contrast embroidery on the front and 
+  back. 
+  - Ribbed trims 
+  - Snap-button front fastening
+  
+  Made in Pakistan
+</pre>
+          </div>
+        </div>
+
+        <div class="detail-reference">
+          <div class="reference-title">
+            <div>
+              PRODUCTS DETAILS
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <p>
+              Model is 1m89 / 6'2" and wearing a size M.
+            </p>
+          </div>
+          <div class="reference-title">
+            <div>
+              CARE
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <p>
+              Do not wash <br>
+              Do not use bleach <br>
+              Do not iron <br>
+              Do not dry clean <br>
+              Do not tumble dry
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </body>
+
+      <div class="product-detail-partner">
+        <p>THE PERFECT PARTNER</p>
+        <div class="products-perfect-partner">
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/jeans-man.jpg" alt="">
+              <p>CONTRAST FADED JEANS</p>
+              <p class="detail-price">$49</p>
+            </a>
+          </div>
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/shoes-man.jpg" alt="">
+              <p>CHELSEA BOOTS WITH CHUNKY TRACK SOLES</p>
+              <p class="detail-price">$50</p>
+            </a>
+          </div>
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/hat-man.jpg" alt="">
+              <p>RIBBED KNIT BEANIE</p>
+              <p class="detail-price">$16</p>
+            </a>
+          </div>
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/shirt-man.jpg" alt="">
+              <p>COMPACT SWEATSHIRT</p>
+              <p class="detail-price">$26</p>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div></div>
+
+      <div class="product-detail-exploring">
+        <p>KEEP EXPLORING</p>
+        <div class="products-perfect-partner">
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/jacket-man-2.jpg" alt="">
+              <p>DIAMOND JACQUARD JACKET</p>
+              <p class="detail-price">$90</p>
+            </a>
+          </div>
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/jacket-man-3.jpg" alt="">
+              <p>TEXTURED PUFFER JACKET</p>
+              <p class="detail-price">$49</p>
+            </a>
+          </div>
+          <div class="perfect-partner">
+            <a href="#">
+              <img src="pictures/products/jacket-man-4.jpg" alt="">
+              <p>FAUX LEATHER BOMBER JACKET</p>
+              <p class="detail-price">$70</p>
+            </a>
+          </div>
+        </div>
+      </div>
+  </main>
   <footer>
     <div class="footer-top">
       <div>
@@ -362,7 +447,6 @@
     </div>
   </footer>
   <script src="scripts/index.js"></script>
-  <script src="scripts/account.js"></script>
 </body>
 
 </html>

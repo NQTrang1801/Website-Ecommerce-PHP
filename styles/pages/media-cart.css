@@ -5,45 +5,6 @@
     .delivery-shipping-container button {
         border-radius: 16px;
     }
-
-    .footer-top {
-        display: block;
-    }
-    
-    .footer-top div,
-    .footer-top p {
-        margin-top: 10px;
-    }
-
-    .footer-top p {
-        display: none;
-    }
-
-    .footer-top div {
-        margin: 0px 0px 0px 20px;
-        padding: 20px;
-        cursor: pointer;
-    }
-
-    .footer-top div:nth-child(1) p{
-        display: block;
-    }
-
-    .footer-top div:nth-child(2) p{
-        display: none;
-    }
-
-    .footer-top div:nth-child(3) p{
-        display: none;
-    }
-
-    .footer-top div:nth-child(4) p{
-        display: none;
-    }
-
-    .footer-top p {
-        font-size: 8px;
-    }
 }
 
 @media (max-width: 610px) {

@@ -160,21 +160,17 @@ header {
   position: relative;
 }
 
-.cart-bridge {
-  position: fixed;
-  right: 0;
-  top: 83px;
-  width: 328px;
-  height: 450px;
+.ri-shopping-bag-line::after {
+  content: "3";
+  font-size: 14px; 
+  color: red;
+  position: absolute;
+  top: 100%;
+  right: -48px;
+  background-color: none;
+  padding: 0px 48px 18px 12px;
   pointer-events: none;
-}
-
-.cart-bridge-arrow {
-  position: fixed;
-  width: 70px;
-  height: 40px;
-  top: 47px;
-  right: 24px;
+  text-align: center;
 }
 
 .cart-navbar {
@@ -197,11 +193,9 @@ header {
   background-color: var(--secondary-bg-color);
 }
 
-.cart-wrapper:hover .cart-navbar {
+.cart-wrapper:hover .cart-navbar,
+.cart-wrapper:hover .ri-shopping-bag-line::after{
   display: block;
-}
-
-.cart-wrapper:hover .cart-bridge {
   pointer-events: fill;
 }
 

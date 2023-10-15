@@ -18,23 +18,24 @@
         cursor: pointer;
     }
 
-    .footer-top div:nth-child(1) p{
+    .footer-top div:nth-child(1):hover p{
         display: block;
     }
 
-    .footer-top div:nth-child(2) p{
-        display: none;
+    .footer-top div:nth-child(2):hover p{
+        display: block;
     }
 
-    .footer-top div:nth-child(3) p{
-        display: none;
+    .footer-top div:nth-child(3):hover p{
+        display: block;
     }
 
-    .footer-top div:nth-child(4) p{
-        display: none;
+    .footer-top div:nth-child(4):hover p{
+        display: block;
     }
 
     .footer-top p {
-        font-size: 8px;
+        font-size: 10px;
+        margin-left: 20px;
     }
 }
