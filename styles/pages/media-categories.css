@@ -20,4 +20,12 @@
         width: 100%;
     }
 
+    .dotgrid .dot-image {
+        width: 100%;
+    }
+
+    .dot-title a {
+        line-height: 20px;
+    }
+
 }

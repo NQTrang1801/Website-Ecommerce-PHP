@@ -308,12 +308,12 @@ main > div .heading{
     text-align: center;
 }
 
-:is(.products-categories /*, .fromblog*/) .dot-image .thumbnail {
+:is(.products-categories) .dot-image .thumbnail {
     position: relative;
     opacity: unset;
 }
 
-:is(.products-categories/*, .fromblog*/) .dot-image .thumbnail img{
+:is(.products-categories) .dot-image .thumbnail img{
     width: 100%;
 }
 
@@ -329,7 +329,6 @@ main > div .heading{
 /* special-prices */
 .special-prices {
     background-color: var(--light-bg-color);
-    /* height: 1000px; */
 }
 
 .special-prices .inner-wrapper{
@@ -425,7 +424,7 @@ main > div .heading{
     font-size: 20px;
     width: 30px;
     height: 30px;
-    background-color:white;
+    background-color: var(--light-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
