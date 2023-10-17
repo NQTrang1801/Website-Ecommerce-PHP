@@ -7,18 +7,16 @@ main {
 .first-introduce-products {
   background-image: url(/pictures/display-products/crinkled-cardboard-texture.jpg);
   width: 100%;
-  height: 870px;
-
+  height: auto;
   margin-top: -5px;
-  display: flex;
-  align-items: center;
 }
 
 .first-introduce-wrapper {
-  height: 730px;
+  height: auto;
   margin: 0 70px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-bottom: 20px;
 }
 
 .introduce-left-container {
@@ -35,6 +33,11 @@ main {
 }
 
 /* Stack image */
+
+.first-introduce-right {
+  position: relative;
+}
+
 .first-introduce-right-title,
 .first-introduce-left-info p {
   text-align: center;
@@ -45,21 +48,24 @@ main {
 }
 
 .first-introduce-right-cardstack {
-  position: relative;
+  position: absolute;
+  width: 100%;
   height: 100%;
 }
 
 .cardstack {
-  position: relative;
+  position: absolute;
   width: 50%;
   height: 100%;
   margin: auto;
+  left: 0;
+  right: 0;
 }
 
 .cardstack-btn {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 300px;
 }
 
 .cardstack-btn .btn {
@@ -78,13 +84,12 @@ main {
 }
 
 .arrow-right {
-  right: 10px;
-  top: 33%;
+  right: 0;
+  bottom: 0;
 }
 
 .arrow-left {
-  left: 10px;
-  top: 33%;
+  bottom: 0;
 }
 
 .pause {
@@ -95,13 +100,12 @@ main {
 .cardstack-picture {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .cardstack-picture img {
   width: 100%;
   object-fit: cover;
-
 }
 
 .card-slide {
@@ -135,7 +139,7 @@ main {
 .card-slide:nth-child(2) {
   transform: translate(90px, 2px);
   scale: 0.8;
-} 
+}
 
 /* .card-slide:nth-child(1) {
   transform: translate(70px, 2px);
@@ -143,12 +147,12 @@ main {
 } */
 
 .cardstack-timer {
-  width: 50%;
+  width: 100%;
   height: 1.5px;
   background-color: var(--secondary-color);
   position: absolute;
-  bottom: 180px;
-  left: 174px;
+  bottom: 0;
+  left: 0;
   z-index: 2;
 }
 
@@ -178,7 +182,7 @@ main {
 }
 
 .second-introduce-left {
-  width: 555px;
+  width: 100%;
   height: 555px;
 }
 
@@ -196,8 +200,8 @@ main {
   row-gap: 50px;
 }
 
-.second-introduce-right > div {
-  width: 220px;
+.second-introduce-right>div {
+  width: 100%;
   height: 220px;
 }
 
@@ -234,7 +238,64 @@ main {
   row-gap: 50px;
 }
 
-.third-introduce > div {
-  width: 270px;
+.third-introduce>div {
+  width: 100%;
   height: 270px;
+}
+
+@media (max-width: 950px) {
+  .second-introduce-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .second-introduce-left {
+    min-width: 400px;
+    height: 555px;
+  }
+
+  .second-introduce-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 50px;
+  }
+
+  .third-introduce {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    text-align: center;
+  }
+
+  .first-introduce-wrapper {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .first-introduce-right-cardstack{
+    height: 100%;
+  }
+  
+  .first-introduce-products img {
+    max-height: 600px;
+  }
+
+  .introduce-left-container {
+    margin-top: 20px;
+  }
+
+  .first-introduce-products {
+    padding-bottom: 600px;
+  }
+}
+
+@media (max-width: 610px) {
+  .first-introduce-products {
+    padding-bottom: 400px;
+  }
 }

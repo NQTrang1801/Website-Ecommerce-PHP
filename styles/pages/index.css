@@ -162,15 +162,16 @@ header {
 
 .ri-shopping-bag-line::after {
   content: "3";
-  font-size: 14px; 
-  color: red;
+  font-size: 12px; 
+  color: inherit;
   position: absolute;
-  top: 100%;
-  right: -48px;
+  top: -6px;
+  right: -50px;
   background-color: none;
-  padding: 0px 48px 18px 12px;
+  padding: 0px 48px 40px 12px;
   pointer-events: none;
   text-align: center;
+  font-family: 'Red Hat Display', 'Arial', sans-serif;
 }
 
 .cart-navbar {

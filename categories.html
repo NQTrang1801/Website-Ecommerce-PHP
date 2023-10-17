@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="styles/pages/categories.css">
     <link rel="stylesheet" href="styles/pages/footer.css">
     <link rel="stylesheet" href="styles/pages/media-index.css">
+    <link rel="stylesheet" href="styles/pages/media-categories.css">
     <link rel="stylesheet" href="styles/pages/media-footer.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
@@ -227,22 +229,66 @@
         <div id="overlay"></div>
     </header>
     <main>
-        <div class="main-title">
-            <div class="wrap">
-                <div class="item">
-                    <div class="image">
-                        <div class="ob-cover">
-                            <img src="pictures/display-products/female-model-big.jpg" alt="">
+        <div >
+            <main>
+            <div class="slider">
+                <div class="sliderbox swiper">
+                    <div class="wrap swiper-wrapper">
+                        <div class="item swiper-slide">
+                            <div class="image">
+                                <div class="ob-cover">
+                                    <img src="pictures/display-products/female-model-big.jpg" alt="">
+                                </div>
+                                <div class="title-info">
+                                    <div class="container wide">
+                                        <div class="wrap">
+                                        
+                                            <h3 class="title">WOMEN</h3>
+                                            <div class="button"><a href="" class="primary-btn">Shop now</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="title-info">
-                            <div class="wrap">
-                                <h3 class="title">WOMEN</h3>
-                                <div class="button"><a href="#special-prices" class="primary-btn">Shop now</a></div>
+                        <div class="item swiper-slide">
+                            <div class="image">
+                                <div class="ob-cover">
+                                    <img src="pictures/display-products/female-posting.jpg" alt="">
+                                </div>
+                                <div class="title-info">
+                                    <div class="container wide">
+                                        <div class="wrap">
+                                            
+                                            <h3 class="title">Feel the tosca color</h3>
+                                            <div class="button"><a href="" class="primary-btn">Shop now</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item swiper-slide">
+                            <div class="image">
+                                <div class="ob-cover">
+                                    <img src="pictures/display-products/female-japanese.jpg" alt="">
+                                </div>
+                                <div class="title-info">
+                                    <div class="container wide">
+                                        <div class="wrap">
+                                            
+                                            <h3 class="title">Feel the tosca color</h3>
+                                            <div class="button"><a href="" class="primary-btn">Shop now</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="custom-pagination">
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
             </div>
+        </main>
         </div>
         <!-- special price -->
         <div class="special-prices">
@@ -446,14 +492,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="nav1">
-                            <div class="swiper-button-next">
-                                <i class="ri arrow-right-line"></i>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <i class="ri arrow-left-line"></i>
                             </div>
                         </div>
                     </div>
@@ -967,14 +1005,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="nav1">
-                            <div class="swiper-button-next">
-                                <i class="ri arrow-right-line"></i>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <i class="ri arrow-left-line"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1231,14 +1261,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="nav1">
-                            <div class="swiper-button-next">
-                                <i class="ri arrow-right-line"></i>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <i class="ri arrow-left-line"></i>
                             </div>
                         </div>
                     </div>
@@ -1691,14 +1713,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="nav1">
-                            <div class="swiper-button-next">
-                                <i class="ri arrow-right-line"></i>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <i class="ri arrow-left-line"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1957,14 +1971,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="nav1">
-                            <div class="swiper-button-next">
-                                <i class="ri arrow-right-line"></i>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <i class="ri arrow-left-line"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1979,7 +1985,7 @@
                     <div class="content">
                         <span>Promo</span>
                         <h3 class="title1">Get ready!<br>Winter is coming</h3>
-                        <div class="button"><a href="" class="primary-btn">Go get it</a></div>
+                        <div class="button"><a href="">Go get it</a></div>
                     </div>
                 </div>
             </div>
@@ -2106,6 +2112,8 @@
     </footer>
 
     <script src="scripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="scripts/categories.js"></script>
 </body>
 
 </html>

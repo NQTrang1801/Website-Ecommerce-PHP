@@ -16,7 +16,8 @@ body {
 .page-title {
     width: 100%;
     padding: 60px 0px 14px 56px;
-    font-weight: bold;
+    font-weight: 500;
+    font-family: 'Cinzel', 'Arial', serif;
 }
 
 .container {
@@ -36,7 +37,7 @@ body {
     margin: 24px 0px 30px;
     text-align: center;
     padding: 24px 0px;
-    background-color: #f8f8f8;
+    background-color: var(--light-color);
 }
 
 .l-top-container a,
@@ -78,7 +79,7 @@ body {
 .item-quantity button {
     padding: 0 12px;
     border: none;
-    background-color: #f2f3f5;
+    background-color: var(--light-color);
     cursor: pointer;
     font-size: 16px;
 }
@@ -101,7 +102,7 @@ body {
     padding-right: 10px;
     text-align: center;
     padding: 10px 0;
-    background-color: #f2f3f5;
+    background-color: var(--light-color);
 }
 
 .delivery-shipping-container button {
@@ -109,13 +110,14 @@ body {
     height: 31px;
     border: none;
     font-size: 10px;
+    background-color: var(--light-color);
     cursor: pointer;
 }
 
 .delivery-shipping-container button:nth-child(1) {
     border-top-left-radius: 16px;
     border-bottom-left-radius: 16px;
-    border: 1px solid;
+    border: 1px solid var(--primary-color);
     font-weight: bold;
 }
 
@@ -183,7 +185,7 @@ body {
 }
 
 .r-container-head {
-    background-color: #f0eeed;
+    background-color: var(--light-color);
     color: #212529;
     line-height: 18.4px;
     width: 100%;
@@ -242,4 +244,7 @@ body {
 .checkout-wapper button {
     height: 40px;
     width: 100%;
+    background-color: var(--light-color);
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
 }

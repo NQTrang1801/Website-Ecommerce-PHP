@@ -154,54 +154,137 @@ body {
     margin: 0;
 }
 
-
 /* SLIDER */
-
-.main-title :where(.image, .ob-cover)
+.slide .title {
+    font-size: 80px;
+    color: var(--light-bg-color);
+    
+}
+.slider :where(.image, .ob-cover)
 {
     position: relative;
 }
-
-.main-title .ob-cover{
-    height: 600px;
+.slider .ob-cover{
+    height: 500px;
 }
-
-.main-title .ob-cover img {
+.ob-cover img {
     position: absolute;
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
+.slider .title-info
+{
+    color: var(--light-bg-color);
 
-.main-title .title-info .wrap {
+}
+.slider .title-info .wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    margin: 0 auto;
+    gap: 10px;
     text-align: center;
+}
+.slider .title-info .price-p {
     position: relative;
-    top: -200px;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    background-color: black;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.slider .custom-pagination {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    bottom: 50%;
+}
+.slider .custom-pagination .swiper-pagination
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.custom-pagination .swiper-pagination-bullet
+{
+    position: relative;
+    width: 24px;
+    height: 24px;
+    opacity: 1;
+    background-color: transparent;
+}
+.custom-pagination .swiper-pagination-bullet::before
+{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top:50%;
+    left: 50%;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    transition: width .2s, height .2s , transform .2s;
+}
+.custom-pagination .swiper-pagination-bullet-active::before
+{
+    background-color: transparent;
+    width: 15px;
+    height: 15px;
+}
+.slider .title-info :where(h3,.button)
+{
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .75s, opacity .75s, visibility .75s;
+}
+.slider .swiper-slide-active .title-info :where(h3,.button)
+{
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+.slider .swiper-slide-active .title-info h3 {
+    transition-delay: .5s;
+}
+.slider .swiper-slide-active .title-info .button {
+    transition-delay: .75s;
 }
 
-.main-title .title-info {
-    height: 0;
+.primary-btn{
+    display: flex;
+    border: 1px solid;
+    padding: 10px 20px;
 }
 
-.main-title .title {
-    font-size: 80px;
-    color: var(--light-bg-color);
+.slider .title-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    padding: 10px 0px;
 }
-
-.main-title .button {
-    padding: 14px;
+.slider .button a 
+{
     border: 1px solid var(--light-bg-color);
     color: var(--light-bg-color);
-    border-radius: 2px;
+    text-align: center;
 } 
-
-.main-title .button:hover
+.slider .button a:hover
 {
+   
     color: var(--primary-color);
     background-color: var(--light-bg-color);
 }
