@@ -5,7 +5,7 @@ main {
 }
 
 .first-introduce-products {
-  background-image: url(/pictures/display-products/crinkled-cardboard-texture.jpg);
+  background-image: url(/Website-Private/pictures/display-products/crinkled-cardboard-texture.jpg);
   width: 100%;
   height: auto;
   margin-top: -5px;
@@ -17,15 +17,22 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-bottom: 20px;
+  text-align: center;
+}
+
+.first-introduce-left {
+  width: 75%;
+  margin: auto;
 }
 
 .introduce-left-container {
   text-align: center;
+  width: 100%;
   margin-top: 30px;
 }
 
 .introduce-left-container img {
-  width: 60%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -34,9 +41,10 @@ main {
 }
 
 /* Stack image */
-
 .first-introduce-right {
   position: relative;
+  width: 70%;
+  margin-left: 60px;
 }
 
 .first-introduce-right-title,
@@ -55,8 +63,8 @@ main {
 }
 
 .cardstack {
-  position: absolute;
-  width: 50%;
+  position: relative;
+  width: 100%;
   height: 100%;
   margin: auto;
   left: 0;
@@ -66,42 +74,52 @@ main {
 .cardstack-btn {
   position: absolute;
   width: 100%;
-  height: 300px;
+  height: inherit;
 }
 
 .cardstack-btn .btn {
   position: absolute;
-  color: var(--primary-color);
-  font-size: 22px;
   background-color: var(--light-bg-color);
-  border-radius: 100%;
-  width: 40px;
-  height: 40px;
+  padding: 8px 10px;
+  border-radius: 24px;
+  display: none;
+  cursor: pointer;
+}
+
+.cardstack:hover .cardstack-btn .btn {
+  display: block;
+}
+
+.cardstack-btn .pause {
+  background-color: transparent;
+  color: var(--light-bg-color);
+  right: 0;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 2px solid var(--light-bg-color);
+  display: block;
 }
 
 .btn i {
-  position: absolute;
-  margin: 9px 0 0 8px;
+  margin-right: 0;
 }
 
 .arrow-right {
   right: 0;
-  bottom: 0;
+  top: 35%;
+  margin-right: 10px;
 }
 
 .arrow-left {
-  bottom: 0;
-}
-
-.pause {
-  right: 10px;
-  top: 10px;
+  left: 0;
+  top: 35%;
+  margin-left: 10px;
 }
 
 .cardstack-picture {
   position: absolute;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .cardstack-picture img {
@@ -111,6 +129,7 @@ main {
 
 .card-slide {
   position: absolute;
+  width: 100%;
   transition: transform 200ms;
 }
 
@@ -128,38 +147,38 @@ main {
   font-size: 10px;
 }
 
-.card-slide:nth-child(4) {
+/* .card-slide:nth-child(4) {
   transform: translate(0px, 0px);
 }
 
 .card-slide:nth-child(3) {
-  transform: translate(40px, 2px);
+  transform: translate(58px, 2px);
   scale: 0.9;
 }
 
 .card-slide:nth-child(2) {
-  transform: translate(90px, 2px);
+  transform: translate(124px, 2px);
   scale: 0.8;
-}
+} */
 
-/* .card-slide:nth-child(1) {
-  transform: translate(70px, 2px);
-  scale: 0.7;
+/* .card-slide:nth-child(4) .cardstack-timer {
+  display: block;
 } */
 
 .cardstack-timer {
   width: 100%;
-  height: 1.5px;
+  height: 1px;
   background-color: var(--secondary-color);
   position: absolute;
-  bottom: 0;
+  bottom: -20px;
   left: 0;
   z-index: 2;
+  /* display: none; */
 }
 
 .cardstack-timer-run {
   width: 40%;
-  height: 1.5px;
+  height: 1px;
   background-color: white;
 }
 
@@ -201,7 +220,7 @@ main {
   row-gap: 50px;
 }
 
-.second-introduce-right>div {
+.second-introduce-right > div {
   width: 100%;
   height: 220px;
 }
@@ -239,7 +258,7 @@ main {
   row-gap: 50px;
 }
 
-.third-introduce>div {
+.third-introduce > div {
   width: 100%;
   height: 270px;
 }
@@ -272,31 +291,52 @@ main {
     text-align: center;
   }
 
+  .introduce-left-container {
+    margin-top: 20px;
+  }
+
+  .first-introduce-right-title,
+  .first-introduce-left-info p {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 770px) {
   .first-introduce-wrapper {
     margin: auto;
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .first-introduce-right-cardstack{
-    height: 100%;
-  }
-  
-  .first-introduce-products img {
-    max-height: 600px;
-  }
-
-  .introduce-left-container {
-    margin-top: 20px;
+  .first-introduce-right {
+    height: 45em;
+    margin: auto;
   }
 
   .first-introduce-products {
-    padding-bottom: 600px;
+    padding-bottom: 200px;
+    padding-top: 40px;
+  }
+
+  .first-introduce-right-title,
+  .first-introduce-left-info p {
+    font-size: 20px;
   }
 }
 
-@media (max-width: 610px) {
+@media (max-width: 700px) {
   .first-introduce-products {
-    padding-bottom: 400px;
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .first-introduce-products {
+    padding-bottom: 0px;
+  }
+
+  .first-introduce-wrapper {
+    padding-bottom: 0px;
   }
 }
