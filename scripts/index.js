@@ -1,5 +1,5 @@
 import { products } from "../backend/products.js";
-import { cart} from "../backend/cart.js";
+import { cart } from "../backend/cart.js";
 // Scroll header
 $(document).ready(function () {
   const headerElement = $(".private-header");
@@ -62,17 +62,15 @@ $(document).ready(function () {
   cart.forEach(item => {
     sumQuantityCart += item.quantity;
     const infoItemCart = products.find(product => item.productId === product.productId);
-    sumCost += item.quantity*infoItemCart.current_price;
-    console.log(item);
-    console.log(infoItemCart.colors[0]);
+    sumCost += item.quantity * infoItemCart.current_price;
     htmlDropdownCart += `
                 <div class="cart-box">
                   <div class="cart-image">
-                    <img src="${infoItemCart.image}">
+                    <img src="${infoItemCart.image[0]}">
                   </div>
                   <div class="cart-info">
                     <p>${infoItemCart.name}</p>
-                    <p>COLOR: <span>${infoItemCart.colors[0]}</span></p>
+                    <p>COLOR: <span>${infoItemCart.image_color[0].color}</span></p>
                     <p>SIZE: <span>${infoItemCart.sizes[0]}</span></p>
                     <p>QTY: <span>${item.quantity}</span></p>
                     <p>$<span>${infoItemCart.current_price}</span></p>
@@ -83,7 +81,6 @@ $(document).ready(function () {
   divCartContent.innerHTML = htmlDropdownCart;
   const shoppingBag = document.querySelector('.ri-shopping-bag-line');
   shoppingBag.setAttribute('data-content', sumQuantityCart);
-  console.log(sumCost);
   document.querySelector('.cart-price').querySelector('p').nextElementSibling.querySelector('span').innerHTML = sumCost;
   document.querySelector('.cart-checkout').querySelector('span').innerHTML = sumQuantityCart;
 

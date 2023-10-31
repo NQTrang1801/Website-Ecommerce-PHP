@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="dot-image">
           <a href="" class="product-permalink"></a>
           <div class="thumbnail">
-              <img src="${item.image}" alt="">
+              <img src="${item.image[0]}" alt="">
           </div>
           <div class="thumbnail hover">
-              <img src="${item.image_hover}" alt="">
+              <img src="${item.image[1]}" alt="">
           </div>
           <div class="actions">
               <div><i class="ri-heart-line"></i></div>
               <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
-              <a href="product-detail.html"><i class="ri-eye-line"></i></a>
+              <a href="product-detail.html?productId=${item.productId}"><i class="ri-eye-line"></i></a>
           </div>
           <div class="label"><span>-${item.sales}</span></div>
       </div>
@@ -159,9 +159,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  
-   
-    
-    
 });
 
