@@ -1,3 +1,13 @@
+const productsModule = require('../backend/products');
+
+productsModule.readProductsFromFile((err, products) => {
+    if (err) {
+        console.error('Đã xảy ra lỗi:', err);
+    } else {
+        console.log('Dữ liệu sản phẩm:', products);
+    }
+});
+
 //slider
 const swiper = new Swiper('.sliderbox', {
 
@@ -12,6 +22,3 @@ const swiper = new Swiper('.sliderbox', {
     },
   
   });
-
-  // cart
-  
