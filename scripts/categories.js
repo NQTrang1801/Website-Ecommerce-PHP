@@ -1,4 +1,5 @@
 import { products } from "../backend/products.js";
+import { cart, save } from "../backend/cart.js";
 // Khởi tạo Swiper
 const swiper = new Swiper('.sliderbox', {
   loop: true,
@@ -11,7 +12,7 @@ const swiper = new Swiper('.sliderbox', {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  function renderIteamHTML(items, limit){
+  function renderIteamHTML(items, limit) {
     let html = '';
     let i = 0;
     items.forEach(item => {
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
           <div class="actions">
               <div><i class="ri-heart-line"></i></div>
-              <div><i class="ri-shopping-cart-line"></i></div>
+              <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
               <a href="product-detail.html"><i class="ri-eye-line"></i></a>
           </div>
           <div class="label"><span>-${item.sales}</span></div>
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
    </div>
       `;
-  
+
     });
     return html;
   }
@@ -69,8 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Products Categories
-
-  // const representativeImg = 
 
   // Category-1
   const divItemCategory1 = document.querySelector('.type-1 .wrapper');
@@ -140,5 +139,29 @@ document.addEventListener("DOMContentLoaded", function () {
     limitShowView4 += 10;
     RenderCategoryView4(limitShowView4);
   });
+
+  // Add To Cart
+  document.querySelectorAll('.js-btn-add-cart')
+    .forEach((DomAddCart) => {
+      DomAddCart.addEventListener('click', () => {
+        console.log("ok");
+        const productId = DomAddCart.dataset.productId;
+        console.log(productId + "oki");
+        const exItem = cart.find(item => item.productId === productId);
+        if (exItem) {
+          exItem.quantity++;
+        } else {
+          cart.push({ productId, quantity: 1 });
+        }
+        save();
+        this.location.reload();
+      });
+
+    });
+
+  
+   
+    
+    
 });
 

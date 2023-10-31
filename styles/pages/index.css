@@ -161,7 +161,7 @@ header {
 }
 
 .ri-shopping-bag-line::after {
-  content: "3";
+  content: attr(data-content);
   font-size: 12px; 
   color: inherit;
   position: absolute;
