@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="actions">
               <div><i class="ri-heart-line"></i></div>
               <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
+<<<<<<< HEAD
               <a href="product-detail.html?productId=${item.productId}"><i class="ri-eye-line"></i></a>
+=======
+              <a href="product-detail.html"><i class="ri-eye-line"></i></a>
+>>>>>>> 328e4d0168e7cfca8dc2a332f1f403d6047332e8
           </div>
           <div class="label"><span>-${item.sales}</span></div>
       </div>
@@ -159,5 +163,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+<<<<<<< HEAD
+=======
+  
+   
+    
+    
+>>>>>>> 328e4d0168e7cfca8dc2a332f1f403d6047332e8
 });
 
