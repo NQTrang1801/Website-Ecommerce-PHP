@@ -35,6 +35,7 @@ body {
 pre {
   font-family: 'Red Hat Display', 'Arial', sans-serif;
   font-size: 13px;
+  text-wrap: wrap;
 }
 
 a {
