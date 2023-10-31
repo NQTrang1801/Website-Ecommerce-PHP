@@ -95,6 +95,7 @@ body {
 }
 
 .dotgrid .actions a,
+.dotgrid .actions div,
 .dotgrid .dot-image .label span {
     font-size: 15px;
     display: flex;
@@ -105,7 +106,8 @@ body {
     background-color: var(--light-bg-color);
     border-radius: 100%;
 }
-.dotgrid .actions a:hover
+.dotgrid .actions a:hover,
+.dotgrid .actions div:hover
 {
     background-color: var(--secondary-bg-color);
     color: var(--primary-color);
@@ -150,22 +152,26 @@ body {
     background-color: var(--primary-color);
 }
 
-.actions a i {
+.actions a i,
+.actions div i {
     margin: 0;
 }
 
 /* SLIDER */
-.slide .title {
+.slider .title {
     font-size: 80px;
     color: var(--light-bg-color);
     
 }
+
 .slider :where(.image, .ob-cover)
 {
     position: relative;
 }
+
 .slider .ob-cover{
     height: 500px;
+    z-index: 0;
 }
 .ob-cover img {
     position: absolute;
