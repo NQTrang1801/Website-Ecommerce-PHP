@@ -224,3 +224,7 @@ img {
 .product-detail-exploring {
   margin-top: 100px;
 }
+
+.button-back {
+  cursor: pointer;
+}

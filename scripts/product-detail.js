@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let color = "white";
   let size = "XS";
   const urlParams = new URLSearchParams(window.location.search);
+  const dataWeb = urlParams.get('data');
   const productId = urlParams.get('productId');
   const indexProduct = urlParams.get('index');
   const oldColor = urlParams.get('color');
@@ -175,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
+  const btnBack = document.querySelector(".button-back");
+
   if (indexProduct) {
       document.querySelector(".js-btn-add-cart").innerHTML = "UPDATE";
       
@@ -184,8 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
         save();
         window.location.href = `product-detail.html?productId=${productId}&&color=${color}&&size=${size}&&index=${indexProduct}`;
       });
+
+      btnBack.addEventListener("click", () => {
+        window.location.href = `cart.html`;
+      })
   } else {
-      document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
+
+    btnBack.addEventListener("click", () => {
+      window.location.href = `categories.html?data=${dataWeb}`;
+    })
+    document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
       const product = { ...products.find(item => item.productId === productId) };
       product.image_color[0].color = color;
       product.sizes[0] = size;

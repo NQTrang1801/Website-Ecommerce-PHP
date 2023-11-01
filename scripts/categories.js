@@ -12,6 +12,8 @@ const swiper = new Swiper('.sliderbox', {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const dataWeb = urlParams.get('data');
   function renderIteamHTML(items, limit) {
     let html = '';
     let i = 0;
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="actions">
               <div><i class="ri-heart-line"></i></div>
               <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
-              <a href="product-detail.html?productId=${item.productId}"><i class="ri-eye-line"></i></a>
+              <a href="product-detail.html?data=${dataWeb}&&productId=${item.productId}"><i class="ri-eye-line"></i></a>
           </div>
           <div class="label"><span>-${item.sales*100}%</span></div>
       </div>
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let limitShowSpecialPrice = 8;
   function RenderSpecialPrice(limit) {
     divItemSpecialPrice.innerHTML = '';
-    const specialPrices = products.filter((item) => item.classify[0] === "Women" && item.classify[2] === "SpecialPrices");
+    const specialPrices = products.filter((item) => item.classify[0] === dataWeb && item.classify[2] === "SpecialPrices");
     divItemSpecialPrice.innerHTML = renderIteamHTML(specialPrices, limit);
   }
 
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let limitShowView1 = 18;
   function RenderCategoryView1(limit) {
     divItemCategory1.innerHTML = '';
-    const productsCategory1 = products.filter((item) => item.classify[0] === "Women" && item.classify[4] === "Coats-and-jackets");
+    const productsCategory1 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "Coats-and-jackets");
     divItemCategory1.innerHTML = renderIteamHTML(productsCategory1, limit);
   }
 
@@ -94,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let limitShowView2 = 10;
   function RenderCategoryView2(limit) {
     divItemCategory2.innerHTML = '';
-    const productsCategory2 = products.filter((item) => item.classify[0] === "Women" && item.classify[4] === "Dresses-and-skirts");
+    const productsCategory2 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "Dresses-and-skirts");
     divItemCategory2.innerHTML = renderIteamHTML(productsCategory2, limit);
   }
 
@@ -111,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let limitShowView3 = 18;
   function RenderCategoryView3(limit) {
     divItemCategory3.innerHTML = '';
-    const productsCategory3 = products.filter((item) => item.classify[0] === "Women" && item.classify[4] === "Pants-and-shorts");
+    const productsCategory3 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "Pants-and-shorts");
     divItemCategory3.innerHTML = renderIteamHTML(productsCategory3, limit);
   }
 
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let limitShowView4 = 10;
   function RenderCategoryView4(limit) {
     divItemCategory4.innerHTML = '';
-    const productsCategory4 = products.filter((item) => item.classify[0] === "Women" && item.classify[4] === "Tops-and-shirts");
+    const productsCategory4 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "Tops-and-shirts");
     divItemCategory4.innerHTML = renderIteamHTML(productsCategory4, limit);
   }
 
