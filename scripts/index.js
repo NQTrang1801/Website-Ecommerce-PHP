@@ -61,19 +61,18 @@ $(document).ready(function () {
   let sumCost = 0;
   cart.forEach(item => {
     sumQuantityCart += item.quantity;
-    const infoItemCart = products.find(product => item.productId === product.productId);
-    sumCost += item.quantity * infoItemCart.current_price;
+    sumCost += item.quantity * item.price*(1-item.sales);
     htmlDropdownCart += `
                 <div class="cart-box">
                   <div class="cart-image">
-                    <img src="${infoItemCart.image[0]}">
+                    <img src="${item.image[0]}">
                   </div>
                   <div class="cart-info">
-                    <p>${infoItemCart.name}</p>
-                    <p>COLOR: <span>${infoItemCart.image_color[0].color}</span></p>
-                    <p>SIZE: <span>${infoItemCart.sizes[0]}</span></p>
+                    <p>${item.name}</p>
+                    <p>COLOR: <span>${item.image_color[0].color}</span></p>
+                    <p>SIZE: <span>${item.sizes[0]}</span></p>
                     <p>QTY: <span>${item.quantity}</span></p>
-                    <p>$<span>${infoItemCart.current_price}</span></p>
+                    <p>$<span>${item.price*(1-item.sales)}</span></p>
                   </div>
                 </div>
   `

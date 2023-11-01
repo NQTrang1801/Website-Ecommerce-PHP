@@ -2,8 +2,14 @@ import { cart, save } from "../data/cart-data.js";
 import { products } from "../data/products.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+  let color = "white";
+  let size = "XS";
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('productId');
+  const indexProduct = urlParams.get('index');
+  const oldColor = urlParams.get('color');
+  const oldSize = urlParams.get('size');
+
 
   const data = products.find(item => item.productId === productId);
   const domImageLeft = document.querySelector('.detail-image-left');
@@ -33,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="detail-summary">
           <div class="summary-name">
             <p>${data.name}</p>
-            <p class="detail-price">$${data.current_price}</p>
+            <p class="detail-price">$${data.price*(1-data.sales)}</p>
           </div>
           <div class="summary-color">
             <div>
               <p>Color</p>
-              <p style="font-weight: 600;">${data.image_color[0].color}</p>
+              <p style="font-weight: 600;">${!indexProduct ? data.image_color[0].color : oldColor}</p>
             </div>
             <div class="summary-color-item">
               <div>
@@ -108,8 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const divSizes = document.querySelector('.product-size').querySelectorAll('div');
   divLefts[0].classList.add("click-img-left");
   divLefts[0].style.borderBottom = "2px solid var(--primary-color)";
-  divColors[0].style.borderBottom = "2px solid var(--primary-color)";
-  divSizes[0].style.border = "3px solid var(--primary-color)";
+  if (!indexProduct) {
+    divColors[0].style.borderBottom = "2px solid var(--primary-color)";
+    divSizes[0].style.border = "3px solid var(--primary-color)";
+  }
+  else{
+      const colorEx = products[0].image_color;
+      colorEx.forEach((c, index) => {
+        if (c.color === oldColor){
+          divColors[index].style.borderBottom = "2px solid var(--primary-color)";
+        }
+      });
+
+      const sizeEx = products[0].sizes;
+      sizeEx.forEach((s, index) => {
+        if (s === oldSize){
+          divSizes[index].style.border = "3px solid var(--primary-color)";
+        }
+      });
+  }
+  
 
   divLefts.forEach((item) => {
     item.addEventListener('click', () => {
@@ -128,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   divColors.forEach(item => {
     item.addEventListener('click', () => {
       const content = item.querySelector("img").dataset.content;
+      color = data.image_color[content].color;
       document.querySelector(".summary-color").querySelector("div").querySelector("p").nextElementSibling.textContent = data.image_color[content].color;
       item.style.borderBottom = "2px solid var(--primary-color)";
       divColors.forEach((div) => {
@@ -140,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   divSizes.forEach(item => {
     item.addEventListener('click', () => {
+      size = item.innerHTML;
       item.style.border = "3px solid var(--primary-color)";
       divSizes.forEach((div) => {
         if (div.innerHTML !== item.innerHTML) {
@@ -149,10 +175,28 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
-  // Add To Cart
-  document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
-      cart.push({ productId, quantity: 1 });
-    save();
-    location.reload();
-  });
+  if (indexProduct) {
+      document.querySelector(".js-btn-add-cart").innerHTML = "UPDATE";
+      
+      document.querySelector('.js-btn-add-cart').addEventListener('click', () => {  
+        cart[indexProduct].image_color[0].color = color;
+        cart[indexProduct].sizes[0] = size;
+        save();
+        window.location.href = `product-detail.html?productId=${productId}&&color=${color}&&size=${size}&&index=${indexProduct}`;
+      });
+  } else {
+      document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
+      const product = { ...products.find(item => item.productId === productId) };
+      product.image_color[0].color = color;
+      product.sizes[0] = size;
+      product.quantity = 1;
+      product.vouchers = [];
+      cart.push(product);
+      console.log(cart);
+      save();
+      location.reload();
+    });
+  }
+
+  
 });

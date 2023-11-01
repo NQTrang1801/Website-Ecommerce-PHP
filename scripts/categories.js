@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
               <a href="product-detail.html?productId=${item.productId}"><i class="ri-eye-line"></i></a>
           </div>
-          <div class="label"><span>-${item.sales}</span></div>
+          <div class="label"><span>-${item.sales*100}%</span></div>
       </div>
       <div class="dot-info">
           <h2 class="dot-title"><a href="">${item.name}</a></h2>
           <div class="product-price">
-              <span class="before">$${item.before_price}</span>
-              <span class="current">$${item.current_price}</span>
+              <span class="before">$${item.price}</span>
+              <span class="current">$${item.price*(1-item.sales)}</span>
           </div>
       </div>
    </div>
@@ -145,7 +145,10 @@ document.addEventListener("DOMContentLoaded", function () {
     .forEach((DomAddCart) => {
       DomAddCart.addEventListener('click', () => {
         const productId = DomAddCart.dataset.productId;
-        cart.push({ productId, quantity: 1 });
+        const product = {...products.find(item => item.productId === productId)};
+        product.quantity = 1;
+        product.vouchers = [];
+        cart.push(product);
         save();
         this.location.reload();
       });
