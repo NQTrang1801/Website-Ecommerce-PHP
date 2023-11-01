@@ -45,20 +45,8 @@ img {
   position: relative;
 }
 
-/* delete this code when add javascript */
-.detail-image-left div:nth-child(1) {
+.click-img-left {
   opacity: 0.5;
-}
-
-/* delete this code when add javascript */
-.detail-image-left div:nth-child(1):after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-color);
 }
 
 .summary-color-item {
@@ -132,15 +120,6 @@ img {
 .detail-reference i {
   float: right;
   margin-right: 0;
-}
-
-.summary-size > div:nth-child(2) {
-  margin-top: 15px;
-  display: none;
-}
-
-.summary-size:hover > div {
-  display: block;
 }
 
 .product-size-guide {

@@ -1,15 +1,15 @@
-import { cart, save } from "../backend/cart.js";
-import { products } from "../backend/products.js";
+import { cart, save } from "../data/cart-data.js";
+import { products } from "../data/products.js";
+
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('productId');
-
-  console.log(productId); 
 
   const data = products.find(item => item.productId === productId);
   const domImageLeft = document.querySelector('.detail-image-left');
   const domImageRight = document.querySelector('.detail-image-right');
   const domSumary = document.querySelector('.product-detail-summary');
+
   let htmlImgLeft = `
     <div>
     <img src="${data.image[0]}" alt="">
@@ -24,19 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <img src="${data.image[3]}" alt="">
   </div>
     `;
-  domImageLeft.innerHTML = htmlImgLeft;
 
   let htmlImgRight = `
         <img src="${data.image[0]}" alt=""></img>
     `;
-
-  domImageRight.innerHTML = htmlImgRight;
-  domImageLeft.querySelectorAll('div').forEach((item) => {
-    item.addEventListener('click', () => {
-      domImageRight.querySelector('img').src = item.querySelector('img').src;
-    });
-  });
-
 
   let htmlSumary = `
     <div class="detail-summary">
@@ -108,25 +99,59 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
 
+  domImageLeft.innerHTML = htmlImgLeft;
+  domImageRight.innerHTML = htmlImgRight;
   domSumary.innerHTML = htmlSumary;
 
-  document.querySelector(".summary-color-item").querySelectorAll('div').forEach(item => {
+  const divLefts = domImageLeft.querySelectorAll('div');
+  const divColors = document.querySelector('.summary-color-item').querySelectorAll('div');
+  const divSizes = document.querySelector('.product-size').querySelectorAll('div');
+  divLefts[0].classList.add("click-img-left");
+  divLefts[0].style.borderBottom = "2px solid var(--primary-color)";
+  divColors[0].style.borderBottom = "2px solid var(--primary-color)";
+  divSizes[0].style.border = "3px solid var(--primary-color)";
+
+  divLefts.forEach((item) => {
+    item.addEventListener('click', () => {
+      domImageRight.querySelector('img').src = item.querySelector('img').src;
+      item.classList.add("click-img-left");
+      item.style.borderBottom = "2px solid var(--primary-color)";
+      divLefts.forEach((div) => {
+        if (div.innerHTML !== item.innerHTML) {
+          div.classList.remove("click-img-left");
+          div.style.borderBottom = "none";
+        }
+      })
+    });
+  });
+
+  divColors.forEach(item => {
     item.addEventListener('click', () => {
       const content = item.querySelector("img").dataset.content;
       document.querySelector(".summary-color").querySelector("div").querySelector("p").nextElementSibling.textContent = data.image_color[content].color;
+      item.style.borderBottom = "2px solid var(--primary-color)";
+      divColors.forEach((div) => {
+        if (div.innerHTML !== item.innerHTML) {
+          div.style.borderBottom = "none";
+        }
+      })
     })
   });
 
+  divSizes.forEach(item => {
+    item.addEventListener('click', () => {
+      item.style.border = "3px solid var(--primary-color)";
+      divSizes.forEach((div) => {
+        if (div.innerHTML !== item.innerHTML) {
+          div.style.border = "1px solid var(--primary-color)";
+        }
+      })
+    })
+  });
 
   // Add To Cart
   document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
-    console.log("ok");
-    const exItem = cart.find(item => item.productId === productId);
-    if (exItem) {
-      exItem.quantity++;
-    } else {
       cart.push({ productId, quantity: 1 });
-    }
     save();
     location.reload();
   });

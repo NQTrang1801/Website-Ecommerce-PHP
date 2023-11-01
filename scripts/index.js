@@ -1,5 +1,5 @@
-import { products } from "../backend/products.js";
-import { cart } from "../backend/cart.js";
+import { products } from "../data/products.js";
+import { cart } from "../data/cart-data.js";
 // Scroll header
 $(document).ready(function () {
   const headerElement = $(".private-header");

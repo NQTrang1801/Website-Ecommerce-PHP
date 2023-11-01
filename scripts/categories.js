@@ -1,5 +1,5 @@
-import { products } from "../backend/products.js";
-import { cart, save } from "../backend/cart.js";
+import { products } from "../data/products.js";
+import { cart, save } from "../data/cart-data.js";
 // Khởi tạo Swiper
 const swiper = new Swiper('.sliderbox', {
   loop: true,
@@ -144,19 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.js-btn-add-cart')
     .forEach((DomAddCart) => {
       DomAddCart.addEventListener('click', () => {
-        console.log("ok");
         const productId = DomAddCart.dataset.productId;
-        console.log(productId + "oki");
-        const exItem = cart.find(item => item.productId === productId);
-        if (exItem) {
-          exItem.quantity++;
-        } else {
-          cart.push({ productId, quantity: 1 });
-        }
+        cart.push({ productId, quantity: 1 });
         save();
         this.location.reload();
       });
-
     });
 
 });
