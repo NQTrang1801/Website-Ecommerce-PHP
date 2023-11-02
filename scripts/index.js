@@ -53,7 +53,6 @@ $(document).ready(function () {
     $("body").css({ "overflow": "scroll" });
   }
 
-  // dropdown cart render
   // render dropdown cart
   let htmlDropdownCart = ``;
   const divCartContent = document.querySelector('.js-cart-content');

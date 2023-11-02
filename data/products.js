@@ -8,10 +8,11 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
-        "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
+        "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n",
+        "keyWords" : ["women", "short", "sales", "popular", "coats", "jackets"]
     },
     {
         "productId" : "2",
@@ -22,7 +23,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -36,7 +37,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -50,7 +51,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -64,7 +65,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -78,7 +79,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -92,7 +93,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -106,7 +107,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -120,7 +121,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -134,7 +135,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Coats-and-jackets"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -148,7 +149,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -162,7 +163,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -176,7 +177,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -190,7 +191,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -204,7 +205,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -218,7 +219,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -232,7 +233,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -246,7 +247,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -260,7 +261,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -274,7 +275,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -288,7 +289,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Dresses-and-skirts"],
+        "classify" : ["women", "short", "", "popular-ig", "dresses-and-skirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -302,7 +303,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -316,7 +317,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -330,7 +331,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -344,7 +345,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -358,7 +359,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -372,7 +373,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -386,7 +387,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -400,7 +401,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -414,7 +415,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -428,7 +429,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Pants-and-shorts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "pants-and-shorts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -442,7 +443,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -456,7 +457,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -470,7 +471,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -484,7 +485,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -498,7 +499,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -512,7 +513,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -526,7 +527,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -540,7 +541,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -554,7 +555,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -568,7 +569,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
@@ -582,7 +583,7 @@ export const products = [
         "price": "62.00",
          
         "sizes": ["XS","S", "M", "L", "XL"],
-        "classify" : ["Women", "short", "SpecialPrices", "popular-ig", "Tops-and-shirts"],
+        "classify" : ["women", "short", "special-prices", "popular-ig", "tops-and-shirts"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",
         "suggestion" : "Model is 1m75 / 5'7 and wearing a size L",
         "care" : "\n Do not wash\n Do not use bleach\n Do not iron\n Do not dry clean\n Do not tumble dry\n"
