@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="detail-summary">
           <div class="summary-name">
             <p>${data.name}</p>
-            <p class="detail-price">$${data.price*(1-data.sales)}</p>
+            <p class="detail-price">$${data.price * (1 - data.sales)}</p>
           </div>
           <div class="summary-color">
             <div>
@@ -118,28 +118,26 @@ document.addEventListener('DOMContentLoaded', () => {
   divLefts[0].classList.add("click-img-left");
   divLefts[0].style.borderBottom = "2px solid var(--primary-color)";
 
-  if (!indexProduct) 
-  {
+  if (!indexProduct) {
     divColors[0].style.borderBottom = "2px solid var(--primary-color)";
     divSizes[0].style.border = "3px solid var(--primary-color)";
   }
-  else
-  {
-      const colorEx = products[0].image_color;
-      colorEx.forEach((c, index) => {
-        if (c.color === oldColor){
-          divColors[index].style.borderBottom = "2px solid var(--primary-color)";
-        }
-      });
+  else {
+    const colorEx = products[0].image_color;
+    colorEx.forEach((c, index) => {
+      if (c.color === oldColor) {
+        divColors[index].style.borderBottom = "2px solid var(--primary-color)";
+      }
+    });
 
-      const sizeEx = products[0].sizes;
-      sizeEx.forEach((s, index) => {
-        if (s === oldSize){
-          divSizes[index].style.border = "3px solid var(--primary-color)";
-        }
-      });
+    const sizeEx = products[0].sizes;
+    sizeEx.forEach((s, index) => {
+      if (s === oldSize) {
+        divSizes[index].style.border = "3px solid var(--primary-color)";
+      }
+    });
   }
-  
+
 
   divLefts.forEach((item) => {
     item.addEventListener('click', () => {
@@ -183,18 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btnBack = document.querySelector(".button-back");
   if (indexProduct) {
-      document.querySelector(".js-btn-add-cart").innerHTML = "UPDATE";
-      
-      document.querySelector('.js-btn-add-cart').addEventListener('click', () => {  
-        cart[indexProduct].image_color[0].color = color;
-        cart[indexProduct].sizes[0] = size;
-        save();
-        window.location.href = `product-detail.html?productId=${productId}&&color=${color}&&size=${size}&&index=${indexProduct}`;
-      });
+    document.querySelector(".js-btn-add-cart").innerHTML = "UPDATE";
 
-      btnBack.addEventListener("click", () => {
-        window.location.href = `cart.html`;
-      })
+    document.querySelector('.js-btn-add-cart').addEventListener('click', () => {
+      cart[indexProduct].image_color[0].color = color;
+      cart[indexProduct].sizes[0] = size;
+      save();
+      window.location.href = `product-detail.html?productId=${productId}&&color=${color}&&size=${size}&&index=${indexProduct}`;
+    });
+
+    btnBack.addEventListener("click", () => {
+      window.location.href = `cart.html`;
+    })
   } else {
     btnBack.addEventListener("click", () => {
       window.location.href = `categories.html?data=${dataWeb}`;
@@ -211,6 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  
+
 });
 

@@ -5,7 +5,7 @@ main {
 }
 
 .first-introduce-products {
-  background-image: url(/Website-Private/pictures/display-products/crinkled-cardboard-texture.jpg);
+  background-image: url(../../pictures/display-products/crinkled-cardboard-texture.jpg);
   width: 100%;
   height: auto;
   margin-top: -5px;
