@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (i < limit) {
         i++;
       } else {
-        return;
+        return html;
       }
       html += `
       <div class="item">
@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="js-btn-add-cart" data-product-id="${item.productId}"><i class="ri-shopping-cart-line"></i></div>
               <a href="product-detail.html?data=${dataWeb}&&productId=${item.productId}"><i class="ri-eye-line"></i></a>
           </div>
-          <div class="label"><span>-${item.sales*100}%</span></div>
+          <div class="label"><span>-${item.sales * 100}%</span></div>
       </div>
       <div class="dot-info">
           <h2 class="dot-title"><a href="">${item.name}</a></h2>
           <div class="product-price">
               <span class="before">$${item.price}</span>
-              <span class="current">$${item.price*(1-item.sales)}</span>
+              <span class="current">$${item.price * (1 - item.sales)}</span>
           </div>
       </div>
    </div>
@@ -56,107 +56,125 @@ document.addEventListener("DOMContentLoaded", function () {
     return html;
   }
 
-  //Special Prices
-  const divItemSpecialPrice = document.querySelector('.special-prices .wrapper');
-  let limitShowSpecialPrice = 8;
-  function RenderSpecialPrice(limit) {
-    divItemSpecialPrice.innerHTML = '';
-    const specialPrices = products.filter((item) => item.classify[0] === dataWeb && item.classify[2] === "special-prices");
-    divItemSpecialPrice.innerHTML = renderIteamHTML(specialPrices, limit);
+  function renderProducts(container, typeName, typeIndex, maxShow, minShow)
+  {
+    let flag = false;
+    const productsType = products.filter((item) => item.classify[0] === dataWeb && item.classify[typeIndex] === typeName);
+    if (maxShow <= productsType.length || productsType.length < minShow) {
+      if (maxShow < productsType.length) {
+        maxShow += minShow;
+        flag = true;
+      } 
+      container.innerHTML = '';
+      container.innerHTML = renderIteamHTML(productsType, maxShow);
+      addToCart(container);
+    }
+    return flag;
   }
 
-  RenderSpecialPrice(limitShowSpecialPrice);
+  //Special Prices
+  const divItemTop = document.querySelector('.special-prices .wrapper');
+  let maxShowTop = 0;
+  let minShowTop = 8;
 
-  const btnSeeMore = document.querySelector('.special-prices .see-more');
-  btnSeeMore.addEventListener('click', () => {
-    limitShowSpecialPrice += 8;
-    RenderSpecialPrice(limitShowSpecialPrice);
+  if (renderProducts(divItemTop, "special-prices", 2, maxShowTop, minShowTop)) {
+    maxShowTop += minShowTop;
+  }
+
+  const btnSeeMoreTop = document.querySelector('.special-prices .see-more');
+  btnSeeMoreTop.addEventListener('click', () => {
+    if (renderProducts(divItemTop, "special-prices", 2, maxShowTop, minShowTop))
+    {
+      maxShowTop += minShowTop;
+    };
   });
 
   // Products Categories
 
   // Category-1
-  const divItemCategory1 = document.querySelector('.type-1 .wrapper');
-  let limitShowView1 = 18;
-  function RenderCategoryView1(limit) {
-    divItemCategory1.innerHTML = '';
-    const productsCategory1 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "coats-and-jackets");
-    divItemCategory1.innerHTML = renderIteamHTML(productsCategory1, limit);
+  const divItemC1 = document.querySelector('.type-1 .wrapper');
+  let maxShowC1 = 0;
+  let minShowC1 = 18;
+
+  if (renderProducts(divItemC1, "coats-and-jackets", 4, maxShowC1, minShowC1)) {
+    maxShowC1 += minShowC1;
   }
 
-  RenderCategoryView1(limitShowView1);
-
-  const btnSeeMore1 = document.querySelector('.type-1 .see-more');
-  console.log(btnSeeMore1);
-  btnSeeMore1.addEventListener('click', () => {
-    limitShowView1 += 18;
-    RenderCategoryView1(limitShowView1);
+  const btnSeeMoreC1 = document.querySelector('.type-1 .see-more');
+  btnSeeMoreC1.addEventListener('click', () => {
+    if (renderProducts(divItemC1, "coats-and-jackets", 4, maxShowC1, minShowC1))
+    {
+      maxShowC1 += minShowC1;
+    };
   });
 
   // Category-2
-  const divItemCategory2 = document.querySelector('.type-2 .wrapper');
-  let limitShowView2 = 10;
-  function RenderCategoryView2(limit) {
-    divItemCategory2.innerHTML = '';
-    const productsCategory2 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "dresses-and-skirts");
-    divItemCategory2.innerHTML = renderIteamHTML(productsCategory2, limit);
+  const divItemC2 = document.querySelector('.type-2 .wrapper');
+  let maxShowC2 = 0;
+  let minShowC2 = 10;
+
+  if (renderProducts(divItemC2, "dresses-and-skirts", 4, maxShowC2, minShowC2)) {
+    maxShowC2 += minShowC2;
   }
 
-  RenderCategoryView2(limitShowView2);
-
-  const btnSeeMore2 = document.querySelector('.type-2 .see-more');
-  btnSeeMore2.addEventListener('click', () => {
-    limitShowView2 += 10;
-    RenderCategoryView2(limitShowView2);
+  const btnSeeMoreC2 = document.querySelector('.type-2 .see-more');
+  btnSeeMoreC2.addEventListener('click', () => {
+    if (renderProducts(divItemC2, "dresses-and-skirts", 4, maxShowC2, minShowC2))
+    {
+      maxShowC2 += minShowC2;
+    };
   });
-
   // Category-3
-  const divItemCategory3 = document.querySelector('.type-3 .wrapper');
-  let limitShowView3 = 18;
-  function RenderCategoryView3(limit) {
-    divItemCategory3.innerHTML = '';
-    const productsCategory3 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "pants-and-shorts");
-    divItemCategory3.innerHTML = renderIteamHTML(productsCategory3, limit);
+  const divItemC3 = document.querySelector('.type-3 .wrapper');
+  let maxShowC3 = 0;
+  let minShowC3 = 18;
+
+  if (renderProducts(divItemC3, "pants-and-shorts", 4, maxShowC3, minShowC3)) {
+    maxShowC3 += minShowC3;
   }
 
-  RenderCategoryView3(limitShowView3);
-
-  const btnSeeMore3 = document.querySelector('.type-3 .see-more');
-  btnSeeMore3.addEventListener('click', () => {
-    limitShowView3 += 18;
-    RenderCategoryView3(limitShowView3);
+  const btnSeeMoreC3 = document.querySelector('.type-3 .see-more');
+  btnSeeMoreC3.addEventListener('click', () => {
+    if (renderProducts(divItemC3, "pants-and-shorts", 4, maxShowC3, minShowC3))
+    {
+      maxShowC3 += minShowC3;
+    };
   });
 
   // Category-4
-  const divItemCategory4 = document.querySelector('.type-4 .wrapper');
-  let limitShowView4 = 10;
-  function RenderCategoryView4(limit) {
-    divItemCategory4.innerHTML = '';
-    const productsCategory4 = products.filter((item) => item.classify[0] === dataWeb && item.classify[4] === "tops-and-shirts");
-    divItemCategory4.innerHTML = renderIteamHTML(productsCategory4, limit);
+  const divItemC4 = document.querySelector('.type-4 .wrapper');
+  let maxShowC4 = 0;
+  let minShowC4 = 10;
+
+  if (renderProducts(divItemC4, "tops-and-shirts", 4, maxShowC4, minShowC4)) {
+    maxShowC4 += minShowC4;
   }
 
-  RenderCategoryView4(limitShowView4);
-
-  const btnSeeMore4 = document.querySelector('.type-4 .see-more');
-  btnSeeMore4.addEventListener('click', () => {
-    limitShowView4 += 10;
-    RenderCategoryView4(limitShowView4);
+  const btnSeeMoreC4 = document.querySelector('.type-4 .see-more');
+  btnSeeMoreC4.addEventListener('click', () => {
+    if (renderProducts(divItemC4, "tops-and-shirts", 4, maxShowC4, minShowC4))
+    {
+      maxShowC4 += minShowC4;
+    };
   });
 
   // Add To Cart
-  document.querySelectorAll('.js-btn-add-cart')
-    .forEach((DomAddCart) => {
-      DomAddCart.addEventListener('click', () => {
-        const productId = DomAddCart.dataset.productId;
-        const product = {...products.find(item => item.productId === productId)};
-        product.quantity = 1;
-        product.vouchers = [];
-        cart.push(product);
-        save();
-        this.location.reload();
-      });
-    });
+  function addToCart(DOM)
+  {
+     DOM.querySelectorAll('.js-btn-add-cart')
+     .forEach((DomAddCart) => {
+       DomAddCart.addEventListener('click', () => {
+         console.log("click");
+         const productId = DomAddCart.dataset.productId;
+         const product = { ...products.find(item => item.productId === productId) };
+         product.quantity = 1;
+         product.vouchers = [];
+         cart.push(product);
+         save();
+         location.reload();
+       });
+     });
+  }
 
 });
 
