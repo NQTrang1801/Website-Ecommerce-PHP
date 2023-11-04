@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import { cart, save } from "../data/cart-data.js";
+import { cart, sumCostData, save } from "../data/cart-data.js";
 // Khởi tạo Swiper
 const swiper = new Swiper('.sliderbox', {
   loop: true,
@@ -171,10 +171,38 @@ document.addEventListener("DOMContentLoaded", function () {
          product.vouchers = [];
          cart.push(product);
          save();
-         location.reload();
+         renderDropDownCart();
        });
      });
   }
 
+  function renderDropDownCart() {
+    let htmlDropdownCart = ``;
+    const divCartContent = document.querySelector('.js-cart-content');
+    let sumQuantityCart = 0;
+
+    cart.forEach(item => {
+      sumQuantityCart += item.quantity;
+      htmlDropdownCart += `
+            <div class="cart-box">
+              <div class="cart-image">
+                <img src="${item.image[0]}">
+              </div>
+              <div class="cart-info">
+                <p>${item.name}</p>
+                <p>COLOR: <span>${item.image_color[0].color}</span></p>
+                <p>SIZE: <span>${item.sizes[0]}</span></p>
+                <p>QTY: <span>${item.quantity}</span></p>
+                <p>$<span>${item.price * (1 - item.sales)}</span></p>
+              </div>
+            </div>
+            `;
+    });
+    divCartContent.innerHTML = htmlDropdownCart;
+    const shoppingBag = document.querySelector('.ri-shopping-bag-line');
+    shoppingBag.setAttribute('data-content', sumQuantityCart);
+    document.querySelector('.cart-price').querySelector('p').nextElementSibling.querySelector('span').innerHTML = sumCostData();
+    document.querySelector('.cart-checkout').querySelector('span').innerHTML = sumQuantityCart;
+  };
 });
 

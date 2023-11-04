@@ -4,6 +4,7 @@ import { products } from "../data/products.js";
 document.addEventListener('DOMContentLoaded', () => {
   let color = "white";
   let size = "XS";
+
   const urlParams = new URLSearchParams(window.location.search);
   const dataWeb = urlParams.get('data');
   const productId = urlParams.get('productId');
@@ -11,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const oldColor = urlParams.get('color');
   const oldSize = urlParams.get('size');
 
-
   const data = products.find(item => item.productId === productId);
+
   const domImageLeft = document.querySelector('.detail-image-left');
   const domImageRight = document.querySelector('.detail-image-right');
   const domSumary = document.querySelector('.product-detail-summary');
@@ -113,13 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const divLefts = domImageLeft.querySelectorAll('div');
   const divColors = document.querySelector('.summary-color-item').querySelectorAll('div');
   const divSizes = document.querySelector('.product-size').querySelectorAll('div');
+
   divLefts[0].classList.add("click-img-left");
   divLefts[0].style.borderBottom = "2px solid var(--primary-color)";
-  if (!indexProduct) {
+
+  if (!indexProduct) 
+  {
     divColors[0].style.borderBottom = "2px solid var(--primary-color)";
     divSizes[0].style.border = "3px solid var(--primary-color)";
   }
-  else{
+  else
+  {
       const colorEx = products[0].image_color;
       colorEx.forEach((c, index) => {
         if (c.color === oldColor){
@@ -177,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const btnBack = document.querySelector(".button-back");
-
   if (indexProduct) {
       document.querySelector(".js-btn-add-cart").innerHTML = "UPDATE";
       
@@ -192,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `cart.html`;
       })
   } else {
-
     btnBack.addEventListener("click", () => {
       window.location.href = `categories.html?data=${dataWeb}`;
     })
@@ -203,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
       product.quantity = 1;
       product.vouchers = [];
       cart.push(product);
-      console.log(cart);
       save();
       location.reload();
     });

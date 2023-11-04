@@ -1,4 +1,4 @@
-import { cart, save} from "../data/cart-data.js";
+import { cart, sumCostData, save} from "../data/cart-data.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const divData = document.querySelector('.items-cart');
@@ -53,14 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
     })
-
-    // tổng chi phí
-    function sumCostData() {
-        const totalPrice = cart.reduce((cost, product) => {
-            return cost + product.price * (1 - product.sales) * product.quantity;
-        }, 0);
-        return totalPrice;
-    }
 
     // render cart
     function renderCart() {
