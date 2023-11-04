@@ -3,7 +3,6 @@ import { cart, save} from "../data/cart-data.js";
 document.addEventListener('DOMContentLoaded', () => {
     const divData = document.querySelector('.items-cart');
     const options = { weekday: 'long', month: 'long', day: 'numeric' };
-
     const dateFormatter = new Intl.DateTimeFormat('en-US', options);
 
     const currentDate = new Date();
@@ -14,15 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     save();
     renderCart();
 
+    // sự kiện tăng giảm số lượng sản phẩm
     const divBtnQTY = document.querySelectorAll('.item-quantity');
     divBtnQTY.forEach((div) => {
         const domQTY = div.querySelector("span");
         div.querySelectorAll("button")[0].addEventListener("click", () => {
-            const content = div.querySelectorAll("button")[0].dataset.content;
-
-            const domTotalCost = document.querySelector(`.total-cart-${content}`);
+            const index = div.querySelectorAll("button")[0].dataset.index;
+            const domTotalCost = document.querySelector(`.total-cart-${index}`);
             if (Number(domQTY.innerHTML) > 1) {
-                const product = cart[content];
+                const product = cart[index];
                 product.quantity--;
                 save();
                 domQTY.innerHTML = Number(domQTY.innerHTML) - 1;
@@ -33,10 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         div.querySelectorAll("button")[1].addEventListener("click", () => {
-            const content = div.querySelectorAll("button")[1].dataset.content;
-
-            const domTotalCost = document.querySelector(`.total-cart-${content}`);
-            const product = cart[content];
+            const index = div.querySelectorAll("button")[1].dataset.index;
+            const domTotalCost = document.querySelector(`.total-cart-${index}`);
+            const product = cart[index];
             product.quantity++;
             save();
             domQTY.innerHTML = Number(domQTY.innerHTML) + 1;
@@ -46,15 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     })
 
+    // sự kiện xóa sản phẩm
     document.querySelectorAll('.ri-close-line').forEach((X) => {
         X.addEventListener("click", () => {
-            const content = X.dataset.content;
-            cart.splice(content, 1);
+            const index = X.dataset.index;
+            cart.splice(index, 1);
             save();
             location.reload();
         });
     })
 
+    // tổng chi phí
     function sumCostData() {
         const totalPrice = cart.reduce((cost, product) => {
             return cost + product.price * (1 - product.sales) * product.quantity;
@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return totalPrice;
     }
 
+    // render cart
     function renderCart() {
         divData.innerHTML = "";
         let indexItem = 0;
@@ -82,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <p class="item-sale">Enjoy ${item.sales * 100}% Off Select Styles</p>
                             <div class="item-quantity">
-                                <button data-content="${indexItem}">-</button>
+                                <button data-index="${indexItem}">-</button>
                                 <p>QTY: <span>${item.quantity}</span></p>
-                                <button data-content="${indexItem}">+</button>
+                                <button data-index="${indexItem}">+</button>
                             </div>
                             <div class="delivery-shipping-container">
                                 <button>DELIVERY</button><button>VOUCHER</button>
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="item-interact">
                                 <a href="product-detail.html?productId=${item.productId}&&color=${item.image_color[0].color}&&size=${item.sizes[0]}&&index=${indexItem}"><i class="ri-pencil-line"></i></a>
                                 <i class="ri-heart-line"></i>
-                                <i class="ri-close-line" data-product-id="${item.productId}" data-content="${indexItem}"></i>
+                                <i class="ri-close-line" data-product-id="${item.productId}" data-index="${indexItem}"></i>
                             </div>
                             <div class="price-container">
                                 <p>$<span class="price-cart">${item.price}</span></p>
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderDropDownCart();
     };
 
+    // render sumary
     function renderSumary() {
         const divSumary = document.querySelector(".inf-order");
         divSumary.innerHTML = `
@@ -131,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;    
     }
 
+    // render dropdown cart
     function renderDropDownCart() {
         let htmlDropdownCart = ``;
         const divCartContent = document.querySelector('.js-cart-content');
@@ -160,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.cart-checkout').querySelector('span').innerHTML = sumQuantityCart;
     };
 
+    // move checkout.html
     document.querySelector(".checkout-wapper").querySelector("button").addEventListener("click", () => {
         window.location.href = `checkout.html?subtotal=${sumCostData()}`;
     });
