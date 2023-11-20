@@ -6,7 +6,6 @@ export const products = [
         "image_color" : [{ "img" : "pictures/products/jacket-women-1.2.jpg","color": "white"}, { "img" : "pictures/products/jacket-women-1.2-black.jpg","color": "black"}, { "img" : "pictures/products/jacket-women-1.2-khaki.jpg","color": "khaki"}],
         "sales": "0.25",
         "price": "62.00",
-         
         "sizes": ["XS","S", "M", "L", "XL"],
         "classify" : ["women", "short", "special-prices", "popular-ig", "coats-and-jackets"],
         "description" : "Puffer anorak (100% polyester) \n- Long sleeves with inner cuffs\n- Front welt pockets with fleece lining and zip fastening\n- Adjustable hem with elastic interior drawstrings\n- Zip-up front\nMade in Myanmar",

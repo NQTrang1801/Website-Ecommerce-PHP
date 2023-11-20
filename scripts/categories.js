@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="dot-info">
           <h2 class="dot-title"><a href="">${item.name}</a></h2>
           <div class="product-price">
-              <span class="before">$${item.price}</span>
-              <span class="current">$${item.price * (1 - item.sales)}</span>
+              <span class="before">${item.price} VND</span>
+              <span class="current">${item.price * (1 - item.sales)} VND</span>
           </div>
       </div>
    </div>
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p>COLOR: <span>${item.image_color[0].color}</span></p>
                 <p>SIZE: <span>${item.sizes[0]}</span></p>
                 <p>QTY: <span>${item.quantity}</span></p>
-                <p>$<span>${item.price * (1 - item.sales)}</span></p>
+                <p><span>${item.price * (1 - item.sales)}</span> VND</p>
               </div>
             </div>
             `;

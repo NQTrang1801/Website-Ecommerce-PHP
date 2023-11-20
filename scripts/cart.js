@@ -114,13 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const divSumary = document.querySelector(".inf-order");
         divSumary.innerHTML = `
                             <p>Subtotal</p>
-                            <p>$<span>${sumCostData()}</span></p>
+                            <p><span>${sumCostData()}</span>VND</p>
                             <p>Standard Shipping</p>
-                            <p>$<span>${2}</span></p>
+                            <p><span>${2}</span>VND</p>
                             <p>Free when you <a href="account.html">Sign in</a> or <a href="account.html">Create an Account</a></p>
                             <p></p>
                             <p>Estimated Total</p>
-                            <p>$<span>${sumCostData() + 2}</span></p>
+                            <p><span>${sumCostData() + 2}</span> VND</p>
                             <p>Taxes finalized at the end of checkout</p>
             `;    
     }
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>COLOR: <span>${item.image_color[0].color}</span></p>
                     <p>SIZE: <span>${item.sizes[0]}</span></p>
                     <p>QTY: <span>${item.quantity}</span></p>
-                    <p>$<span>${item.price * (1 - item.sales)}</span></p>
+                    <p><span>${item.price * (1 - item.sales)}</span> VND</p>
                   </div>
                 </div>
                 `;
