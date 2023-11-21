@@ -1,10 +1,10 @@
 body {
-  margin:100px;
-  height: auto;
+  margin:100px !important;
+  height: auto !important;
 }
 
 main {
-  margin-bottom: 100px;
+  margin-bottom: 100px !important;
 }
 
 .private-header {
@@ -17,10 +17,10 @@ main {
   background-color: var(--secondary-bg-color);
 }
 
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.main-product-detail img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
 .detail-price {
@@ -39,8 +39,8 @@ img {
 }
 
 .detail-image-left div {
-  width: 90px;
-  height: 90px;
+  width: 90px !important;
+  height: 90px !important;
   margin-bottom: 10px;
   position: relative;
 }
@@ -57,8 +57,8 @@ img {
 }
 
 .summary-color-item div {
-  width: 56px;
-  height: 56px;
+  width: 56px !important;
+  height: 56px !important;
   position: relative;
 }
 

@@ -13,13 +13,6 @@ body {
     background-color: var(--secondary-bg-color);
 }
 
-.page-title {
-    width: 100%;
-    padding: 60px 0px 14px 56px;
-    font-weight: 500;
-    font-family: 'Cinzel', 'Arial', serif;
-}
-
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -29,7 +22,6 @@ body {
 
 .l-container {
     border-top: 1px solid var(--secondary-light-color);
-    padding-top: 20px;
     width: 100%;
 }
 
@@ -242,9 +234,9 @@ body {
 }
 
 .checkout-wapper button {
-    height: 40px;
-    width: 100%;
-    background-color: var(--light-color);
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
+    height: 40px !important;
+    width: 100% !important;
+    background-color: var(--light-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    cursor: pointer !important;
 }

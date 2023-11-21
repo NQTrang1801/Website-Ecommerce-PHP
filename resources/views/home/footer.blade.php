@@ -25,7 +25,7 @@
       </div>
       <div>
         <h3>CONNECT</h3>
-        <p><a href="account.html">Sign up</a> for first access to latest collections, campaigns and videos.</p>
+        <p><a href="{{url('login')}}">Sign up</a> for first access to latest collections, campaigns and videos.</p>
         <p><a href="#">Follow Us</a></p>
       </div>
     </div>

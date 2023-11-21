@@ -39,9 +39,10 @@
 }
 
 .footer-bot div:nth-child(2) {
-    text-align: center;
-    align-self: flex-end;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: flex-end;
 }
 
 .footer-bot div:nth-child(2) img {

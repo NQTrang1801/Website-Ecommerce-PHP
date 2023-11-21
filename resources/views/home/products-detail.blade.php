@@ -16,7 +16,7 @@
     <!-- HEADER -->
     @include('home.header')
     <!-- MAIN -->
-    <main>
+    <main class="main-product-detail">
         <div class="button-back">
             <i class="ri-arrow-left-line"></i>
             Back
