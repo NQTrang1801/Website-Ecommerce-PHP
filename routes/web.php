@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\TempImagesController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str; // Thêm dòng này để import lớp Str
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +31,24 @@ route::post('/categories', [CategoryController::class, 'store'])
     ->middleware('check.usertype')
     ->name('categories.store');
 
+Route::get('/getSlug', function(Request $request){
+    $slug = '';
+    if (!empty($request->title)) {
+        $slug = Str::slug($request->title);
+    }
 
-route::get('/',[HomeController::class,'index']);
+    return response() -> json([
+        'status' => true,
+        'slug' => $slug
+    ]);
+})->name('getSlug');
+
+route::post('/upload-temp-image', [TempImagesController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('temp-images.create');
+
+
+route::get('/',[HomeController::class,'index'])->name('home.index');
 route::get('/categories/{type}',[HomeController::class,'categories']);
 route::get('/products/{data}/{id}',[HomeController::class,'products']);
 route::get('/products/{id}/{color}/{size}/{index}',[HomeController::class,'productUpdate']);

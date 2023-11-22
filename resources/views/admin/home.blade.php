@@ -9,6 +9,15 @@
 </ol>
 @endsection
 
+@section('search-content')
+<div class="input-group">
+	<input type="text" class="form-control" placeholder="Search">
+	<button class="btn" type="button">
+		<i class="bi bi-search"></i>
+	</button>
+</div>
+@endsection
+
 @section('content')
 <div class="content-wrapper-scroll">
 

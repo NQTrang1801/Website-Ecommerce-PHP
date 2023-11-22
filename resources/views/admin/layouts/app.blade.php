@@ -15,10 +15,10 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.svg')}}">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
 		<!-- Title -->
-		<title>Best Admin Dashboards</title>
+		<title>Admin Dashboards Private</title>
 
 		<!-- *************
 			************ Common Css Files *************
@@ -37,7 +37,9 @@
 		<!-- *************
 			************ Vendor Css Files *************
 		************ -->
-
+		
+		<link rel="stylesheet" href="{{asset('admin/assets/vendor/dropzone/dropzone.min.css')}}">
+		
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="{{asset('admin/assets/vendor/overlay-scroll/OverlayScrollbars.min.css')}}">
 
@@ -66,8 +68,8 @@
 
 				<!-- Sidebar brand starts -->
 				<div class="sidebar-brand">
-					<a href="index.html" class="logo">
-						<img src="{{asset('admin/assets/images/logo.svg')}}" alt="Max Admin Dashboard" />
+					<a href="{{route('home.index')}}" class="logo">
+						<img src="{{asset('pictures/icon/Logo.png')}}" alt="Max Admin Dashboard" />
 					</a>
 				</div>
 				<!-- Sidebar brand starts -->
@@ -118,12 +120,7 @@
 						<div class="search-container">
 
 							<!-- Search input group start -->
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search">
-								<button class="btn" type="button">
-									<i class="bi bi-search"></i>
-								</button>
-							</div>
+							@yield('search-content')
 							<!-- Search input group end -->
 
 						</div>
@@ -140,7 +137,7 @@
 								<div class="dropdown-menu dropdown-menu-end shadow">
 									<div class="dropdown-item">
 										<div class="d-flex py-2 border-bottom">
-											<img src="{{asset('admin/assets/images/user.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<img src="{{asset('admin/assets/images/user.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
 											<div class="m-0">
 												<h6 class="mb-1">Sophie Michiels</h6>
 												<p class="mb-2">Membership has been ended.</p>
@@ -150,7 +147,7 @@
 									</div>
 									<div class="dropdown-item">
 										<div class="d-flex py-2 border-bottom">
-											<img src="{{asset('admin/assets/images/user2.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<img src="{{asset('admin/assets/images/user2.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
 											<div class="m-0">
 												<h6 class="mb-1">Sophie Michiels</h6>
 												<p class="mb-2">Congratulate, James for new job.</p>
@@ -160,7 +157,7 @@
 									</div>
 									<div class="dropdown-item">
 										<div class="d-flex py-2">
-											<img src="{{asset('admin/assets/images/user3.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<img src="{{asset('admin/assets/images/user3.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
 											<div class="m-0">
 												<h6 class="mb-1">Sophie Michiels</h6>
 												<p class="mb-2">Lewis added new schedule release.</p>
@@ -185,7 +182,16 @@
 				<!-- Page header ends -->
 
 				<!-- Content wrapper scroll start -->
-				@yield('content')
+				<div class="content-wrapper-scroll">
+					@yield('content')
+					<!-- App Footer start -->
+					<div class="app-footer">
+						<span>© Private 2023</span>
+					</div>
+					<!-- App footer end -->
+
+				</div>
+				
 				<!-- Content wrapper scroll end -->
 
 			</div>
@@ -208,6 +214,7 @@
 		<!-- *************
 			************ Vendor Js Files *************
 		************* -->
+		<script src="{{asset('admin/assets/vendor/dropzone/dropzone.min.js')}}"></script>
 
 		<!-- Overlay Scroll JS -->
 		<script src="{{asset('admin/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js')}}"></script>
@@ -225,7 +232,8 @@
 		<script src="{{asset('admin/assets/vendor/jvectormap/world-mill-en.js')}}"></script>
 		<script src="{{asset('admin/assets/vendor/jvectormap/gdp-data.js')}}"></script>
 		<script src="{{asset('admin/assets/vendor/jvectormap/custom/world-map-markers2.js')}}"></script>
-
+		
+		
 		<!-- Main Js Required -->
 		<script src="{{asset('admin/assets/js/main.js')}}"></script>
 
