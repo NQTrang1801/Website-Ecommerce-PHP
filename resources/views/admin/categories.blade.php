@@ -34,12 +34,8 @@
 						</div>
 						<div>
 							<a href="{{route('categories.create')}}">
-								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">Insert</button>
+								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">New Category</button>
 							</a>
-							<a href="">
-								<button type="button" class="w-40 btn btn-warning btn-rounded" style="color: black;">Update</button>
-							</a>
-							<button type="button" class="w-40 btn btn-danger btn-rounded" style="color: black;">Delete</button>
 						</div>
 
 					</div>
@@ -86,8 +82,11 @@
 											</td>
 											<td>
 												<div class="actions">
-													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option">
+													<div class="icon">
+														<a href="{{ route('categories.edit',$category->id)}}"><i class="bi bi-pencil-square"></i></a>
+													</div>
+													<div class="icon">
+														<a href="#" onclick = "deleteCategory({{$category->id}})"><i class="bi bi-x-square" style="color: red"></i></a>
 													</div>
 												</div>
 											</td>
@@ -115,4 +114,42 @@
 
 	</div>
 	<!-- Content wrapper end -->
+@endsection
+
+@section('customJs')
+<script>
+	function deleteCategory(id)
+	{
+		var url = '{{route("categories.delete","ID")}}';
+		var newUrl = url.replace("ID",id);
+		if(confirm("Are you sure you want to delete"))
+		{
+			$.ajax({
+				url: newUrl,
+				type: 'delete',
+				data: {},
+				dataType: 'json',
+				headers: {
+            		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        		},
+				success: function(response) {
+					$("button[type=submit]").prop('disabled', false);
+					if (response["status"] == true) {
+						alert("Category deleted successfully");
+						window.location.href="{{route('categories.index')}}";
+					}
+					else
+					{
+						alert("Category not found");
+						window.location.href="{{route('categories.index')}}";
+					}
+				}
+			});
+
+
+		}
+	}
+
+</script>
+
 @endsection

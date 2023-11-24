@@ -21,7 +21,10 @@
         <x-banner />
 
         <div class="">
-            @livewire('navigation-menu')
+            <div>
+                @livewire('navigation-menu')
+            </div>
+            
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -43,3 +46,4 @@
         @livewireScripts
     </body>
 </html>
+

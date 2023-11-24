@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app-home')
 
-<head>
+@section('styles')
     <base href="/public">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-    @include('home.frame-css')
     <link rel="stylesheet" href="home/styles/pages/product-detail.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
+@endsection
 
-<body>
-    <!-- HEADER -->
-    @include('home.header')
-    <!-- MAIN -->
+@section('content')
     <main class="main-product-detail">
         <div class="button-back">
             <i class="ri-arrow-left-line"></i>
@@ -29,9 +19,9 @@
         </div>
     </main>
 
-    @include('home.footer')
+@endsection
+
+@section('scripts')
     <script type="module" src="home/scripts/index.js"></script>
     <script type="module" src="home/scripts/product-detail.js"></script>
-</body>
-
-</html>
+@endsection

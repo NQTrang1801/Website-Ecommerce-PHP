@@ -26,10 +26,23 @@ route::get('/categories',[CategoryController::class,'index'])
 route::get('/categories/insert', [CategoryController::class, 'create'])
     ->middleware('check.usertype')
     ->name('categories.create');
+route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('categories.edit');
+
+route::put('/categories/{category}', [CategoryController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('categories.update');
+
+route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('categories.delete');
 
 route::post('/categories', [CategoryController::class, 'store'])
     ->middleware('check.usertype')
     ->name('categories.store');
+
+
 
 Route::get('/getSlug', function(Request $request){
     $slug = '';

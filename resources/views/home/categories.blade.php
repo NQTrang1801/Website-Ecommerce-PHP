@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app-home')
 
-<head>
+@section('styles')
     <base href="/public">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-    @include('home.frame-css')
-    <link rel="stylesheet" href="home/styles/pages/categories.css">
-    <link rel="stylesheet" href="home/styles/pages/media-categories.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="home/styles/pages/categories.css" />
+    <link rel="stylesheet" href="home/styles/pages/media-categories.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
+@endsection
 
-<body>
-    @include('home.header')
+@section('content')
     <main>
         @include('home.categories-slider')
         <!-- special price -->
@@ -41,12 +33,9 @@
         <!-- FormIG -->
         @include('home.categories-instagram')
     </main>
-    @include('home.footer')
+@endsection
 
-    <script type="module" src="home/scripts/index.js"></script>
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script type="module" src="home/scripts/categories.js"></script>
-
-</body>
-
-</html>
+@endsection

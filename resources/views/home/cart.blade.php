@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app-home')
 
-<head>
-    <base href="/public">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @include('home.frame-css')
+@section('styles')
     <link rel="stylesheet" href="home/styles/pages/cart.css">
     <link rel="stylesheet" href="home/styles/pages/media-cart.css">
+@endsection
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
 
-<body>
-    <!-- HEADER -->
-    @include('home.header')
-
+@section('content')
     @include('home.cart-data')
+@endsection
 
-    @include('home.footer')
-    <script type="module" src="home/scripts/index.js"></script>
+@section('scripts')
     <script type="module" src="home/scripts/cart.js"></script>
-</body>
-
-</html>
+@endsection

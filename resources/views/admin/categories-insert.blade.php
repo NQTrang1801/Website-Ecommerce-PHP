@@ -22,10 +22,10 @@
                                     <a class="nav-link active" id="category-tab" data-bs-toggle="tab" href="#category" role="tab" aria-controls="categry" aria-selected="true">Category</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="subCategory-tab" data-bs-toggle="tab" href="#sub-category" role="tab" aria-controls="sub-category" aria-selected="false">Sub Category</a>
+                                    <a class="nav-link" id="subCategory-tab" href="{{route('categories.index')}}" role="tab" aria-controls="sub-category" aria-selected="false">Sub Category</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="imageCategory" data-bs-toggle="tab" href="#image-category" role="tab" aria-controls="image-category" aria-selected="false">Image Category</a>
+                                    <a class="nav-link" id="imageCategory"  href="{{route('categories.index')}}" role="tab" aria-controls="image-category" aria-selected="false">Image Category</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="formsTabContent">
@@ -86,37 +86,10 @@
                                         <!-- Form actions footer start -->
                                         <div class="form-actions-footer">
                                             <button type="reset" class="btn btn-light">Reset</button>
-                                            <button type="submit" class="btn btn-success" style="color: black;">Save</button>
+                                            <button type="submit" class="btn btn-success" style="color: black;">Create</button>
                                         </div>
                                         <!-- Form actions footer end -->
                                     </form>
-                                </div>
-
-                                <div class="tab-pane fade" id="sub-category" role="tabpanel">
-                                    <!-- Row start -->
-
-                                    <!-- Row end -->
-
-                                    <!-- Form actions footer start -->
-                                    <div class="form-actions-footer">
-                                        <button class="btn btn-light">Reset</button>
-                                        <button class="btn btn-success">Save</button>
-                                    </div>
-                                    <!-- Form actions footer end -->
-                                </div>
-                                <div class="tab-pane fade" id="image-category" role="tabpanel">
-
-                                    <!-- Row start -->
-
-                                    <!-- Row end -->
-
-                                    <!-- Form actions footer start -->
-                                    <div class="form-actions-footer">
-                                        <button class="btn btn-light">Reset</button>
-                                        <button class="btn btn-success">Save</button>
-                                    </div>
-                                    <!-- Form actions footer end -->
-
                                 </div>
                             </div>
                         </div>

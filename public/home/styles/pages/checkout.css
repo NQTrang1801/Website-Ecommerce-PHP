@@ -1,6 +1,6 @@
 body {
-    margin: 64px !important;
-    height: auto;
+    margin-top: 64px !important;
+    height: auto !important;
 }
 
 .private-header {

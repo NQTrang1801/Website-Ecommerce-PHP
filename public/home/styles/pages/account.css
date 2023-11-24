@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Red+Hat+Display:wght@300;400&display=swap');
 
 body {
-  margin: 64px;
-  height: auto;
+  margin-top: 64px !important;
+  height: auto !important;
 }
 
 .private-header {
