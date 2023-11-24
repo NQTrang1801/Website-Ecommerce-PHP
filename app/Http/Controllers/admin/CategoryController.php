@@ -23,11 +23,11 @@ class CategoryController extends Controller
 
         $categories = $categories->paginate(10);
         
-        return view('admin.categories', compact('categories'));
+        return view('admin.category.categories', compact('categories'));
     }
 
     public function create() {
-        return view('admin.categories-insert');
+        return view('admin.category.categories-insert');
     }
 
     public function store(Request $request) {
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         if (empty($category)) {
             return redirect()->route('categories.index');
         }
-        return view('admin.categories-edit', compact('category'));
+        return view('admin.category.categories-edit', compact('category'));
     }
 
     public function update($categoryId, Request $request) {

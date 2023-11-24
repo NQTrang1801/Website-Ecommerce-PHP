@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str; // Thêm dòng này để import lớp Str
@@ -20,9 +21,12 @@ use Illuminate\Support\Str; // Thêm dòng này để import lớp Str
 */
 
 route::get('/redirect',[HomeController::class,'redirect']);
+
+// Category management
 route::get('/categories',[CategoryController::class,'index'])
     ->middleware('check.usertype')
     ->name('categories.index');
+
 route::get('/categories/insert', [CategoryController::class, 'create'])
     ->middleware('check.usertype')
     ->name('categories.create');
@@ -41,6 +45,27 @@ route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
 route::post('/categories', [CategoryController::class, 'store'])
     ->middleware('check.usertype')
     ->name('categories.store');
+
+// sub category
+route::get('/sub-categories',[SubCategoryController::class,'index'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.index');
+route::get('/SubCategories/insert', [SubCategoryController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.create');
+    
+route::post('/SubCategories', [SubCategoryController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.store');
+route::get('/SubCategories/{category}/edit', [SubCategoryController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.edit');
+route::put('/SubCategories/{category}', [SubCategoryController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.update');
+route::delete('/SubCategories/{category}', [SubCategoryController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('sub-categories.delete');
 
 
 

@@ -22,7 +22,7 @@
                                     <a class="nav-link active" id="category-tab" data-bs-toggle="tab" href="#category" role="tab" aria-controls="categry" aria-selected="true">Category</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="subCategory-tab" href="{{route('categories.index')}}" role="tab" aria-controls="sub-category" aria-selected="false">Sub Category</a>
+                                    <a class="nav-link" id="subCategory-tab" href="{{route('sub-categories.create')}}" role="tab" aria-controls="sub-category" aria-selected="false">Sub Category</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="imageCategory"  href="{{route('categories.index')}}" role="tab" aria-controls="image-category" aria-selected="false">Image Category</a>
