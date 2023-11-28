@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8 col-sm-8 col-12">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Value</label>
+                                                    <label class="form-label">Expiration date</label>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" id="promotion-date" name="expiration_date" autocomplete="off">
                                                         <p></p>

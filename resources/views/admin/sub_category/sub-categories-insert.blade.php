@@ -39,7 +39,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Category</label>
                                                     <div class="option-group">
-                                                       <select name="category" id="category" class="form-control" style="max-width: 710px; overflow: hidden; white-space: normal; word-wrap: break-word;">      
+                                                       <select id="categorySelect" name="category" id="category" class="form-control" style="max-width: 710px; overflow: hidden; white-space: normal; word-wrap: break-word;">      
                                                             <option value="">Select a Category</option>                                
                                                             @if ($categories->isNotEmpty())
                                                                 @foreach ($categories as $category)
@@ -190,24 +190,54 @@
         })
     });
 
+    var selectedCategorySlug = '';
+
+    $('#categorySelect').change(function() {
+        var selectedValue = $(this).val();
+        selectedCategorySlug = selectedValue;
+        element = $("#sub-category-name");
+        $("button[type=submit]").prop('disabled', true);
+        $.ajax({
+            url: '{{ route("getSlug") }}',
+            type: 'get',
+            data: {title: element.val()},
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) { 
+                    if (selectedCategorySlug) {
+                        var subCategorySlug = response["slug"] + '-' + selectedCategorySlug;
+                        $('#sub-category-slug').val(subCategorySlug);
+                    } else {
+                        $('#sub-category-slug').val(response["slug"]);
+                    }
+                }
+            }
+        });
+    });
+
     $("#sub-category-name").change(function() {
         element = $(this);
         $("button[type=submit]").prop('disabled', true);
         $.ajax({
-                url: '{{ route("getSlug") }}',
-                type: 'get',
-                data: {title: element.val()},
-                dataType: 'json',
-                success: function(response) {
-                    $("button[type=submit]").prop('disabled', false);
-                    if (response["status"] == true)
-                    {
+            url: '{{ route("getSlug") }}',
+            type: 'get',
+            data: {title: element.val()},
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) { 
+                    if (selectedCategorySlug) {
+                        var subCategorySlug = response["slug"] + '-' + selectedCategorySlug;
+                        $('#sub-category-slug').val(subCategorySlug);
+                    } else {
                         $('#sub-category-slug').val(response["slug"]);
                     }
-                    
                 }
-            });
+            }
+        });
     });
+
 
     Dropzone.autoDiscover = false;
     const dropzone = $("#image").dropzone({
