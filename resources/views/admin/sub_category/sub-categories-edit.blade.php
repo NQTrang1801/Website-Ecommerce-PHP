@@ -4,7 +4,7 @@
     <li class="breadcrumb-item">
         <i class="bi bi-stickies"></i>
     </li>
-    <li class="breadcrumb-item breadcrumb-active" aria-current="SubCategories"><a href="{{route('sub-categories.index')}}">Sub Categories</a>/Insert</li>
+    <li class="breadcrumb-item breadcrumb-active" aria-current="SubCategories"><a href="{{route('sub-categories.index')}}">Sub Categories</a>/Update</li>
 </ol>
 @endsection
 @section('content')
@@ -20,7 +20,7 @@
                             <ul class="nav nav-tabs" id="formsTab" role="tablist">
                                
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="subCategory-tab" data-bs-toggle="tab" href="{{route('categories.index')}}" role="tab" aria-controls="sub-category" aria-selected="true">ID: {{$subCategory->id}}</a>
+                                    <a class="nav-link active" id="subCategory-tab" data-bs-toggle="tab" href="{{route('sub-categories.index')}}" role="tab" aria-controls="sub-category" aria-selected="false">ID: {{$subCategory->id}}</a>
                                 </li>
                                 
                             </ul>
@@ -92,10 +92,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if (!empty($category->image))
+                                                @if (!empty($subCategory->image))
                                                 <div>
                                                     <label class="form-label">Image</label>
-                                                    <img style="height: 160px; width: 160px; object-fit: cover" src="{{asset('uploads/category/thumb/'.$category->image)}}" alt="">
+                                                    <img style="height: 160px; width: 160px; object-fit: cover" src="{{asset('uploads/sub category/thumb/'.$subCategory->image)}}" alt="">
                                                 </div>
                                                 @endif
                                             </div>
@@ -150,13 +150,27 @@
                     $("#sub-category-slug").removeClass('is-invalid')
                             .siblings('p')
                             .removeClass('invalid-feedback').html("");
+                    $("#category").removeClass('is-invalid')
+                            .siblings('p')
+                            .removeClass('invalid-feedback').html("");
                 } else {
+
                     if (response["notFound"] == true) 
                     {
                         alert("sub category not found");
                         window.location.href = "{{route('sub-categories.index')}}";
                     }
+
                     var errors = response['errors'];
+                    if (errors['category']) {
+                        $("#category").addClass('is-invalid')
+                            .siblings('p')
+                            .addClass('invalid-feedback').html(errors['category'])
+                    } else {
+                        $("#category").removeClass('is-invalid')
+                            .siblings('p')
+                            .removeClass('invalid-feedback').html("");
+                    }
                     if (errors['name']) {
                         $("#sub-category-name").addClass('is-invalid')
                             .siblings('p')

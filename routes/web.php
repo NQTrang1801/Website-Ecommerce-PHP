@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\SizeController;
+use App\Http\Controllers\admin\ColorController;
+use App\Http\Controllers\admin\PromotionController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Thêm dòng này để import lớp Str
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,24 +53,103 @@ route::post('/categories', [CategoryController::class, 'store'])
 route::get('/sub-categories',[SubCategoryController::class,'index'])
     ->middleware('check.usertype')
     ->name('sub-categories.index');
-route::get('/SubCategories/insert', [SubCategoryController::class, 'create'])
+route::get('/sub-categories/insert', [SubCategoryController::class, 'create'])
     ->middleware('check.usertype')
     ->name('sub-categories.create');
     
-route::post('/SubCategories', [SubCategoryController::class, 'store'])
+route::post('/sub-categories', [SubCategoryController::class, 'store'])
     ->middleware('check.usertype')
     ->name('sub-categories.store');
-route::get('/SubCategories/{category}/edit', [SubCategoryController::class, 'edit'])
+route::get('/sub-categories/{subcategory}/edit', [SubCategoryController::class, 'edit'])
     ->middleware('check.usertype')
     ->name('sub-categories.edit');
-route::put('/SubCategories/{category}', [SubCategoryController::class, 'update'])
+route::put('/sub-categories/{subcategory}', [SubCategoryController::class, 'update'])
     ->middleware('check.usertype')
     ->name('sub-categories.update');
-route::delete('/SubCategories/{category}', [SubCategoryController::class, 'destroy'])
+route::delete('/sub-categories/{subcategory}', [SubCategoryController::class, 'destroy'])
     ->middleware('check.usertype')
     ->name('sub-categories.delete');
 
+// Size
+route::get('/sizes',[SizeController::class,'index'])
+    ->middleware('check.usertype')
+    ->name('sizes.index');
 
+route::get('/sizes/insert', [SizeController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('sizes.create');
+    
+route::post('/sizes', [SizeController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('sizes.store');
+route::get('/sizes/{size}/edit', [SizeController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('sizes.edit');
+
+route::put('/sizes/{size}', [SizeController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('sizes.update');
+route::delete('/sizes/{size}', [SizeController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('sizes.delete');
+
+// Color
+route::get('/colors',[ColorController::class,'index'])
+    ->middleware('check.usertype')
+    ->name('colors.index');
+
+route::get('/colors/insert', [ColorController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('colors.create');
+    
+route::post('/colors', [ColorController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('colors.store');
+route::get('/colors/{color}/edit', [ColorController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('colors.edit');
+
+route::put('/colors/{color}', [ColorController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('colors.update');
+route::delete('/colors/{color}', [ColorController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('colors.delete');
+
+// Promotion
+route::get('/promotions',[PromotionController::class,'index'])
+    ->middleware('check.usertype')
+    ->name('promotions.index');
+
+route::get('/promotions/insert', [PromotionController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('promotions.create');
+    
+route::post('/promotions', [PromotionController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('promotions.store');
+route::get('/promotions/{promotion}/edit', [PromotionController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('promotions.edit');
+
+route::put('/promotions/{promotion}', [PromotionController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('promotions.update');
+
+route::delete('/promotions/{promotion}', [PromotionController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('promotions.delete');
+
+// Product
+route::get('/products',[ProductController::class,'index'])
+    ->middleware('check.usertype')
+    ->name('products.index');
+route::get('/products/insert', [ProductController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('products.create');
+route::post('/products', [ProductController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('products.store');
 
 Route::get('/getSlug', function(Request $request){
     $slug = '';
@@ -87,11 +169,13 @@ route::post('/upload-temp-image', [TempImagesController::class, 'create'])
 
 
 route::get('/',[HomeController::class,'index'])->name('home.index');
+route::get('/profile',[HomeController::class,'profile'])->name('home.profileshow');
 route::get('/categories/{type}',[HomeController::class,'categories']);
 route::get('/products/{data}/{id}',[HomeController::class,'products']);
 route::get('/products/{id}/{color}/{size}/{index}',[HomeController::class,'productUpdate']);
 route::get('/cart',[HomeController::class,'cart']);
 route::get('/checkout/{cost}',[HomeController::class,'checkout']);
+
 
 Route::middleware([
     'auth:sanctum',

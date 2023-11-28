@@ -29,7 +29,6 @@ body {
   letter-spacing: 2px;
   color: var(--primary-color);
   background-color: var(--bg-color);
-  height: 3000px;
 }
 
 pre {

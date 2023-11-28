@@ -8,7 +8,6 @@
         max-width: 200px; 
     }
 </style>
-
 @endsection
 
 @section('title')
@@ -16,7 +15,7 @@
 	<li class="breadcrumb-item">
 		<i class="bi bi-stickies"></i>
 	</li>
-	<li class="breadcrumb-item breadcrumb-active" aria-current="Categories">Categories</li>
+	<li class="breadcrumb-item breadcrumb-active" aria-current="promotions">Promotions</li>
 </ol>
 @endsection
 
@@ -41,11 +40,11 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title">View
-							<button onclick="window.location.href='{{ route("categories.index")}}'" style="margin-left: 32px; border: 1px solid; padding: 0px 10px; font-size: 16px; border-radius: 12px;">refesh</button>
+							<button onclick="window.location.href='{{ route("promotions.index")}}'" style="margin-left: 32px; border: 1px solid; padding: 0px 10px; font-size: 16px; border-radius: 12px;">refesh</button>
 						</div>
 						<div>
-							<a href="{{route('categories.create')}}">
-								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">New Category</button>
+							<a href="{{route('promotions.create')}}">
+								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">New Promotion</button>
 							</a>
 						</div>
 
@@ -57,9 +56,11 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Categories Name</th>
+										<th>Name</th>
 										<th>Slug</th>
-										<th>Image</th>
+										<th>Value</th>
+										<th>Code</th>
+                                        <th>Expiration date</th>
 										<th>Create At</th>
 										<th>Update At</th>
 										<th>Status</th>
@@ -67,25 +68,31 @@
 									</tr>
 								</thead>
 								<tbody>
-									@if ($categories->isNotEmpty())
-										@foreach ($categories as $category)
+									@if ($promotions->isNotEmpty())
+										@foreach ($promotions as $promotion)
 										<tr>
 											<td>
-												<p>{{$category->id}}</p>
+												<p>{{$promotion->id}}</p>
 											</td>
 											<td>
-												<p>{{$category->name}}</p>
+												<p>{{$promotion->name}}</p>
 											</td>
 											<td>
-												<p>{{$category->slug}}</p>
+												<p>{{$promotion->slug}}</p>
 											</td>
 											<td>
-												<img src="uploads/category/thumb/{{$category->image}}" class="flag-img-lg" alt="" />
+												<p>{{$promotion->value}}</p>
 											</td>
-											<td>{{$category->created_at}}</td>
-											<td>{{$category->updated_at}}</td>
+                                            <td>
+												<p>{{$promotion->code}}</p>
+											</td>
+                                            <td>
+												<p>{{$promotion->expiration_date}}</p>
+											</td>
+											<td>{{$promotion->created_at}}</td>
+											<td>{{$promotion->updated_at}}</td>
 											<td>
-												@if($category->status == 1)
+												@if($promotion->status == 1)
 													<span class="badge shade-green min-70">Active</span>
 												@else
 													<span class="badge shade-red min-70">block</span>
@@ -94,10 +101,10 @@
 											<td>
 												<div class="actions">
 													<div class="icon">
-														<a href="{{ route('categories.edit',$category->id)}}"><i class="bi bi-pencil-square"></i></a>
+														<a href="{{ route('promotions.edit',$promotion->id)}}"><i class="bi bi-pencil-square"></i></a>
 													</div>
 													<div class="icon">
-														<a href="#" onclick = "deleteCategory({{$category->id}})"><i class="bi bi-x-square" style="color: red"></i></a>
+														<a href="#" onclick = "deletePromotion({{$promotion->id}})"><i class="bi bi-x-square" style="color: red"></i></a>
 													</div>
 												</div>
 											</td>
@@ -105,14 +112,14 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="8">Records not found</td>
+											<td colspan="10">Records not found</td>
 										</tr>
 									@endif
 
 								</tbody>
 							</table>
 							<nav aria-label="Page Navigation" style="margin-top: 40px">
-								{{ $categories->links()}}
+								{{ $promotions->links()}}
 								
 							</nav>
 						</div>
@@ -129,9 +136,9 @@
 
 @section('customJs')
 <script>
-	function deleteCategory(id)
+	function deletePromotion(id)
 	{
-		var url = '{{route("categories.delete","ID")}}';
+		var url = '{{route("promotions.delete","ID")}}';
 		var newUrl = url.replace("ID",id);
 		if(confirm("Are you sure you want to delete"))
 		{
@@ -146,18 +153,16 @@
 				success: function(response) {
 					$("button[type=submit]").prop('disabled', false);
 					if (response["status"] == true) {
-						alert("Category deleted successfully");
-						window.location.href="{{route('categories.index')}}";
+						alert("Promotion deleted successfully");
+						window.location.href="{{route('promotions.index')}}";
 					}
 					else
 					{
-						alert("Category not found");
-						window.location.href="{{route('categories.index')}}";
+						alert("Promotion not found");
+						window.location.href="{{route('promotions.index')}}";
 					}
 				}
 			});
-
-
 		}
 	}
 

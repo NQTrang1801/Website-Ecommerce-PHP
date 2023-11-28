@@ -16,6 +16,6 @@ class CheckUserType
             return $next($request);
         }
 
-        return redirect('/redirect'); 
+        return redirect('/login'); 
     }
 }

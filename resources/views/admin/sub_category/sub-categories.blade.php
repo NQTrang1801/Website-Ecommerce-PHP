@@ -1,5 +1,15 @@
 @extends('admin.layouts.app')
 
+@section('styles')
+<style>
+    .table th,
+    .table td {
+        padding: 8px;
+        max-width: 200px; 
+    }
+</style>
+@endsection
+
 @section('title')
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
@@ -34,7 +44,7 @@
 						</div>
 						<div>
 							<a href="{{route('sub-categories.create')}}">
-								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">New Category</button>
+								<button type="button" class="w-40 btn btn-success btn-rounded" style="color: black;">New Sub Category</button>
 							</a>
 						</div>
 

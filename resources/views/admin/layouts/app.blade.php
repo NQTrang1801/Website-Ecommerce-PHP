@@ -42,7 +42,9 @@
 		
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="{{asset('admin/assets/vendor/overlay-scroll/OverlayScrollbars.min.css')}}">
-
+		@vite(['resources/css/app.css', 'resources/js/app.js'])
+  		@livewireStyles
+		@yield('styles')
 	</head>
 
 	<body>
@@ -69,34 +71,13 @@
 				<!-- Sidebar brand starts -->
 				<div class="sidebar-brand">
 					<a href="{{route('home.index')}}" class="logo">
-						<img src="{{asset('pictures/icon/Logo.png')}}" alt="Max Admin Dashboard" />
+						<img style="border-radius: 100%" src="{{asset('pictures/icon/Logo.png')}}" alt="Max Admin Dashboard" />
 					</a>
 				</div>
 				<!-- Sidebar brand starts -->
 
 				<!-- Sidebar menu starts -->
-				<div class="sidebar-menu">
-					<div class="sidebarMenuScroll">
-						<ul>
-							<li class="sidebar-dropdown">
-								<a href="#">
-									<i class="bi bi-stickies"></i>
-									<span class="menu-text">Pages</span>
-								</a>
-								<div class="sidebar-submenu">
-									<ul>
-										<li>
-											<a href="{{ route('categories.index') }}">Categories</a>
-										</li>
-										<li>
-											<a href="{{ route('sub-categories.index') }}">Sub Categories</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
+				@include('admin.layouts.slidebar-menu')
 				<!-- Sidebar menu ends -->
 
 			</nav>
@@ -140,31 +121,11 @@
 								<div class="dropdown-menu dropdown-menu-end shadow">
 									<div class="dropdown-item">
 										<div class="d-flex py-2 border-bottom">
-											<img src="{{asset('admin/assets/images/user.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<img src="" class="img-4x me-3 rounded-3" alt="" />
 											<div class="m-0">
-												<h6 class="mb-1">Sophie Michiels</h6>
-												<p class="mb-2">Membership has been ended.</p>
-												<p class="small m-0 text-secondary">Today, 07:30pm</p>
-											</div>
-										</div>
-									</div>
-									<div class="dropdown-item">
-										<div class="d-flex py-2 border-bottom">
-											<img src="{{asset('admin/assets/images/user2.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
-											<div class="m-0">
-												<h6 class="mb-1">Sophie Michiels</h6>
-												<p class="mb-2">Congratulate, James for new job.</p>
-												<p class="small m-0 text-secondary">Today, 08:00pm</p>
-											</div>
-										</div>
-									</div>
-									<div class="dropdown-item">
-										<div class="d-flex py-2">
-											<img src="{{asset('admin/assets/images/user3.png')}}" class="img-4x me-3 rounded-3" alt="Admin Theme" />
-											<div class="m-0">
-												<h6 class="mb-1">Sophie Michiels</h6>
-												<p class="mb-2">Lewis added new schedule release.</p>
-												<p class="small m-0 text-secondary">Today, 09:30pm</p>
+												<h6 class="mb-1"></h6>
+												<p class="mb-2"></p>
+												<p class="small m-0 text-secondary"></p>
 											</div>
 										</div>
 									</div>
@@ -173,7 +134,7 @@
 							<!-- Messages end -->
 
 							<li style="margin-bottom: 35px;">
-								<x-app-layout></x-app-layout>
+								@livewire('navigation-menu')
 							</li>
 						</ul>
 						<!-- Header actions end -->
@@ -242,6 +203,7 @@
 
 		<!-- customJS -->
 		@yield('customJs')
+		@livewireScripts
 
 	</body>
 

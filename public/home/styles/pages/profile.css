@@ -1,0 +1,14 @@
+body {
+    margin-top: 64px !important;
+    height: auto !important;
+}
+
+.private-header {
+    background-color: var(--light-bg-color);
+    color: var(--primary-color);
+}
+
+.cart-navbar,
+.search-navbar {
+    background-color: var(--secondary-bg-color);
+}

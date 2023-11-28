@@ -20,7 +20,7 @@
             @if (Route::has('login'))
             @auth
             <div class="nav-item" style="height: 35px">
-                <x-app-layout></x-app-layout>
+                @livewire('navigation-menu')
             </div>
             @else
             <div class="nav-item">
