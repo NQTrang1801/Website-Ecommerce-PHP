@@ -80,7 +80,7 @@
 												<p>{{$category->slug}}</p>
 											</td>
 											<td>
-												<img src="uploads/category/thumb/{{$category->image}}" class="flag-img-lg" alt="" />
+												<img src="{{ file_exists(public_path('uploads/category/thumb/' . $category->image)) ? asset('uploads/category/thumb/' . $category->image) : asset('uploads/category/thumb/null.png') }}" class="flag-img-lg" alt="" />
 											</td>
 											<td>{{$category->created_at}}</td>
 											<td>{{$category->updated_at}}</td>

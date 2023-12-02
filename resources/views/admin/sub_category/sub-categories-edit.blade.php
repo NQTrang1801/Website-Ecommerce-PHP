@@ -39,7 +39,7 @@
                                                             <option value="">Select a Category</option>                                
                                                             @if ($categories->isNotEmpty())
                                                                 @foreach ($categories as $category)
-                                                                    <option value="{{$category->id}}" {{$subCategory->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                                    <option value="{{$category->id}}" {{$subCategory->category_id == $category->id ? 'selected' : ''}}  data-slug='{{$category->slug}}'>{{$category->name}}</option>
                                                                 @endforeach
                                                                 
                                                             @endif               
@@ -200,8 +200,8 @@
     });
 
     $('#categorySelect').change(function() {
-        var selectedValue = $(this).val();
-        selectedCategorySlug = selectedValue;
+        let selectedOption = $(this).find('option:selected');
+        selectedCategorySlug = selectedOption.data('slug');
         element = $("#sub-category-name");
         $("button[type=submit]").prop('disabled', true);
         $.ajax({

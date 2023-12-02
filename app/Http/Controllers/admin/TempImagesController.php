@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductsImages;
 use App\Models\TempImage;
 use Illuminate\Http\Request;
 

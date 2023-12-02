@@ -7,15 +7,18 @@
         padding: 8px;
         max-width: 200px; 
     }
-
 	.product-images {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
-		column-gap: 6px;
-		margin-top: 10px;
+		column-gap: 8px;
+		margin-bottom: 20px
 	}
 
-	.product-images p {
+	.product-images img {
+		object-fit: contain;
+	}
+
+	.product-images label {
 		float: right;
 	}
 
@@ -90,10 +93,27 @@
 												<p>{{$product->title}}</p>
 											</td>
 											<td>
-												<p>{{$product->category_name}}</p>
-											</td>
+												<p>
+													@if ($product->category_id)
+														@php
+															$parts = explode("--", $product->slug);
+															$result = isset($parts[1]) ? $parts[1] : null;
+														@endphp
+														{{ str_replace('-', ' ', $result); }}
+													@endif
+												</p>
+											</td>											
                                             <td>
-												<p>{{$product->sub_category_name}}</p>
+												<p>
+													@if ($product->sub_category_id)
+														@php
+															$parts = explode("--", $product->slug);
+															$result = isset($parts[1]) ? $parts[1] : null;
+															$result = isset($parts[2]) ? $parts[2] : $result;
+														@endphp
+														{{ str_replace('-', ' ', $result); }}
+													@endif
+												</p>
 											</td>
                                             <td>
                                                 <p>{{$product->price}}</p>
@@ -118,10 +138,10 @@
                                                         <i class="bi bi-list text-green"></i>
                                                     </a>
 													<div class="icon">
-														<a href="{{ route('sub-categories.edit',$product->id)}}"><i class="bi bi-pencil-square"></i></a>
+														<a href="{{ route('products.edit',$product->id)}}"><i class="bi bi-pencil-square"></i></a>
 													</div>
 													<div class="icon">
-														<a href="#" onclick = "deleteSubCategory({{$product->id}})"><i class="bi bi-x-square" style="color: red"></i></a>
+														<a href="#" onclick = "deleteProduct({{$product->id}})"><i class="bi bi-x-square" style="color: red"></i></a>
 													</div>
 												</div>
 											</td>
@@ -129,32 +149,43 @@
 										<tr>
 											<td colspan="10">
 												<div class="product-detail" style="display: none" id="pro-{{$product->id}}">
-														<div><strong>Description: </strong><span>{{$product->description}}</span></div>
+														<div><strong>Slug: </strong><span>{{$product->slug}}</span></div>
+														<div><strong>Description: </strong><pre>{{$product->description}}</pre></div>
 														<div><strong>Detail: </strong><span>{{$product->detail}}</span></div>
 														<div><strong>Care: </strong><span>{{$product->care}}</span></div>
 														<div><strong>Create date: </strong><span>{{$product->created_at}}</span></div>
-														<div><strong>Images: </strong></div>
-														@if (!empty($product->images_id))
-														<div class="product-images">
+														<div class="drop-detail" style="">
 															<div>
-																<p>image_1</p>
-																<img src="{{asset('uploads/product/image/thumb/'.!empty($product->image_1) ? $product->image_1 : 'none.jpg')}}" alt=""></div>
-															<div>
-																<p>image_2</p>
-																<img src="{{asset('uploads/product/image/thumb/'.!empty($product->image_2) ? $product->image_2 : 'none.jpg')}}" alt="">
+																<strong>Images: </strong>
+																<div class="product-images">
+																	@if (!empty($product->images_id))
+																		<div>
+																			<label for="">image 1</label>
+																			<img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_1) ? $product->image_1 : 'null.png')) }}" alt="">
+																		</div>
+																		<div>
+																			<label for="">image 2</label>
+																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_2) ? $product->image_2 : 'null.png'))}}" alt="">
+																		</div>
+																		<div>
+																			<label for="">image 3</label>
+																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_3) ? $product->image_3 : 'null.png'))}}" alt="">
+																		</div>
+																		<div>
+																			<label for="">image 4</label>
+																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_4) ? $product->image_4 : 'null.png'))}}" alt="">
+																		</div>
+																		
+																	@endif
+																</div>
+	
 															</div>
+															<hr>
 															<div>
-																<p>image_3</p>
-																<img src="{{asset('uploads/product/image/thumb/'.!empty($product->image_3) ? $product->image_3 : 'none.jpg')}}" alt="">
+																<div style="display: flex; justify-content: center"><strong>Variantss</strong></div>
 															</div>
-															<div>
-																<p>image_4</p>
-																<img src="{{asset('uploads/product/image/thumb/'.!empty($product->image_4) ? $product->image_4 : 'none.jpg')}}" alt="">
-															</div>
+															
 														</div>
-														@endif
-														<hr>
-														<div style="display: flex; justify-content: center"><strong>Variantss</strong></div>
 												</div>
 											</td>
 										</tr>
@@ -191,9 +222,9 @@
 		$('#' + id).slideToggle("slow");
 	});
 
-	function deleteSubCategory(id)
+	function deleteProduct(id)
 	{
-		var url = '{{route("sub-categories.delete","ID")}}';
+		var url = '{{route("products.delete","ID")}}';
 		var newUrl = url.replace("ID",id);
 		if(confirm("Are you sure you want to delete"))
 		{
@@ -208,13 +239,13 @@
 				success: function(response) {
 					$("button[type=submit]").prop('disabled', false);
 					if (response["status"] == true) {
-						alert("sub Category deleted successfully");
-						window.location.href="{{route('sub-categories.index')}}";
+						alert("product deleted successfully");
+						window.location.href="{{route('products.index')}}";
 					}
 					else
 					{
-						alert("sub Category not found");
-						window.location.href="{{route('sub-categories.index')}}";
+						alert("product not found");
+						window.location.href="{{route('products.index')}}";
 					}
 				}
 			});

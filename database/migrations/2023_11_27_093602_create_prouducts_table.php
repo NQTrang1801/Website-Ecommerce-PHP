@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer("price");
             $table->integer("amount")->default(0);
             $table->integer('status')->default(1);
-            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict')->nullable();;
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict')->nullable();
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('restrict')->nullable();
             $table->foreignId('promotion_id')->constrained('promotion')->onDelete('restrict')->nullable();
             $table->foreignId('images_id')->constrained('products_images')->onDelete('restrict')->nullable();

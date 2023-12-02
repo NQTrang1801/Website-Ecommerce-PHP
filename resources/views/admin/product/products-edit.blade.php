@@ -4,7 +4,7 @@
     <li class="breadcrumb-item">
         <i class="bi bi-stickies"></i>
     </li>
-    <li class="breadcrumb-item breadcrumb-active" aria-current="products"><a href="{{route('products.index')}}">Products</a>/Insert</li>
+    <li class="breadcrumb-item breadcrumb-active" aria-current="products"><a href="{{route('products.index')}}">Products</a>/Update</li>
 </ol>
 @endsection
 @section('content')
@@ -36,7 +36,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Enter Product title</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="product-title" name="title" placeholder="title" autocomplete="off">
+                                                        <input type="text" class="form-control" id="product-title" name="title" placeholder="title" value="{{$product->title}}" autocomplete="off">
                                                         <p></p>
                                                     </div>
                                                 </div>
@@ -45,7 +45,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Slug</label>
                                                     <div class="input-group">
-                                                        <input type="text" readonly style="background-color: #C0C0C0;" class="form-control" id="product-slug" name="slug" placeholder="slug">
+                                                        <input type="text" readonly style="background-color: #C0C0C0;" class="form-control" id="product-slug" name="slug" value="{{$product->slug}}" placeholder="slug">
                                                         <p></p>
                                                     </div>
                                                 </div>
@@ -57,7 +57,7 @@
                                                         <option value="">select</option>                                
                                                         @if ($categories->isNotEmpty())
                                                             @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}" data-slug="{{$category->slug}}">{{$category->name}}</option>
+                                                                <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}} data-slug="{{$category->slug}}">{{$category->name}}</option>
                                                             @endforeach
                                                         @endif               
                                                 </select>
@@ -71,7 +71,7 @@
                                                         <option value="">select</option>                                
                                                         @if ($subCategories->isNotEmpty())
                                                             @foreach ($subCategories as $subCategory)
-                                                                <option value="{{$subCategory->id}}" data-slug="{{$subCategory->slug}}">{{$subCategory->slug = str_replace("-", " ", $subCategory->slug);}}</option>
+                                                                <option value="{{$subCategory->id}}" {{$product->sub_category_id == $subCategory->id ? 'selected' : ''}} data-slug="{{$subCategory->slug}}">{{$subCategory->slug = str_replace("-", " ", $subCategory->slug);}}</option>
                                                             @endforeach
                                                         @endif               
                                                    </select>
@@ -83,14 +83,14 @@
                                                     <div>
                                                         <label class="form-label">Amount</label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" id="product-amount" name="amount" autocomplete="off">
+                                                            <input type="number" class="form-control" id="product-amount" name="amount" value="{{$product->amount}}" autocomplete="off">
                                                             <p></p>
                                                         </div>
                                                     </div>            
                                                     <div>
                                                         <label class="form-label">Price</label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" id="product-price" name="price" autocomplete="off">
+                                                            <input type="number" class="form-control" id="product-price" name="price" value="{{$product->price}}" autocomplete="off">
                                                             <p></p>
                                                         </div>
                                                     </div>
@@ -101,7 +101,7 @@
                                                                     <option value="">select</option>                                
                                                                     @if ($promotion->isNotEmpty())
                                                                         @foreach ($promotion as $promo)
-                                                                            <option value="{{$promo->id}}">{{$promo->name}}</option>
+                                                                            <option value="{{$promo->id}}" {{$product->promotion_id == $promo->id ? 'selected' : ''}}>{{$promo->name}}</option>
                                                                         @endforeach
                                                                     @endif               
                                                             </select>
@@ -112,11 +112,11 @@
                                                         <label class="form-label">Status</label>
                                                         <div class="mt-2">
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="status" id="StatusRadio1" value="1" checked>
+                                                                <input class="form-check-input" type="radio" name="status" id="StatusRadio1" value="1" {{($product->status == 1) ? 'checked' : ''}}>
                                                                 <label class="form-check-label" for="StatusRadio1">Active</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="status" id="StatusRadio2" value="0">
+                                                                <input class="form-check-input" type="radio" name="status" id="StatusRadio2" value="0" {{($product->status == 0) ? 'checked' : ''}}>
                                                                 <label class="form-check-label" for="StatusRadio2">Block</label>
                                                             </div>
                                                         </div>
@@ -139,11 +139,35 @@
                                                     </div>
                                                 </div>
 											</div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="image">Image 1</label>
+                                                <div>
+                                                    <img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_1) ? $product->image_1 : 'null.png')) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="image">Image 2</label>
+                                                <div>
+                                                    <img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_2) ? $product->image_2 : 'null.png')) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="image">Image 3</label>
+                                                <div>
+                                                    <img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_3) ? $product->image_3 : 'null.png')) }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="image">Image 4</label>
+                                                <div>
+                                                    <img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_4) ? $product->image_4 : 'null.png')) }}" alt="">
+                                                </div>
+                                            </div>
                                             <div class="col-md-10">
 												<div class="mb-3">
                                                     <label class="form-label" for="keywords">Keywords</label>
                                                     <div>
-                                                        <input style="width: 1100px" type="text" name="keywords" id="product-keywords" autocomplete="off">
+                                                        <input style="width: 1100px" type="text" name="keywords" id="product-keywords" value="{{$product->keywords}}" autocomplete="off">
                                                     </div>
                                                 </div>
 											</div>
@@ -151,7 +175,7 @@
 												<div class="mb-3">
                                                     <label class="form-label" for="detail">Detail</label>
                                                     <div>
-                                                        <textarea name="detail" id="product-detail" cols="60" rows="3"></textarea>
+                                                        <textarea name="detail" id="product-detail" cols="60" rows="3">{{$product->detail}}</textarea>
                                                     </div>
                                                 </div>
 											</div>
@@ -159,7 +183,7 @@
 												<div class="mb-3">
                                                     <label class="form-label" for="care">Care</label>
                                                     <div>
-                                                        <textarea name="care" id="product-care" cols="75" rows="3"></textarea>
+                                                        <textarea name="care" id="product-care" cols="75" rows="3">{{$product->care}}</textarea>
                                                     </div>
                                                 </div>
 											</div>
@@ -167,7 +191,7 @@
 												<div class="mb-3">
                                                     <label class="form-label" for="description">Description</label>
                                                     <div>
-                                                        <textarea name="description" id="product-description" cols="144" rows="6"></textarea>
+                                                        <textarea name="description" id="product-description" cols="144" rows="6">{{$product->description}}</textarea>
                                                     </div>
                                                 </div>
 											</div>                                            
@@ -177,7 +201,7 @@
                                         <!-- Form actions footer start -->
                                         <div class="form-actions-footer">
                                             <button type="reset" class="btn btn-light">Reset</button>
-                                            <button type="submit" class="btn btn-success" style="color: black;">Create</button>
+                                            <button type="submit" class="btn btn-success" style="color: black;">Update</button>
                                         </div>
                                         <!-- Form actions footer end -->
                                     </form>
@@ -279,8 +303,9 @@
         })
     });
 
-    var selectedCategorySlug = '';
-    var selectedSubCategorySlug = '';
+
+    var selectedCategorySlug = $("#category").find('option:selected').data('slug');
+    var selectedSubCategorySlug = $("#subCategory").find('option:selected').data('slug');
 
     $('#category').change(function() {
         let selectedOption = $(this).find('option:selected');
@@ -416,6 +441,5 @@
             }
         }
     }
-
 </script>
 @endsection

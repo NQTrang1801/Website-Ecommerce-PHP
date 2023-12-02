@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\PromotionController;
+use App\Http\Controllers\admin\ProductImagesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -147,9 +148,27 @@ route::get('/products',[ProductController::class,'index'])
 route::get('/products/insert', [ProductController::class, 'create'])
     ->middleware('check.usertype')
     ->name('products.create');
+
+route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+    ->middleware('check.usertype')
+    ->name('products.edit');
+
 route::post('/products', [ProductController::class, 'store'])
     ->middleware('check.usertype')
     ->name('products.store');
+
+route::put('/products/{product}', [ProductController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('products.update');
+
+route::delete('/products/{product}', [ProductController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('products.delete');
+
+// Product Images
+route::post('/upload-products-images', [ProductImagesController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('products-images.create');
 
 Route::get('/getSlug', function(Request $request){
     $slug = '';
@@ -163,9 +182,11 @@ Route::get('/getSlug', function(Request $request){
     ]);
 })->name('getSlug');
 
+//temp
 route::post('/upload-temp-image', [TempImagesController::class, 'create'])
     ->middleware('check.usertype')
     ->name('temp-images.create');
+
 
 
 route::get('/',[HomeController::class,'index'])->name('home.index');
