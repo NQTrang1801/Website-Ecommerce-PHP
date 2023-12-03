@@ -57,7 +57,7 @@
                                                         <option value="">select</option>                                
                                                         @if ($categories->isNotEmpty())
                                                             @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}} data-slug="{{$category->slug}}">{{$category->name}}</option>
+                                                                <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                                                             @endforeach
                                                         @endif               
                                                 </select>
@@ -71,7 +71,23 @@
                                                         <option value="">select</option>                                
                                                         @if ($subCategories->isNotEmpty())
                                                             @foreach ($subCategories as $subCategory)
-                                                                <option value="{{$subCategory->id}}" {{$product->sub_category_id == $subCategory->id ? 'selected' : ''}} data-slug="{{$subCategory->slug}}">{{$subCategory->slug = str_replace("-", " ", $subCategory->slug);}}</option>
+                                                                <option value="{{$subCategory->id}}" {{$product->sub_category_id == $subCategory->id ? 'selected' : ''}}>
+                                                                    <?php 
+                                                                    $exploded = explode("--", $subCategory->slug);
+                                                                    if (count($exploded) >= 2) {
+                                                                        $CategoryName = '';
+                                                                        if (isset($categories)) {
+                                                                            $category = $categories->where('id', $exploded[1])->first();
+                                                                            if ($category !== null) {
+                                                                                $CategoryName = $category->name;
+                                                                            }
+                                                                        }
+                                                                        echo str_replace("-", " ", $exploded[0]). ' / ' . $CategoryName;
+                                                                    } else {
+                                                                        echo str_replace("-", " ", $exploded[0]);
+                                                                    }
+                                                                    ?>
+                                                                </option>
                                                             @endforeach
                                                         @endif               
                                                    </select>
@@ -227,8 +243,8 @@
         var element = $(this);
         $("button[type=submit]").prop('disabled', true);
         $.ajax({
-            url: '{{ route("products.store") }}',
-            type: 'post',
+            url: '{{ route("products.update", $product->id) }}',
+            type: 'put',
             data: element.serializeArray(),
             success: function(response) {
                 $("button[type=submit]").prop('disabled', false);
@@ -304,12 +320,12 @@
     });
 
 
-    var selectedCategorySlug = $("#category").find('option:selected').data('slug');
-    var selectedSubCategorySlug = $("#subCategory").find('option:selected').data('slug');
+    var selectedCategoryId = $("#category").find('option:selected').val();
+    var selectedSubCategoryId = $("#subCategory").find('option:selected').val();
 
     $('#category').change(function() {
         let selectedOption = $(this).find('option:selected');
-        selectedCategorySlug = selectedOption.data('slug');
+        selectedCategoryId = selectedOption.val();
         element = $("#product-title");
         $("button[type=submit]").prop('disabled', true);
         $.ajax({
@@ -322,15 +338,15 @@
                 if (response["status"] == true) { 
                     var slug = '';
 
-                    if (selectedCategorySlug) {
-                        slug = response["slug"] + '--' + selectedCategorySlug;
+                    if (selectedCategoryId) {
+                        slug = response["slug"] + '--' + selectedCategoryId;
                         $('#product-slug').val(slug);
                     }
                     else
                         slug = response["slug"];
 
-                    if (selectedSubCategorySlug) {
-                        slug  += '--' + selectedSubCategorySlug;
+                    if (selectedSubCategoryId) {
+                        slug  += '--' + selectedSubCategoryId;
                         $('#product-slug').val(slug);
                     }
 
@@ -343,7 +359,7 @@
 
     $('#subCategory').change(function() {
         let selectedOption = $(this).find('option:selected');
-        selectedSubCategorySlug = selectedOption.data('slug');
+        selectedSubCategoryId = selectedOption.val();
         element = $("#product-title");
         $("button[type=submit]").prop('disabled', true);
         $.ajax({
@@ -356,14 +372,14 @@
                 if (response["status"] == true) { 
                     var slug = '';
 
-                    if (selectedCategorySlug) {
-                        slug += response['slug'] + '--' + selectedCategorySlug;
+                    if (selectedCategoryId) {
+                        slug += response['slug'] + '--' + selectedCategoryId;
                     }
                     else
                         slug += response['slug'];
 
-                    if (selectedSubCategorySlug) {
-                        slug += '--' + selectedSubCategorySlug;
+                    if (selectedSubCategoryId) {
+                        slug += '--' + selectedSubCategoryId;
                     }
 
                     $('#product-slug').val(slug);
@@ -385,13 +401,13 @@
                 if (response["status"] == true) { 
                     var slug = response["slug"];
 
-                    if (selectedCategorySlug) {
-                        slug += '--' + selectedCategorySlug;
+                    if (selectedCategoryId) {
+                        slug += '--' + selectedCategoryId;
                         $('#product-slug').val(slug);
                     }
 
-                    if (selectedSubCategorySlug) {
-                        slug += '--' + selectedSubCategorySlug;
+                    if (selectedSubCategoryId) {
+                        slug += '--' + selectedSubCategoryId;
                         $('#product-slug').val(slug);
                     }
 

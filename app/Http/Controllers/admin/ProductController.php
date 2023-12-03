@@ -20,12 +20,17 @@ class ProductController extends Controller
 {
     public function index(Request $request) {
         $products = Product::select(
-            'products.*', 'promotion.value as promotion_value',
+            'products.*',
+            'categories.name as category_name',
+            'sub_categories.name as subCategory_name',
+            'promotion.value as promotion_value',
             'products_images.image_1 as image_1',
             'products_images.image_2 as image_2',
             'products_images.image_3 as image_3',
             'products_images.image_4 as image_4'
             )
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->leftJoin('sub_categories', 'products.sub_category_id', '=', 'sub_categories.id')
             ->leftJoin('promotion', 'products.promotion_id', '=', 'promotion.id')
             ->leftJoin('products_images', 'products.images_id', '=', 'products_images.id')
             ->latest();

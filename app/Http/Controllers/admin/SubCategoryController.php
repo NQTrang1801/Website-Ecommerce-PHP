@@ -15,7 +15,12 @@ use function Laravel\Prompts\alert;
 class SubCategoryController extends Controller
 {
     public function index(Request $request) {
-        $subCategories = SubCategory::latest();
+        $subCategories = SubCategory::select(
+            'sub_categories.*',
+            'categories.name as category_name',
+            )
+            ->leftJoin('categories', 'sub_categories.category_id', '=', 'categories.id')
+            ->latest();
 
         if (!empty($request->get('keyword'))){
             $subCategories = $subCategories->where('name','like','%'.$request->get('keyword').'%');

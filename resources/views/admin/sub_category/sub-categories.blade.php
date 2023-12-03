@@ -59,7 +59,7 @@
 										<th>Sub Categories Name</th>
 										<th>Slug</th>
 										<th>Image</th>
-										<th>Category ID</th>
+										<th>Category</th>
 										<th>Create At</th>
 										<th>Update At</th>
 										<th>Status</th>
@@ -82,7 +82,7 @@
 											<td>
 												<img src="{{ file_exists(public_path('uploads/sub category/thumb/' . $subCategory->image)) ? asset('uploads/sub category/thumb/' . $subCategory->image) : asset('uploads/sub category/thumb/null.png') }}" class="flag-img-lg" alt="" />
 											</td>
-											<td>{{$subCategory->category_id}}</td>
+											<td>{{$subCategory->category_name}}</td>
 											<td>{{$subCategory->created_at}}</td>
 											<td>{{$subCategory->updated_at}}</td>
 											<td>

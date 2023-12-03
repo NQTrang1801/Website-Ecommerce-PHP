@@ -94,25 +94,12 @@
 											</td>
 											<td>
 												<p>
-													@if ($product->category_id)
-														@php
-															$parts = explode("--", $product->slug);
-															$result = isset($parts[1]) ? $parts[1] : null;
-														@endphp
-														{{ str_replace('-', ' ', $result); }}
-													@endif
+													{{$product->category_name}}
 												</p>
 											</td>											
                                             <td>
 												<p>
-													@if ($product->sub_category_id)
-														@php
-															$parts = explode("--", $product->slug);
-															$result = isset($parts[1]) ? $parts[1] : null;
-															$result = isset($parts[2]) ? $parts[2] : $result;
-														@endphp
-														{{ str_replace('-', ' ', $result); }}
-													@endif
+													{{$product->subCategory_name}}
 												</p>
 											</td>
                                             <td>

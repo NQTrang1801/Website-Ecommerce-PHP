@@ -39,7 +39,7 @@
                                                             <option value="">Select a Category</option>                                
                                                             @if ($categories->isNotEmpty())
                                                                 @foreach ($categories as $category)
-                                                                    <option value="{{$category->id}}" {{$subCategory->category_id == $category->id ? 'selected' : ''}}  data-slug='{{$category->slug}}'>{{$category->name}}</option>
+                                                                    <option value="{{$category->id}}" {{$subCategory->category_id == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                                                                 @endforeach
                                                                 
                                                             @endif               
@@ -127,6 +127,7 @@
 
 @section('customJs')
 <script>
+
     $("#updateSubCategoryForm").submit(function(event) {
         event.preventDefault();
         var element = $(this);
@@ -199,9 +200,10 @@
         })
     });
 
+    let selectedCategoryId = $(this).find('option:selected').val();
     $('#categorySelect').change(function() {
         let selectedOption = $(this).find('option:selected');
-        selectedCategorySlug = selectedOption.data('slug');
+        selectedCategoryId = selectedOption.val();
         element = $("#sub-category-name");
         $("button[type=submit]").prop('disabled', true);
         $.ajax({
@@ -212,8 +214,8 @@
             success: function(response) {
                 $("button[type=submit]").prop('disabled', false);
                 if (response["status"] == true) { 
-                    if (selectedCategorySlug) {
-                        var subCategorySlug = response["slug"] + '-' + selectedCategorySlug;
+                    if (selectedCategoryId) {
+                        var subCategorySlug = response["slug"] + '--' + selectedCategoryId;
                         $('#sub-category-slug').val(subCategorySlug);
                     } else {
                         $('#sub-category-slug').val(response["slug"]);
@@ -234,8 +236,8 @@
             success: function(response) {
                 $("button[type=submit]").prop('disabled', false);
                 if (response["status"] == true) { 
-                    if (selectedCategorySlug) {
-                        var subCategorySlug = response["slug"] + '-' + selectedCategorySlug;
+                    if (selectedCategoryId) {
+                        var subCategorySlug = response["slug"] + '--' + selectedCategoryId;
                         $('#sub-category-slug').val(subCategorySlug);
                     } else {
                         $('#sub-category-slug').val(response["slug"]);
