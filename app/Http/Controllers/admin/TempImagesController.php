@@ -15,12 +15,12 @@ class TempImagesController extends Controller
         if (!empty($image))
         {
             $ext = $image->getClientOriginalExtension();
-            $newName = time().'.'.$ext;
-
             $tempImage = new TempImage();
+            $tempImage->name = 'null.png';
+            $tempImage->save();
+            $newName = $tempImage->id.time().'.'.$ext;
             $tempImage->name = $newName;
             $tempImage->save();
-
             $image->move(public_path().'/temp',$newName);
 
             return response()->json([

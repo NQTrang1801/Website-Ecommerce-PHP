@@ -8,6 +8,9 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Promotion;
+use App\Models\Size;
+use App\Models\Color;
+use App\Models\Variants;
 use App\Models\ProductsImages;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TempImage;
@@ -164,6 +167,7 @@ class ProductController extends Controller
 
             return response()->json([
                 'status' => true,
+                'productId' => $product->id,
                 'message' => 'product added successfully'
             ]);
         } else {
@@ -185,13 +189,31 @@ class ProductController extends Controller
             ->where('products.id', $productId)
             ->first();
 
+        $variantss = Variants::select(
+                'variantss.*',
+                'color.name as color',
+                'size.name as size',
+                'promotion.value as promotion_value'
+            )
+                ->leftJoin('color', 'variantss.color_id', '=', 'color.id')
+                ->leftJoin('size', 'variantss.size_id', '=', 'size.id')
+                ->leftJoin('promotion', 'variantss.promotion_id', '=', 'promotion.id')
+                ->where('variantss.product_id', $productId)
+                ->latest()
+                ->get();
+
         $categories = Category::orderBy('name', 'ASC')->get();
         $subCategories = SubCategory::orderBy('name', 'ASC')->get();
         $promotion = Promotion::where('status', 1)->orderBy('created_at', 'DESC')->get();
+        $sizes = Size::orderBy('name', 'ASC')->get();
+        $colors = Color::orderBy('name', 'ASC')->get();
         $data['product']=$product;
         $data['categories']=$categories;
         $data['subCategories']=$subCategories;
         $data['promotion']=$promotion;
+        $data['sizes']=$sizes;
+        $data['colors']=$colors;
+        $data['variantss']=$variantss;
 
         if (empty($product)) {
             return redirect()->route('products.index');

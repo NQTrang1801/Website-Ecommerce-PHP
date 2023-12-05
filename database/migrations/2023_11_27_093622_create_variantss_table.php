@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('variantss', function (Blueprint $table) {
+        Schema::create('variants', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
@@ -19,10 +19,12 @@ return new class extends Migration
             $table->foreignId('size_id')->constrained('size')->onDelete('restrict')->nullable();
             $table->foreignId('color_id')->constrained('color')->onDelete('restrict')->nullable();
             $table->foreignId('promotion_id')->constrained('promotion')->onDelete('restrict')->nullable();
-            $table->foreignId('image_id')->constrained('variantss_image')->onDelete('cascade')->nullable();
+            $table->string('image')->nullable();
             $table->integer('quantity');
             $table->integer('price');
             $table->timestamps();
+
+            $table->unique(['color_id', 'size_id', 'product_id']);
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('variantss');
+        Schema::dropIfExists('variants');
     }
 };

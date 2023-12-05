@@ -225,8 +225,10 @@
             success: function(response) {
                 $("button[type=submit]").prop('disabled', false);
                 if (response["status"] == true) {
-
-                    window.location.href="{{route('products.index')}}";
+                    
+                    var productId = response['productId']; // Lấy productId từ response
+                    var editUrl = "{{ route('products.edit', ':productId') }}".replace(':productId', productId);
+                    window.location.href = editUrl;
 
                     alert('product added successfully!');
 

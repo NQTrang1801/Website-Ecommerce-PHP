@@ -9,7 +9,8 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\PromotionController;
-use App\Http\Controllers\admin\ProductImagesController;
+use App\Http\Controllers\admin\VariantsController;
+use App\Models\Variants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -165,10 +166,29 @@ route::delete('/products/{product}', [ProductController::class, 'destroy'])
     ->middleware('check.usertype')
     ->name('products.delete');
 
-// Product Images
-route::post('/upload-products-images', [ProductImagesController::class, 'create'])
+// Variantss
+route::get('/variantss',[VariantsController::class,'index'])
     ->middleware('check.usertype')
-    ->name('products-images.create');
+    ->name('variantss.index');
+route::get('/variantss/insert', [VariantsController::class, 'create'])
+    ->middleware('check.usertype')
+    ->name('variantss.create');
+
+route::get('/variantss/{product}/add', [VariantsController::class, 'add'])
+    ->middleware('check.usertype')
+    ->name('products.add');
+
+route::post('/variantss', [VariantsController::class, 'store'])
+    ->middleware('check.usertype')
+    ->name('variantss.store');
+
+route::put('/variantss/{variant}', [VariantsController::class, 'update'])
+    ->middleware('check.usertype')
+    ->name('variantss.update');
+
+route::delete('/variantss/{variant}', [VariantsController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('variantss.delete');
 
 Route::get('/getSlug', function(Request $request){
     $slug = '';

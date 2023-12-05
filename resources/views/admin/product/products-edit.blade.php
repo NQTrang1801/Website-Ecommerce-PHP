@@ -19,15 +19,16 @@
                         <div class="custom-tabs-container">
                             <ul class="nav nav-tabs" id="formsTab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="product-tab" data-bs-toggle="tab" href="{{route('products.index')}}" role="tab" aria-controls="product" aria-selected="true">Product</a>
+                                    <a class="nav-link" id="product-tab" data-bs-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="true">Product</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="Variantss"  href="#" role="tab" aria-controls="Variantss" aria-selected="false">Variantss</a>
+                                    <a class="nav-link active" id="variantss-tab" data-bs-toggle="tab" href="#variantss"
+                                        role="tab" aria-controls="variantss" aria-selected="false">Variantss</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="formsTabContent">
 
-                                <div class="tab-pane fade show active" id="product" role="tabpanel">
+                                <div class="tab-pane fade" id="product" role="tabpanel">
                                     <form action="" method="post" id="productForm" name="productForm">
                                         @csrf
                                         <!-- Row start -->
@@ -222,6 +223,73 @@
                                         <!-- Form actions footer end -->
                                     </form>
                                 </div>
+                                <div class="tab-pane fade show active" id="variantss" role="tabpanel">
+                                    <!-- Row start -->
+                                    <div class="row gx-3 view-variantss">
+                                        <div class="col-xxl-3 col-md-4 col-sm-6 col-12 top">
+                                            <!-- Card start -->
+                                            <div class="card gradient-teal" style="height: 355px">
+                                                <div class="contact-card">
+                                                    <a href="#" class="edit-contact-card" data-bs-toggle="modal" data-bs-target="#editVariant">
+                                                        <i class="bi bi-clipboard-plus"></i>
+                                                    </a>
+
+                                                    <a href="#" class="edit-contact-card" style="margin-top: 60px">
+                                                        <i class="bi bi-x-square"></i>
+                                                    </a>
+                                                    
+                                                </div>
+                                            </div>
+                                            <!-- Card end -->
+                                        </div>
+                                        
+                                        @if ($variantss->isNotEmpty())
+										    @foreach ($variantss as $variant)
+                                                <div class="col-xxl-3 col-md-4 col-sm-6 col-12 bot">
+                                                    <!-- Card start -->
+                                                    <div class="card gradient-teal">
+                                                        <input type="checkbox" class="form-check-input" style="margin: 6px 0px 6px 6px" data-variant-id="{{$variant->id}}">
+                                                        <div class="contact-card">
+                                                            <a href="#" class="edit-contact-card" data-bs-toggle="modal" data-bs-target="#editVariant" onclick="fillModal({{ json_encode($variant) }})">
+                                                                <i class="bi bi-pencil"></i>
+                                                            </a>
+                                                            <div>
+                                                                <img style="width: 30px; height: 30px;" src="{{ asset('uploads/product/variantss/thumb/' . (!empty($variant->image) ? $variant->image : 'null.png')) }}">
+                                                            </div>
+                                                            <h5><strong>ID: {{$variant->id}}<br>{{$variant->title}}</strong></h5>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item"><span>Color: </span><span>{{$variant->color}}</span></li>
+                                                                <li class="list-group-item"><span>Size: </span><span>{{$variant->size}}</span></li>
+                                                                <li class="list-group-item"><span>Quantity: </span>{{$variant->quantity}}</li>
+                                                                <li class="list-group-item"><span>Price: </span><span>{{$variant->price}}</span></li>
+                                                                <li class="list-group-item"><span>Promo: </span><span>{{$variant->promotion_value}}</span></li>
+                                                                <li class="list-group-item">
+                                                                    <span>
+                                                                        @if($variant->status == 1)
+                                                                            <span class="badge shade-green min-70">Active</span>
+                                                                        @else
+                                                                            <span class="badge shade-red min-70">block</span>
+                                                                        @endif
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Card end -->
+                    
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                    <!-- Row end -->
+
+                                    <!-- Form actions footer start -->
+                                    <div class="form-actions-footer">
+                                        <button class="btn btn-light">Reset</button>
+                                        <button class="btn btn-success">Save</button>
+                                    </div>
+                                    <!-- Form actions footer end -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -233,6 +301,133 @@
 
     </div>
     <!-- Content wrapper end -->
+@endsection
+
+@section('model')
+<div class="modal fade" id="editVariant" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editVariantLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+            <h1 style="margin: 8px 0px 0px 8px;">variant <span id="variant-id"></span></h1>
+            <form action="" method="post" id="variantForm" name="variantForm">
+            @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editVariantLabel">Product: <span id="text_product_id">{{$product->id}}</span> <input type="hidden" name="product" id="product-variant-id" value="{{$product->id}}">
+                    </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gx-3">
+                        <div class="col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label  class="form-label">Image</label>
+                                <input type="hidden" id="variant-image-id" name="image">
+                                <div id="imageVariant" class="dropzone dz-clickable">
+                                    <div class="dz-message needsclick">
+                                        <br>Drop files here or click to upload.<br><br>
+                                    </div>
+                                </div>
+                                <span id="img-current">
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-12">
+                            <div class="row gx-3">
+                                <div class="col-6">
+
+                                    <!-- Form Field Start -->
+                                    <div class="mb-3">
+                                        <label for="variant-title" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="variant-title" name="title" placeholder="title">
+                                        <input type="hidden" class="form-control" id="variant-slug" name="slug" readonly>
+                                    </div>
+
+                                    <!-- Form Field Start -->
+                                    <div class="mb-3">
+                                        <label for="variant-quantity" class="form-label">Amount</label>
+                                        <input type="number" class="form-control" id="variant-quantity" name="quantity">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="variant-price" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="variant_price" name="price">
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+
+                                    <!-- Form Field Start -->
+                                    <div class="mb-3">
+                                        <label for="variant-color" class="form-label">Color</label>
+                                        <div class="option-group">
+                                            <select name="color" id="variant-color" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
+                                                    <option value="">select</option>                                
+                                                    @if ($colors->isNotEmpty())
+                                                        @foreach ($colors as $color)
+                                                            <option value="{{$color->id}}">{{$color->name}}</option>
+                                                        @endforeach
+                                                    @endif               
+                                            </select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form Field Start -->
+                                    <div class="mb-3">
+                                        <label for="variant-size" class="form-label">Size</label>
+                                        <div class="option-group">
+                                            <select name="size" id="variant-size" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
+                                                    <option value="">select</option>                                
+                                                    @if ($sizes->isNotEmpty())
+                                                        @foreach ($sizes as $size)
+                                                            <option value="{{$size->id}}">{{$size->name}}</option>
+                                                        @endforeach
+                                                    @endif               
+                                            </select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="variant-promotion" class="form-label">Promotion</label>
+                                        <div class="option-group">
+                                            <select name="promotion" id="variant-promotion" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
+                                                    <option value="">select</option>                                
+                                                    @if ($promotion->isNotEmpty())
+                                                        @foreach ($promotion as $promo)
+                                                            <option value="{{$promo->id}}">{{$promo->name}}</option>
+                                                        @endforeach
+                                                    @endif               
+                                            </select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Status</label>
+                                        <div class="mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="status" id="Status1" value="1" checked>
+                                                <label class="form-check-label" for="StatusRadio1">Active</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="status" id="Status2" value="0">
+                                                <label class="form-check-label" for="StatusRadio2">Block</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+	    </div>
+    </div>
+</div>
 @endsection
 
 
@@ -457,5 +652,241 @@
             }
         }
     }
+
+    $("#variantForm").submit(function(event) {
+        event.preventDefault();
+        var element = $(this);
+        var actionUrl = '{{ route("variantss.store") }}';
+        var variantId = $("#variant-id").html();
+
+        if (variantId) {
+            actionUrl = '{{ route("variantss.update", ":variantId") }}';
+            actionUrl = actionUrl.replace(':variantId', variantId);
+        }
+
+        $("button[type=submit]").prop('disabled', true);
+        $.ajax({
+            url: actionUrl,
+            type: variantId ? 'put' : 'post',
+            data: element.serializeArray(),
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) {
+                    alert('Variant ' + (variantId ? 'updated' : 'added') + ' successfully!');
+                    window.location.reload();
+                    if (response['errors']) {
+                        var errors = response['errors'];
+                    }
+                } else {
+                    console.log("Error occurred during variant submission.");
+                }
+            },
+            error: function(jqXHR, exception) {
+                console.log("Wrong");
+            }
+        });
+    });
+
+
+
+    const dropzoneVariant = $("#imageVariant").dropzone({
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url: "{{ route('temp-images.create')}}",
+        maxFiles: 1,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, success: function(file, response) {
+            $("#variant-image-id").val(response.image_id);
+        }
+    });
+
+
+    var selectedColorId = '';
+    var selectedSizeId = '';
+
+    $('#variant-color').change(function() {
+        let selectedOption = $(this).find('option:selected');
+        selectedColorId = selectedOption.val();
+        element = $("#variant-title");
+        $("button[type=submit]").prop('disabled', true);
+        $.ajax({
+            url: '{{ route("getSlug") }}',
+            type: 'get',
+            data: {title: element.val()},
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) { 
+                    var slug = '';
+
+                    if (selectedColorId) {
+                        slug = response["slug"] + '--' + selectedColorId;
+                        $('#variant-slug').val(slug);
+                    }
+                    else
+                        slug = response["slug"];
+
+                    if (selectedSizeId) {
+                        slug  += '--' + selectedSizeId;
+                        $('#variant-slug').val(slug);
+                    }
+
+                    $('#variant-slug').val(slug);
+
+                }
+            }
+        });
+    });
+
+    $('#variant-size').change(function() {
+        let selectedOption = $(this).find('option:selected');
+        selectedSizeId = selectedOption.val();
+        element = $("#variant-title");
+        $("button[type=submit]").prop('disabled', true);
+        $.ajax({
+            url: '{{ route("getSlug") }}',
+            type: 'get',
+            data: {title: element.val()},
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) { 
+                    var slug = '';
+
+                    if (selectedColorId) {
+                        slug += response['slug'] + '--' + selectedColorId;
+                    }
+                    else
+                        slug += response['slug'];
+
+                    if (selectedSizeId) {
+                        slug += '--' + selectedSizeId;
+                    }
+
+                    $('#variant-slug').val(slug);
+                }
+            }
+        });
+    });
+
+    $("#variant-title").change(function() {
+        element = $(this);
+        $("button[type=submit]").prop('disabled', true);
+        $.ajax({
+            url: '{{ route("getSlug") }}',
+            type: 'get',
+            data: {title: element.val()},
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response["status"] == true) { 
+                    var slug = response["slug"];
+
+                    if (selectedColorId) {
+                        slug += '--' + selectedColorId;
+                        $('#variant-slug').val(slug);
+                    }
+
+                    if (selectedSizeId) {
+                        slug += '--' + selectedSizeId;
+                        $('#variant-slug').val(slug);
+                    }
+
+                    $('#variant-slug').val(slug);
+                    
+                }
+            }
+        });
+    });
+
+
+    // UPDATE
+    function fillModal(variant) {
+        $('#editVariant #variant-id').html(variant.id);
+        $('#editVariant input[name="product"]').val(variant.product_id);
+        $('#editVariant input[name="title"]').val(variant.title);
+        $('#editVariant input[name="slug"]').val(variant.slug);
+        $('#editVariant input[name="quantity"]').val(variant.quantity);
+        $('#editVariant input[name="price"]').val(variant.price);
+        $('#editVariant select[name="color"]').val(variant.color_id);
+        $('#editVariant select[name="size"]').val(variant.size_id);
+        $('#editVariant select[name="promotion"]').val(variant.promotion_id);
+        $("#editVariant button[type=submit]").html('Update');
+        $('#img-current').html(variant.image);
+    }
+
+    $('#product-variant-id').on('input', function() {
+        var value = $(this).val();
+        $('#text_product_id').text(value);
+    });
+
+    $('#editVariant').on('hidden.bs.modal', function (e) {
+        $('#variant-id').html('');
+        $("#editVariant button[type=submit]").html('Save');
+        $('.img-update').css('display', 'none');
+        $('#img-current').html('');
+    });
+
+    // DELETE
+
+    const selectedVariants = [];
+
+        $('.form-check-input').on('change', function() {
+            const id = $(this).data('variant-id');
+            if ($(this).is(':checked')) {
+                selectedVariants.push(id);
+            } else {
+                const selectedIndex = selectedVariants.indexOf(id);
+                if (selectedIndex !== -1) {
+                    selectedVariants.splice(selectedIndex, 1);
+                }
+            }
+        });
+
+        $('.edit-contact-card .bi-x-square').on('click', function(event) {
+            event.preventDefault();
+            if (selectedVariants.length > 0) {
+                if (confirm('Are you sure you want to delete the selected variants?')) {
+                    selectedVariants.forEach(function(id) {
+                        deleteVariant(id);
+                    });
+                }
+            } else {
+                alert('Please select at least one variant to delete');
+            }
+        });
+
+    function deleteVariant(id) {
+        var url = '{{ route("variantss.delete", ":id") }}';
+        var newUrl = url.replace(':id', id);
+            $.ajax({
+                url: newUrl,
+                type: 'delete',
+                data: {},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    $("button[type=submit]").prop('disabled', false);
+                    if (response["status"] == true) {
+                        alert("Biến thể đã được xóa thành công");
+                        window.location.reload();
+                    } else {
+                        alert("not found: " + response['id']);
+                    }
+                }
+            });
+    }
+
 </script>
 @endsection

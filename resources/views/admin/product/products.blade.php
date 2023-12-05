@@ -167,11 +167,7 @@
 																</div>
 	
 															</div>
-															<hr>
-															<div>
-																<div style="display: flex; justify-content: center"><strong>Variantss</strong></div>
-															</div>
-															
+															<hr>															
 														</div>
 												</div>
 											</td>

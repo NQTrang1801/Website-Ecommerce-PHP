@@ -18,10 +18,7 @@
                             <a href="{{ route('products.index') }}">Products</a>
                         </li>
                         <li>
-                            <a href="#">Imagess</a>
-                        </li>
-                        <li>
-                            <a href="#">Variantss</a>
+                            <a href="{{ route('variantss.index') }}">Variantss</a>
                         </li>
                         <li>
                             <a href="{{ route('promotions.index') }}">Promotion</a>

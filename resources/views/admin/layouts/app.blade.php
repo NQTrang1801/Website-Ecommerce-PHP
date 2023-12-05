@@ -159,7 +159,7 @@
 				</div>
 				
 				<!-- Content wrapper scroll end -->
-
+				@yield('model')
 			</div>
 			<!-- *************
 				************ Main container end *************
