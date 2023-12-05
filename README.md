@@ -15,9 +15,10 @@ Thành viên nhóm 16
     + npm install
     + copy .env.example .env
     + php artisan key:generate
-    + php artisan migrate
-3. Sau đó tiếp tục mở 2 cửa sổ cmd tại thư muc website-private
+3. Tạo databases
+   + truy cập vào phpmyadmin -> tạo database mới tên là laravel -> chạy script tạo databases sau: https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=sharing
+4. Sau đó tiếp tục mở 2 cửa sổ cmd tại thư muc website-private
    + cửa sổ 1: chạy lệnh -> php artisan serve
    + cửa sổ 2: chạy lệnh -> npm run dev
-4. truy cập website: localhost:8000
-5. note: để truy cập vào trang quản lý admin cần đăng nhập bằng user admin được đăng ký trong account sau đó truy cập vào databases -> db.laravel -> table.user -> sửa thuộc tính usertype = 1 của user vừa được đăng ký, sau đó truy cập localhost:8000/redirect
+5. truy cập website: localhost:8000
+6. note: để truy cập vào trang quản lý admin cần đăng nhập bằng user admin được đăng ký trong account sau đó truy cập vào databases -> db.laravel -> table.user -> sửa thuộc tính usertype = 1 của user vừa được đăng ký, sau đó truy cập localhost:8000/redirect
