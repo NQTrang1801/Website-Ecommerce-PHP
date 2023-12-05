@@ -16,9 +16,11 @@ Thành viên nhóm 16
     + copy .env.example .env
     + php artisan key:generate
 3. Tạo databases
-   + truy cập vào phpmyadmin -> tạo database mới tên là laravel -> chạy script tạo databases sau: https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=sharing
+   + truy cập vào phpmyadmin -> tạo database mới tên là laravel
+         -> chạy script tạo databases sau: https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=sharing
+   + thay thế thư mục uploads trong thư mục public của project Website-private bằng thư mục được tải ở: https://drive.google.com/drive/folders/1n9I1NGpBQAL9D9I4Sf-dAz0lC1u1NsL4?usp=drive_link
 4. Sau đó tiếp tục mở 2 cửa sổ cmd tại thư muc website-private
    + cửa sổ 1: chạy lệnh -> php artisan serve
    + cửa sổ 2: chạy lệnh -> npm run dev
 5. truy cập website: localhost:8000
-6. note: để truy cập vào trang quản lý admin cần đăng nhập bằng user admin được đăng ký trong account sau đó truy cập vào databases -> db.laravel -> table.user -> sửa thuộc tính usertype = 1 của user vừa được đăng ký, sau đó truy cập localhost:8000/redirect
+6. vào account -> đăng nhập bằng user Admin: admin@gmail.com / password: 12345678
