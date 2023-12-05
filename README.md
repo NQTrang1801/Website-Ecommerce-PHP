@@ -20,4 +20,4 @@ Thành viên nhóm 16
    + cửa sổ 1: chạy lệnh -> php artisan serve
    + cửa sổ 2: chạy lệnh -> npm run dev
 4. truy cập website: localhost:8000
-5. note: để truy cập vào trang quản lý admin cần đăng nhập bằng user admin được đăng ký trong account sau đó truy cập vào databases -> db.laravel -> table.user -> sửa thuộc tính usertype = 1 của user vừa được đăng ký
+5. note: để truy cập vào trang quản lý admin cần đăng nhập bằng user admin được đăng ký trong account sau đó truy cập vào databases -> db.laravel -> table.user -> sửa thuộc tính usertype = 1 của user vừa được đăng ký, sau đó truy cập localhost:8000/redirect
