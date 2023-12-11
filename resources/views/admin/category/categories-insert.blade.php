@@ -78,6 +78,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Show Home</label>
+                                                    <div class="mt-2">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="showHome" id="showHomeRadio1" value="No" checked>
+                                                            <label class="form-check-label" for="showHomeRadio1">No</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="showHome" id="showHomeRadio2" value="Yes">
+                                                            <label class="form-check-label" for="showHomeRadio2">Yes</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>

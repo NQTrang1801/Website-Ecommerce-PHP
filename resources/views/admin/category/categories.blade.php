@@ -63,6 +63,7 @@
 										<th>Create At</th>
 										<th>Update At</th>
 										<th>Status</th>
+										<th>ShowHome</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -90,6 +91,13 @@
 												@else
 													<span class="badge shade-red min-70">block</span>
 												@endif
+											</td>
+											<td>
+												<div class="actions">
+													<div class="form-check form-switch">
+														<input class="form-check-input show-home-checkbox" type="checkbox" role="switch" data-category-id="{{$category->id}}" {{ $category->showHome == 'Yes' ? 'checked' : '' }}>
+													</div>
+												</div>
 											</td>
 											<td>
 												<div class="actions">
@@ -129,6 +137,43 @@
 
 @section('customJs')
 <script>
+
+	document.querySelectorAll('.show-home-checkbox')
+		.forEach(function(checkbox) {
+    		checkbox.addEventListener('change', function() {
+				var categoryId = this.dataset.categoryId;
+				var value = this.checked ? 'Yes' : 'No';
+    			handleToggle(categoryId, value);
+			});
+		});
+
+	function handleToggle(id, value) {
+		var url = '{{route("categories.showHome","ID")}}';
+		var newUrl = url.replace("ID",id);
+		$.ajax({
+			url: newUrl,
+			type: 'PUT',
+			data: {
+				showHome: value
+			},
+			dataType: 'json',
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			success: function(response) {
+				if (response.status === true) {
+					console.log('ShowHome updated successfully');
+				} else {
+					console.log('Failed to update ShowHome');
+				}
+			},
+			error: function(xhr, status, error) {
+				console.error('Error updating ShowHome:', error);
+			}
+		});
+
+	}
+
 	function deleteCategory(id)
 	{
 		var url = '{{route("categories.delete","ID")}}';

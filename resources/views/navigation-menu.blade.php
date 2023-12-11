@@ -34,12 +34,15 @@
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                             @if (Auth()->user()->usertype == 0)
-                                <x-dropdown-link href="#">
+                                <x-dropdown-link href="{{route('user.order-histories')}}">
                                     {{ __('Order History') }}
                                 </x-dropdown-link>
                             @else
                                 <x-dropdown-link href="/redirect">
                                     {{ __('Admin manager') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{route('user.order-histories')}}">
+                                    {{ __('Order History') }}
                                 </x-dropdown-link>
                             @endif
 

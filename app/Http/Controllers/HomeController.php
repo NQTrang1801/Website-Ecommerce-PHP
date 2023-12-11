@@ -38,6 +38,11 @@ class HomeController extends Controller
         return view('home.checkout');
     }
 
+    public function orderHistory()
+    {
+        return view('home.order-histories');
+    }
+
     public function redirect()
     {
         $usertype = Auth::user()->usertype;

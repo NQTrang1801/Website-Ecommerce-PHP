@@ -40,6 +40,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
             if (!empty($request->image_id)) {
@@ -100,6 +101,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->showHome = $request->showHome;
             $category->save();
 
             $oldImage = $category->image;
@@ -138,6 +140,28 @@ class CategoryController extends Controller
             ]);
         }
     }
+
+    public function showHome($categoryId, Request $request) {
+        $category = Category::find($categoryId);
+        if (empty($category)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'Category not found'
+            ]);
+        }
+
+        $newShowHomeValue = $request->input('showHome');
+
+        $category->showHome = $newShowHomeValue;
+        $category->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'ShowHome updated successfully'
+        ]);
+    }
+
 
     public function destroy($categoryId, Request $request)
     {

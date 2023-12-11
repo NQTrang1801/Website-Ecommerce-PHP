@@ -3,7 +3,39 @@
         <ul>
             <li class="sidebar-dropdown">
                 <a href="#">
+                    <i class="bi bi-clipboard"></i>
+                    <span class="menu-text">Order management</span>
+                </a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li>
+                            <a href="#">New orders</a>
+                        </li>
+                        <li>
+                            <a href="#">Approved orders</a>
+                        </li>
+                        <li>
+                            <a href="#"> Completed Order</a>
+                        </li>
+                        <li>
+                            <a href="#">Cancelled Order</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="#">
                     <i class="bi bi-stickies"></i>
+                    <span class="menu-text">Report</span>
+                </a>
+                <div class="sidebar-submenu">
+                    <ul>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="#">
+                    <i class="bi bi-handbag"></i>
                     <span class="menu-text">Product</span>
                 </a>
                 <div class="sidebar-submenu">
@@ -28,6 +60,22 @@
                         </li>
                         <li>
                             <a href="{{ route('colors.index') }}">Colors</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="#">
+                    <i class="bi bi-people"></i>
+                    <span class="menu-text">User</span>
+                </a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li>
+                            <a href="{{ route('users.indexStaff') }}">Staff</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('users.indexCustomer') }}">Customers</a>
                         </li>
                     </ul>
                 </div>

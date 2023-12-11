@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\PromotionController;
 use App\Http\Controllers\admin\VariantsController;
+use App\Http\Controllers\admin\UserController;
 use App\Models\Variants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,6 +28,19 @@ use Illuminate\Support\Str;
 
 route::get('/redirect',[HomeController::class,'redirect']);
 
+// User
+route::get('/users/staff',[UserController::class,'indexStaff'])
+    ->middleware('check.usertype')
+    ->name('users.indexStaff');
+
+route::get('/users/customer',[UserController::class,'indexCustomer'])
+    ->middleware('check.usertype')
+    ->name('users.indexCustomer');
+
+route::delete('/users/{user}', [UserController::class, 'destroy'])
+    ->middleware('check.usertype')
+    ->name('users.delete');
+
 // Category management
 route::get('/categories',[CategoryController::class,'index'])
     ->middleware('check.usertype')
@@ -35,6 +49,7 @@ route::get('/categories',[CategoryController::class,'index'])
 route::get('/categories/insert', [CategoryController::class, 'create'])
     ->middleware('check.usertype')
     ->name('categories.create');
+
 route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
     ->middleware('check.usertype')
     ->name('categories.edit');
@@ -42,6 +57,10 @@ route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
 route::put('/categories/{category}', [CategoryController::class, 'update'])
     ->middleware('check.usertype')
     ->name('categories.update');
+
+route::put('/categories/{category}/showHome', [CategoryController::class, 'showHome'])
+    ->middleware('check.usertype')
+    ->name('categories.showHome');
 
 route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
     ->middleware('check.usertype')
@@ -216,6 +235,7 @@ route::get('/products/{data}/{id}',[HomeController::class,'products']);
 route::get('/products/{id}/{color}/{size}/{index}',[HomeController::class,'productUpdate']);
 route::get('/cart',[HomeController::class,'cart']);
 route::get('/checkout/{cost}',[HomeController::class,'checkout']);
+route::get('/order-history',[HomeController::class,'orderHistory'])->name('user.order-histories');
 
 
 Route::middleware([
