@@ -40,7 +40,10 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
-            $category->showHome = $request->showHome;
+            if ($request->status == 0) {
+                $category->showHome = "No";
+            }
+            
             $category->save();
 
             if (!empty($request->image_id)) {
@@ -101,7 +104,10 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
-            $category->showHome = $request->showHome;
+            if ($request->status == 0) {
+                $category->showHome = "No";
+                $category->is_featured = 0;
+            }
             $category->save();
 
             $oldImage = $category->image;
@@ -162,6 +168,26 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function isFeatured($categoryId, Request $request) {
+        $category = Category::find($categoryId);
+        if (empty($category)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'Category not found'
+            ]);
+        }
+
+        $newFeaturedValue = $request->input('isFeatured');
+
+        $category->is_featured = $newFeaturedValue;
+        $category->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Featured updated successfully'
+        ]);
+    }
 
     public function destroy($categoryId, Request $request)
     {

@@ -83,11 +83,11 @@
                                                     <label class="form-label">Status</label>
                                                     <div class="mt-2">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="status" id="StatusRadio1" value="1" checked>
+                                                            <input class="form-check-input" type="radio" name="status" id="StatusRadio1" value="1" {{($subCategory->status == 1) ? 'checked' : ''}}>
                                                             <label class="form-check-label" for="StatusRadio1">Active</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="status" id="StatusRadio2" value="0">
+                                                            <input class="form-check-input" type="radio" name="status" id="StatusRadio2" value="0" {{($subCategory->status == 0) ? 'checked' : ''}}>
                                                             <label class="form-check-label" for="StatusRadio2">Block</label>
                                                         </div>
                                                     </div>

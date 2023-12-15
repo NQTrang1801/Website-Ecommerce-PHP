@@ -10,37 +10,37 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        return view('home.index');
+        return view('home.index.index');
     }
     
     public function categories($type)
     {
-        return view('home.categories');
+        return view('home.product.categories');
     }
 
     public function products($data, $id)
     {
-        return view('home.products-detail');
+        return view('home.product detail.products-detail');
     }
 
     public function productUpdate($id, $color, $size, $index)
     {
-        return view('home.products-detail');
+        return view('home.product detail.products-detail');
     }
 
     public function cart()
     {
-        return view('home.cart');
+        return view('home.cart.cart');
     }
 
     public function checkout($cost)
     {
-        return view('home.checkout');
+        return view('home.checkout.checkout');
     }
 
     public function orderHistory()
     {
-        return view('home.order-histories');
+        return view('home.order history.order-histories');
     }
 
     public function redirect()
@@ -52,7 +52,7 @@ class HomeController extends Controller
         }
         else
         {
-            return view('home.index');
+            return view('home.index.index');
         }
     }
 }

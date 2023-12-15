@@ -119,6 +119,10 @@ class SubCategoryController extends Controller
             $subCategory->name = $request->name;
             $subCategory->slug = $request->slug;
             $subCategory->status = $request->status;
+            if ($request->status == 0) {
+                $subCategory->showHome = "No";
+                $subCategory->is_featured = 0;
+            }
             $subCategory->category_id = $request->category;
             $subCategory->save();
 
@@ -158,6 +162,49 @@ class SubCategoryController extends Controller
             ]);
         }
     }
+
+    public function showHome($subCategoryId, Request $request) {
+        $subCategory = SubCategory::find($subCategoryId);
+        if (empty($subCategory)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'Category not found'
+            ]);
+        }
+
+        $newShowHomeValue = $request->input('showHome');
+
+        $subCategory->showHome = $newShowHomeValue;
+        $subCategory->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'ShowHome updated successfully'
+        ]);
+    }
+
+    public function isFeatured($subcategoryId, Request $request) {
+        $subCategory = SubCategory::find($subcategoryId);
+        if (empty($subCategory)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'subCategory not found'
+            ]);
+        }
+
+        $newFeaturedValue = $request->input('isFeatured');
+
+        $subCategory->is_featured = $newFeaturedValue;
+        $subCategory->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Featured updated successfully'
+        ]);
+    }
+
     public function destroy($subCategoryId, Request $request)
     {
         $subCategory = SubCategory::find($subCategoryId);

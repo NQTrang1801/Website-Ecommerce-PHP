@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Red+Hat+Display:wght@300;400&display=swap');
 
 body {
-  margin-top: 64px !important;
+  margin-top: 68px !important;
   height: auto !important;
 }
 
 .private-header {
-  background-color: var(--light-bg-color);
   color: var(--primary-color);
 }
 
 .cart-navbar,
 .search-navbar {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--secondary-bg-color) !important;
 }
 /* //account */
 .account-container {

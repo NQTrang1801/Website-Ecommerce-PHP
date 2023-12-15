@@ -7,7 +7,7 @@
 
 
 @section('content')
-    @include('home.cart-data')
+    @include('home.cart.cart-data')
 @endsection
 
 @section('scripts')

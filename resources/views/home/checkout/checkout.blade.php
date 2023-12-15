@@ -8,7 +8,7 @@
 
 @section('content')
     <main>
-        @include('home.checkout-form')
+        @include('home.checkout.checkout-form')
     </main>
 @endsection
 

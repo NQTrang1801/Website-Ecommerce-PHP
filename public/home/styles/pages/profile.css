@@ -4,11 +4,11 @@ body {
 }
 
 .private-header {
-    background-color: var(--light-bg-color);
-    color: var(--primary-color);
+    background-color: var(--light-bg-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .cart-navbar,
 .search-navbar {
-    background-color: var(--secondary-bg-color);
+    background-color: var(--secondary-bg-color) !important;
 }

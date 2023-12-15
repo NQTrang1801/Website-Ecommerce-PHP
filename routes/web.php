@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\home\ProductHomeController;
+use App\Http\Controllers\home\IndexPageHomeController;
+use App\Http\Controllers\home\CategoryHomeController;
+use App\Http\Controllers\home\SubCategoryHomeController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
@@ -36,6 +40,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::put('/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::put('/{category}/showHome', [CategoryController::class, 'showHome'])->name('categories.showHome');
+        Route::put('/{category}/isFeatured', [CategoryController::class, 'isFeatured'])->name('categories.isFeatured');
         Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('categories.delete');
         Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
     });
@@ -47,6 +52,8 @@ Route::group(['middleware' => 'check.usertype'], function () {
         Route::post('/', [SubCategoryController::class, 'store'])->name('sub-categories.store');
         Route::get('/{subcategory}/edit', [SubCategoryController::class, 'edit'])->name('sub-categories.edit');
         Route::put('/{subcategory}', [SubCategoryController::class, 'update'])->name('sub-categories.update');
+        Route::put('/{subcategory}/showHome', [SubCategoryController::class, 'showHome'])->name('sub-categories.showHome');
+        Route::put('/{subcategory}/isFeatured', [SubCategoryController::class, 'isFeatured'])->name('sub-categories.isFeatured');
         Route::delete('/{subcategory}', [SubCategoryController::class, 'destroy'])->name('sub-categories.delete');
     });
 
@@ -88,6 +95,8 @@ Route::group(['middleware' => 'check.usertype'], function () {
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
+        Route::put('/{product}/showHome', [ProductController::class, 'showHome'])->name('products.showHome');
+        Route::put('/{product}/isFeatured', [ProductController::class, 'isFeatured'])->name('products.isFeatured');
         Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.delete');
     });
 
@@ -107,14 +116,19 @@ Route::group(['middleware' => 'check.usertype'], function () {
 });
 
 // Non-grouped routes
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [IndexPageHomeController::class, 'index'])->name('home.index');
 Route::get('/profile', [HomeController::class, 'profile'])->name('home.profileshow');
 Route::get('/categories/{type}', [HomeController::class, 'categories']);
+Route::get('/get-featured-categories', [CategoryHomeController::class, 'getIsFeatured'])->name('categories.getIsFeatured');
+Route::get('/get-featured-sub-categories', [SubCategoryHomeController::class, 'getIsFeatured'])->name('sub-categories.getIsFeatured');
 Route::get('/products/{data}/{id}', [HomeController::class, 'products']);
 Route::get('/products/{id}/{color}/{size}/{index}', [HomeController::class, 'productUpdate']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/checkout/{cost}', [HomeController::class, 'checkout']);
 Route::get('/order-history', [HomeController::class, 'orderHistory'])->name('user.order-histories');
+
+//search
+Route::get('/search/products', [ProductHomeController::class, 'getByKeyWord'])->name('search.products.keyword');
 
 Route::get('/getSlug', function (Request $request) {
     $slug = '';

@@ -79,6 +79,8 @@
                                         <th>Amount</th>
 										<th>Update At</th>
 										<th>Status</th>
+										<th>ShowHome</th>
+										<th>isFeatured</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -112,12 +114,26 @@
                                                 <p>{{$product->amount}}</p>
                                             </td>
 											<td>{{$product->updated_at}}</td>
-											<td>
+											<td id="status-id-{{$product->id}}">
 												@if($product->status == 1)
 													<span class="badge shade-green min-70">Active</span>
 												@else
 													<span class="badge shade-red min-70">block</span>
 												@endif
+											</td>
+											<td>
+												<div class="actions">
+													<div class="form-check form-switch">
+														<input id="showHome-id-{{$product->id}}" class="form-check-input show-home-checkbox" type="checkbox" role="switch" data-product-id="{{$product->id}}" {{ $product->showHome == 'Yes' ? 'checked' : '' }}>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="actions">
+													<div class="form-check form-switch">
+														<input id="featured-id-{{$product->id}}" class="form-check-input featured-checkbox" type="checkbox" role="switch" data-product-id="{{$product->id}}" {{ $product->is_featured == 1 ? 'checked' : '' }}>
+													</div>
+												</div>
 											</td>
 											<td>
 												<div class="actions">
@@ -134,7 +150,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="10">
+											<td colspan="12">
 												<div class="product-detail" style="display: none" id="pro-{{$product->id}}">
 														<div><strong>Slug: </strong><span>{{$product->slug}}</span></div>
 														<div><strong>Description: </strong><pre>{{$product->description}}</pre></div>
@@ -175,7 +191,7 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="10">Records not found</td>
+											<td colspan="12">Records not found</td>
 										</tr>
 									@endif
 
@@ -198,6 +214,94 @@
 
 @section('customJs')
 <script>
+
+	document.querySelectorAll('.show-home-checkbox')
+		.forEach(function(checkbox) {
+    		checkbox.addEventListener('change', function() {
+				var productId = this.dataset.productId;
+				var value = this.checked ? 'Yes' : 'No';
+    			handleToggleShowHome(productId, value);
+			});
+		});
+
+	function handleToggleShowHome(id, value) {
+		var url = '{{route("products.showHome","ID")}}';
+		var newUrl = url.replace("ID",id);
+		var status = $('#status-id-' + id).text().trim();
+		if (status === 'Active') {
+			$.ajax({
+				url: newUrl,
+				type: 'PUT',
+				data: {
+					showHome: value
+				},
+				dataType: 'json',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				success: function(response) {
+					if (response.status === true) {
+						console.log('ShowHome updated successfully');
+					} else {
+						console.log('Failed to update ShowHome');
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error('Error updating ShowHome:', error);
+				}
+			});
+		}
+		else
+		{
+			alert('You can only change showHome when status is Active.');
+			$('#showHome-id-' + id).prop('checked', false);
+		}
+
+	}
+
+	document.querySelectorAll('.featured-checkbox')
+		.forEach(function(checkbox) {
+    		checkbox.addEventListener('change', function() {
+				var productId = this.dataset.productId;
+				var value = this.checked ? 1 : 0;
+    			handleToggleFeatured(productId, value);
+			});
+		});
+
+	function handleToggleFeatured(id, value) {
+		var url = '{{route("products.isFeatured","ID")}}';
+		var newUrl = url.replace("ID",id);
+		var status = $('#status-id-' + id).text().trim();
+		if (status === 'Active') {
+			$.ajax({
+				url: newUrl,
+				type: 'PUT',
+				data: {
+					isFeatured: value
+				},
+				dataType: 'json',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				success: function(response) {
+					if (response.status === true) {
+						console.log('is_featured updated successfully');
+					} else {
+						console.log('Failed to update is_featured');
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error('Error updating is_featured :', error);
+				}
+			});
+		}
+		else
+		{
+			alert('You can only change is_featured when status is Active.');
+			$('#featured-id-' + id).prop('checked', false);
+		}
+
+	}
 
 	$(".btn-detail").click(function () {
 		var clickedId = $(this).attr('id');
@@ -236,7 +340,6 @@
 
 		}
 	}
-
 </script>
 
 @endsection

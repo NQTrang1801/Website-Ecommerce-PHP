@@ -3,8 +3,8 @@
 .products-categories,
 .category-view-1,
 .category-view-2 {
-    background-color: var(--light-bg-color);
-    color: var(--primary-color);
+    background-color: var(--light-bg-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .heading .title {
@@ -14,7 +14,7 @@
 
 .cart-navbar,
 .search-navbar {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--secondary-bg-color) !important;
 }
 
 .dot-title

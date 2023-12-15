@@ -12,10 +12,10 @@
             Back
         </div>
         <div class="product-detail-container">
-            @include('home.products-detail-data')
-            @include('home.products-details-partner')
+            @include('home.product detail.products-detail-data')
+            @include('home.product detail.products-details-partner')
             <div></div>
-            @include('home.products-detail-exploring')
+            @include('home.product detail.products-detail-exploring')
         </div>
     </main>
 

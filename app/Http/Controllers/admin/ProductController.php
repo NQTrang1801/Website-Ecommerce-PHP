@@ -250,6 +250,10 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->keywords = $request->keywords;
             $product->status = $request->status;
+            if ($request->status == 0) {
+                $product->showHome = "No";
+                $product->is_featured = 0;
+            }
             $product->category_id = $request->category;
             $product->sub_category_id = $request->subCategory;
             $product->promotion_id = $request->promotion;
@@ -361,6 +365,49 @@ class ProductController extends Controller
             ]);
         }
     }
+
+    public function showHome($productId, Request $request) {
+        $product = Product::find($productId);
+        if (empty($product)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'Product not found'
+            ]);
+        }
+
+        $newShowHomeValue = $request->input('showHome');
+
+        $product->showHome = $newShowHomeValue;
+        $product->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'ShowHome updated successfully'
+        ]);
+    }
+
+    public function isFeatured($productId, Request $request) {
+        $product = Product::find($productId);
+        if (empty($product)) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+                'message' => 'Category not found'
+            ]);
+        }
+
+        $newFeaturedValue = $request->input('isFeatured');
+
+        $product->is_featured = $newFeaturedValue;
+        $product->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Featured updated successfully'
+        ]);
+    }
+
     public function destroy($productId, Request $request)
     {
         $product = Product::find($productId);
@@ -411,4 +458,6 @@ class ProductController extends Controller
             'message' => 'product deleted successfully'
         ]);
     }
+
+
 }

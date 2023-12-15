@@ -7,16 +7,16 @@
 @section('content')
   <main class="main-index">
     <!-- private-header-video -->
-    @include('home.index-video')
+    @include('home.index.index-video')
 
     <!-- first section -->
-    @include('home.index-first-section')
+    @include('home.index.index-first-section')
 
     <!-- second section -->
-    @include('home.index-second-section')
+    @include('home.index.index-second-section')
 
     <!-- third section -->
-    @include('home.index-third-section')
+    @include('home.index.index-third-section')
 
   </main>
 @endsection

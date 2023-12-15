@@ -9,14 +9,14 @@
 
 @section('content')
     <main>
-        @include('home.categories-slider')
+        @include('home.product.categories-slider')
         <!-- special price -->
-        @include('home.categories-top-show')
+        @include('home.product.categories-top-show')
         <!-- products-categories -->
-        @include('home.categories-types-of-product')
+        @include('home.product.categories-types-of-product')
 
         <!-- categories -->
-        @include('home.categories-products')
+        @include('home.product.categories-products')
         <!-- banner -->
         <div class="banner">
             <div class="container">
@@ -31,7 +31,7 @@
         </div>
 
         <!-- FormIG -->
-        @include('home.categories-instagram')
+        @include('home.product.categories-instagram')
     </main>
 @endsection
 

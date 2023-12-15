@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const pathComponents = path.split('/').filter(component => component !== '');
   const [category, subcategory] = pathComponents;
   
-  document.querySelector(".slider .title").innerHTML = subcategory.toUpperCase();
+  document.querySelector(".slider .title").innerHTML = decodeURIComponent(subcategory.toUpperCase());
 
   function renderIteamHTML(items, limit) {
     let html = '';
