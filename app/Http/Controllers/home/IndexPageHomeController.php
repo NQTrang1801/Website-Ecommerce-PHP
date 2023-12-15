@@ -15,8 +15,9 @@ class IndexPageHomeController extends Controller
         $productsSale = Product::where('showHome', 'Yes')
                             ->where('is_featured', 1)
                             ->whereNotNull('promotion_id')
-                            ->with('promotion') // Đây là mối quan hệ từ Product tới Promotion
-                            ->get();                        
+                            ->with('promotion')
+                            ->with('images')
+                            ->get();                   
 
         return view('home.index.index', compact('productsSale'));
     }

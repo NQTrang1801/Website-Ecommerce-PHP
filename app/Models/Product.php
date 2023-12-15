@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+
+    public function images()
+    {
+        return $this->belongsTo(ProductsImages::class);
+    }
 }

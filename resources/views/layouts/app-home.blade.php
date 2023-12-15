@@ -82,7 +82,8 @@
                   response.getProductsByKeyWord.forEach(product => {
                       const productItem = document.createElement('div');
                       productItem.classList.add('categories-item');
-                      const imageSrc = product.image_id ? `{{ asset('uploads/category/thumb/') }}/${product.image_id}` : "{{ asset('uploads/category/thumb/null.png') }}";
+                      const imageSrc = product.images_id ? `{{ asset('uploads/product/products/thumb/') }}/${product.images.image_1}` : "{{ asset('uploads/product/products/thumb/null.png') }}";
+                      console.log(imageSrc);
                       const productHTML = `
                             <img src="${imageSrc}" alt="">
                             <div class="categories-name">

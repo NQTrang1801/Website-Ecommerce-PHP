@@ -16,6 +16,7 @@ class ProductHomeController extends Controller
         $keyword = $request->input('keyword');
         $products = Product::where('showHome', 'Yes')
             ->whereRaw("MATCH(title, description, keywords) AGAINST(? IN BOOLEAN MODE) LIMIT 8", ["'$keyword'"])
+            ->with('images')
             ->get();
 
         return response()->json(['getProductsByKeyWord' => $products]);

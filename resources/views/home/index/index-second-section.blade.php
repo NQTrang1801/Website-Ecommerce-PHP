@@ -13,8 +13,11 @@
           @foreach ($productsSale as $product)
           <div>
             <a href="">
-              <img src="{{ file_exists(public_path('uploads/product/products/thumb' . $product->image)) ? asset('uploads/product/products/thumb/' . $product->image) : asset('uploads/product/products/thumb/null.png') }}" alt="">
+              <img src="{{ file_exists(public_path('uploads/product/products/thumb/'.$product->images->image_1)) ? asset('uploads/product/products/thumb/'.$product->images->image_1) : asset('uploads/product/products/thumb/null.png') }}" alt="">
             </a>
+            @php
+              
+            @endphp
             <div>
               <p class="second-introduce-name">{{$product->title}}</p>
               <p class="second-introduce-price"><del>{{$product->price}}</del><del>VND</del> <span>{{$product->price * $product->promotion->value}}</span> VND</p>
