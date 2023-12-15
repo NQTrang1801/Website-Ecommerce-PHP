@@ -23,7 +23,8 @@ class SubCategoryController extends Controller
             ->latest();
 
         if (!empty($request->get('keyword'))){
-            $subCategories = $subCategories->where('name','like','%'.$request->get('keyword').'%');
+            $subCategories = $subCategories->where('sub_categories.name','like','%'.$request->get('keyword').'%')
+                                            ->orWhere('categories.name','like','%'.$request->get('keyword').'%');
         }
 
         $subCategories = $subCategories->paginate(10);
