@@ -164,19 +164,27 @@
 																	@if (!empty($product->images_id))
 																		<div>
 																			<label for="">image 1</label>
-																			<img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_1) ? $product->image_1 : 'null.png')) }}" alt="">
+																			<a href="#" class="edit-contact-card js-image-view" data-bs-toggle="modal" data-bs-target="#image-view">
+																				<img src="{{ asset('uploads/product/products/thumb/' . (!empty($product->image_1) ? $product->image_1 : 'null.png')) }}" alt="">
+																			</a>												
 																		</div>
 																		<div>
 																			<label for="">image 2</label>
-																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_2) ? $product->image_2 : 'null.png'))}}" alt="">
+																			<a href="#" class="edit-contact-card js-image-view" data-bs-toggle="modal" data-bs-target="#image-view">
+																				<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_2) ? $product->image_2 : 'null.png'))}}" alt="">
+																			</a>
 																		</div>
 																		<div>
 																			<label for="">image 3</label>
-																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_3) ? $product->image_3 : 'null.png'))}}" alt="">
+																			<a href="#" class="edit-contact-card js-image-view" data-bs-toggle="modal" data-bs-target="#image-view">
+																				<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_3) ? $product->image_3 : 'null.png'))}}" alt="">
+																			</a>
 																		</div>
 																		<div>
 																			<label for="">image 4</label>
-																			<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_4) ? $product->image_4 : 'null.png'))}}" alt="">
+																			<a href="#" class="edit-contact-card js-image-view" data-bs-toggle="modal" data-bs-target="#image-view">
+																				<img src="{{asset('uploads/product/products/thumb/'. (!empty($product->image_4) ? $product->image_4 : 'null.png'))}}" alt="">
+																			</a>
 																		</div>
 																		
 																	@endif
@@ -211,10 +219,33 @@
 	</div>
 	<!-- Content wrapper end -->
 @endsection
-
+@section('model')
+<div class="modal fade" id="image-view" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editVariantLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+            @csrf
+                <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    <img id="imageToShow" src="" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+	    </div>
+    </div>
+</div>
+@endsection
 @section('customJs')
 <script>
-
+	$('.js-image-view img').on('click', function(e) {
+        e.preventDefault(); 
+        var imageUrl = $(this).attr('src');
+        $('#imageToShow').attr('src', imageUrl);
+    });
+	
 	document.querySelectorAll('.show-home-checkbox')
 		.forEach(function(checkbox) {
     		checkbox.addEventListener('change', function() {

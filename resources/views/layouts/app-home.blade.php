@@ -83,11 +83,10 @@
                       const productItem = document.createElement('div');
                       productItem.classList.add('categories-item');
                       const imageSrc = product.images_id ? `{{ asset('uploads/product/products/thumb/') }}/${product.images.image_1}` : "{{ asset('uploads/product/products/thumb/null.png') }}";
-                      console.log(imageSrc);
                       const productHTML = `
                             <img src="${imageSrc}" alt="">
                             <div class="categories-name">
-                                <p style="color: red">${product.title}</p>
+                                <p>${product.title}</p>
                                 <a href="/products/women/${product.id}">Shop now</a>
                             </div>
                         `;

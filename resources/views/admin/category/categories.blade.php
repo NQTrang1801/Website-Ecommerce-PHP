@@ -81,7 +81,9 @@
 												<p>{{$category->slug}}</p>
 											</td>
 											<td>
-												<img src="{{ file_exists(public_path('uploads/category/thumb/' . $category->image)) ? asset('uploads/category/thumb/' . $category->image) : asset('uploads/category/thumb/null.png') }}" class="flag-img-lg" alt="" />
+												<a href="#" class="js-image-view" data-bs-toggle="modal" data-bs-target="#image-view">
+													<img src="{{ file_exists(public_path('uploads/category/thumb/' . $category->image)) ? asset('uploads/category/thumb/' . $category->image) : asset('uploads/category/thumb/null.png') }}" class="flag-img-lg" alt="" />
+												</a>
 											</td>
 											<td>{{$category->updated_at}}</td>
 											<td id="status-id-{{$category->id}}">
@@ -140,9 +142,33 @@
 	</div>
 	<!-- Content wrapper end -->
 @endsection
+@section('model')
+<div class="modal fade" id="image-view" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editVariantLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+            @csrf
+                <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    <img id="imageToShow" src="" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+	    </div>
+    </div>
+</div>
+@endsection
 
 @section('customJs')
 <script>
+	$('.js-image-view img').on('click', function(e) {
+        e.preventDefault(); 
+        var imageUrl = $(this).attr('src');
+        $('#imageToShow').attr('src', imageUrl);
+    });
 
 	document.querySelectorAll('.show-home-checkbox')
 		.forEach(function(checkbox) {

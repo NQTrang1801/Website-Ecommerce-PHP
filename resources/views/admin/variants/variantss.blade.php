@@ -57,7 +57,6 @@
 									<tr>
 										<th>ID</th>
 										<th>title</th>
-										<th>Slug</th>
                                         <th>Product</th>
 										<th>Size</th>
                                         <th>Color</th>
@@ -81,9 +80,6 @@
 											<td>
 												<p>{{$variants->title}}</p>
 											</td>
-											<td>
-												<p>{{$variants->slug}}</p>
-											</td>
                                             <td>
 												<p>{{$variants->product_id}}</p>
 											</td>
@@ -100,7 +96,7 @@
 												<p>{{$variants->quantity}}</p>
 											</td>
                                             <td>
-												<p>{{$variants->price}}</p>
+												<p>{{ number_format($variants->price, 0, ',', '.') }}</p>
 											</td>
                                             <td>
                                                 <img src="{{ asset('uploads/product/variantss/thumb/' . (!empty($variants->image) ? $variants->image : 'null.png')) }}" alt="" style="width: 20px; height: 20px">
@@ -128,7 +124,7 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="14">Records not found</td>
+											<td colspan="13">Records not found</td>
 										</tr>
 									@endif
 
@@ -188,7 +184,7 @@ function deleteVariant(id) {
         url: newUrl,
         type: 'delete',
         data: {},
-        dataType: 'json',
+        dataType: 'json+++++++++++++++++++++++++',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
