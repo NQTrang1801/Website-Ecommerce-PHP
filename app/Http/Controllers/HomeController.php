@@ -43,6 +43,11 @@ class HomeController extends Controller
         return view('home.order history.order-histories');
     }
 
+    public function services()
+    {
+        return view('home.service.service');
+    }
+
     public function redirect()
     {
         $usertype = Auth::user()->usertype;

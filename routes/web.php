@@ -127,6 +127,7 @@ Route::get('/products/{id}/{color}/{size}/{index}', [HomeController::class, 'pro
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/checkout/{cost}', [HomeController::class, 'checkout']);
 Route::get('/order-history', [HomeController::class, 'orderHistory'])->name('user.order-histories');
+Route::get('/services', [HomeController::class, 'services'])->name('home.services');
 
 //search
 Route::get('/search/products', [ProductHomeController::class, 'getByKeyWord'])->name('search.products.keyword');

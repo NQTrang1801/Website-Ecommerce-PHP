@@ -96,7 +96,7 @@
                             <img src="{{ file_exists(public_path('uploads/category/thumb/' . $category->image)) ? asset('uploads/category/thumb/' . $category->image) : asset('uploads/category/thumb/null.png') }}" alt="">
                             <div class="categories-name">
                                 <p>{{$category->name}}</p>
-                                <a href="{{url('categories',$category->name)}}">Shop now</a>
+                                <a href="{{url('categories',$category->slug)}}">Shop now</a>
                             </div>
                         </div>
                         @php $count++ @endphp
@@ -118,13 +118,13 @@
             @foreach (getCategories() as $category)
             <li>
                 <span for="btn-1">
-                    <a href="{{url('categories',$category->name)}}">
+                    <a href="{{url('categories',$category->slug)}}">
                         {{ $category->name }}
                     </a>
                     <ul class="nav--sub-categories">
                         @foreach ($category->getSubCategories as $subcategory)
                             @if ($subcategory->showHome == "Yes")
-                                <li><a href="{{url('categories', [$category->name, $subcategory->name])}}">{{ $subcategory->name }}</a></li>
+                                <li><a href="{{url('categories', [$category->slug, $subcategory->slug])}}">{{ $subcategory->name }}</a></li>
                             @endif    
                         @endforeach
                     </ul>
@@ -139,7 +139,7 @@
                 <a href="">About Private</a>
             </li>
             <li>
-                <a href="">Services</a>
+                <a href="{{route('home.services')}}">Services</a>
             </li>
             <li>
                 <a href="">Call us</a>
