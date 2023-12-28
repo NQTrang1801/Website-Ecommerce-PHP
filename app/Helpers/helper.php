@@ -25,4 +25,9 @@ function getIsFeaturedSubCategory()
 
 }
 
+function getProductByPromotionAndCategory()
+{
+
+}
+
 ?>

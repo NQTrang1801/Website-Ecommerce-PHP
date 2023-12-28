@@ -19,8 +19,8 @@
 
 .dot-title
 {
-    font-size: 18px;
-    line-height: 10px;
+    font-size: 14px;
+    line-height: 18px;
     margin-bottom: 4px;
 }
 
@@ -40,7 +40,6 @@
 .dotgrid .dot-image
 {
     position: relative;
-    width: 250px;
     margin-bottom: 15px;
     overflow: hidden;
 }
@@ -331,6 +330,8 @@ main > div .heading{
 /* special-prices */
 .special-prices {
     background-color: var(--light-bg-color);
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .special-prices .inner-wrapper{
@@ -359,7 +360,7 @@ main > div .heading{
 .special-prices .dot-image img,
 .category-view-1  .dot-image img,
 .category-view-2  .dot-image img {
-    height: 300px;
+    height: auto;
     width: 100%;
     object-fit: cover;
 }

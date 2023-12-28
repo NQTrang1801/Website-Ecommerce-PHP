@@ -63,13 +63,14 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'slug' => 'required|unique:products',
-            'price' => 'required',
-            'amount' => 'required',
+            'price' => 'required|numeric|min:0',
+            'amount' => 'required|numeric|min:0',
             'status' => 'required'
         ]);
+    
         if ($validator->passes()){
             $product = new Product();
             $product->title = $request->title;
@@ -85,86 +86,36 @@ class ProductController extends Controller
             $product->sub_category_id = $request->subCategory;
             $product->promotion_id = $request->promotion;
             $product->save();
-
-            if (!empty($request->image_1)) {
-                $tempImage = TempImage::find($request->image_1);
-                $productImage= new ProductsImages();
-                $extArray = explode('.', $tempImage->name);
-                
-                $ext = last($extArray);
-
-                $newImageName = $product->id.'-1.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
-                File::copy($sPath, $dPath);
-
-                $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
-                $img = Image::make($sPath);
-                $img->save($dPath);
-
-                $productImage->image_1 = $newImageName;
-                $productImage->save();
-                $product->images_id = $productImage->id;
-                $product->save();
-
-                if (!empty($request->image_2)) {
-                    $tempImage2 = TempImage::find($request->image_2);
-                    $extArray = explode('.', $tempImage2->name);
-                    
+            $productImage = new ProductsImages();
+            $productImage->image_1 = "null.png";
+            $productImage->save();
+            $product->images_id = $productImage->id;
+            $product->save();
+    
+            $imageFields = ['image_1', 'image_2', 'image_3', 'image_4'];
+    
+            foreach ($imageFields as $field) {
+                $image = $request->input($field);
+    
+                if (!empty($image) && $image != "0") {
+                    $tempImage = TempImage::find($image);
+                    $extArray = explode('.', $tempImage->name);
                     $ext = last($extArray);
     
-                    $newImageName2 = $product->id.'-2.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage2->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName2;
+                    $newImageName = $product->id . '-' . substr($field, -1) . '.' . $ext;
+                    $sPath = public_path().'/temp/'.$tempImage->name;
+                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
                     File::copy($sPath, $dPath);
     
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName2;
+                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
                     $img = Image::make($sPath);
                     $img->save($dPath);
     
-                    $productImage->image_2 = $newImageName2;
-                    $productImage->save();
-                }
-
-                if (!empty($request->image_3)) {
-                    $tempImage3 = TempImage::find($request->image_3);
-                    $extArray = explode('.', $tempImage3->name);
-                    
-                    $ext = last($extArray);
-    
-                    $newImageName3 = $product->id.'-3.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage3->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName3;
-                    File::copy($sPath, $dPath);
-    
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName3;
-                    $img = Image::make($sPath);
-                    $img->save($dPath);
-    
-                    $productImage->image_3 = $newImageName3;
-                    $productImage->save();
-                }
-
-                if (!empty($request->image_4)) {
-                    $tempImage4 = TempImage::find($request->image_4);
-                    $extArray = explode('.', $tempImage4->name);
-                    
-                    $ext = last($extArray);
-    
-                    $newImageName4 = $product->id.'-4.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage4->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName4;
-                    File::copy($sPath, $dPath);
-    
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName4;
-                    $img = Image::make($sPath);
-                    $img->save($dPath);
-    
-                    $productImage->image_4 = $newImageName4;
+                    $productImage->$field = $newImageName;
                     $productImage->save();
                 }
             }
-
+    
             return response()->json([
                 'status' => true,
                 'productId' => $product->id,
@@ -177,6 +128,8 @@ class ProductController extends Controller
             ]);
         }
     }
+    
+
     public function edit($productId, Request $request) {
         $product = Product::select(
             'products.*', 
@@ -222,8 +175,8 @@ class ProductController extends Controller
     }
 
     public function update($productId, Request $request) {
-        $product = Product::find($productId);      
-
+        $product = Product::find($productId);
+    
         if (empty($product)) {
             return response()->json([
                 'status' => false,
@@ -231,132 +184,28 @@ class ProductController extends Controller
                 'message' => 'product not found'
             ]);
         }
-
-        $validator = Validator::make($request->all(),[
+    
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'slug' => 'required|unique:products,slug,'.$product->id.',id',
+            'slug' => 'required|unique:products,slug,' . $product->id . ',id',
             'price' => 'required',
             'amount' => 'required',
             'status' => 'required'
         ]);
-
-        if ($validator->passes()){
-            $product->title = $request->title;
-            $product->slug = $request->slug;
-            $product->price = $request->price;
-            $product->amount = $request->amount;
-            $product->detail = $request->detail;
-            $product->care = $request->care;
-            $product->description = $request->description;
-            $product->keywords = $request->keywords;
-            $product->status = $request->status;
-            if ($request->status == 0) {
-                $product->showHome = "No";
-                $product->is_featured = 0;
-            }
-            $product->category_id = $request->category;
-            $product->sub_category_id = $request->subCategory;
-            $product->promotion_id = $request->promotion;
-            $product->save();
-
+    
+        if ($validator->passes()) {
+            $this->updateProductAttributes($product, $request);
+    
             if (!empty($request->image_1)) {
-                $tempImage = TempImage::find($request->image_1);
-                $productImage = ProductsImages::find($product->images_id);
-                if (empty($productImage))
-                {
-                    $productImage = new ProductsImages();
-                }
-
-                $oldImage = $productImage->image_1;
-                $extArray = explode('.', $tempImage->name);
-                $ext = last($extArray);
-
-                $newImageName =$product->id.'-1-'.time().'.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
-                File::copy($sPath, $dPath);
-
-                $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
-                $img = Image::make($sPath);
-                $img->save($dPath);
-                $productImage->image_1 = $newImageName;
-                $productImage->save();
-                $product->images_id = $productImage->id;
-                $product->save();
-
-                File::delete(public_path().'/uploads/product/products/thumb/'.$oldImage);
-                File::delete(public_path().'/uploads/product/products/products images/'.$oldImage);
-
-                if (!empty($request->image_2)) {
-                    $tempImage2 = TempImage::find($request->image_2);
-                    $oldImage = $productImage->image_2;
-                    $extArray = explode('.', $tempImage2->name);
-                    $ext = last($extArray);
-
-                    $newImageName = $product->id.'-2-'.time().'.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage2->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
-                    File::copy($sPath, $dPath);
-
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
-                    $img = Image::make($sPath);
-                    $img->save($dPath);
-
-                    $productImage->image_2 = $newImageName;
-                    $productImage->save();
-
-                    File::delete(public_path().'/uploads/product/products/thumb/'.$oldImage);
-                    File::delete(public_path().'/uploads/product/products/products images/'.$oldImage);
-                }
-
-                if (!empty($request->image_3)) {
-                    $tempImage3 = TempImage::find($request->image_3);
-                    $oldImage = $productImage->image_3;
-                    $extArray = explode('.', $tempImage3->name);
-                    $ext = last($extArray);
-
-                    $newImageName = $product->id.'-3-'.time().'.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage3->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
-                    File::copy($sPath, $dPath);
-
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
-                    $img = Image::make($sPath);
-                    $img->save($dPath);
-
-                    $productImage->image_3 = $newImageName;
-                    $productImage->save();
-
-                    File::delete(public_path().'/uploads/product/products/thumb/'.$oldImage);
-                    File::delete(public_path().'/uploads/product/products/products images/'.$oldImage);
-                }
-
-                if (!empty($request->image_4)) {
-                    $tempImage4 = TempImage::find($request->image_4);
-                    $oldImage = $productImage->image_4;
-                    $extArray = explode('.', $tempImage4->name);
-                    $ext = last($extArray);
-
-                    $newImageName = $product->id.'-4-'.time().'.'.$ext;
-                    $sPath = public_path().'/temp/'.$tempImage4->name;
-                    $dPath = public_path().'/uploads/product/products/products images/'.$newImageName;
-                    File::copy($sPath, $dPath);
-
-                    $dPath = public_path().'/uploads/product/products/thumb/'.$newImageName;
-                    $img = Image::make($sPath);
-                    $img->save($dPath);
-
-                    $productImage->image_4 = $newImageName;
-                    $productImage->save();
-
-                    File::delete(public_path().'/uploads/product/products/thumb/'.$oldImage);
-                    File::delete(public_path().'/uploads/product/products/products images/'.$oldImage);
-                }
+                $productImage = $this->updateProductImages($product, $request);
+                $this->processImage($request->image_2, $productImage, 2);
+                $this->processImage($request->image_3, $productImage, 3);
+                $this->processImage($request->image_4, $productImage, 4);
             }
-
+    
             return response()->json([
                 'status' => true,
-                'message' => 'product added successfully'
+                'message' => 'product updated successfully'
             ]);
         } else {
             return response()->json([
@@ -365,6 +214,84 @@ class ProductController extends Controller
             ]);
         }
     }
+    
+    private function updateProductAttributes($product, $request) {
+        $product->title = $request->title;
+        $product->slug = $request->slug;
+        $product->price = $request->price;
+        $product->amount = $request->amount;
+        $product->detail = $request->detail;
+        $product->care = $request->care;
+        $product->description = $request->description;
+        $product->keywords = $request->keywords;
+        $product->status = $request->status;
+    
+        if ($request->status == 0) {
+            $product->showHome = "No";
+            $product->is_featured = 0;
+        }
+    
+        $product->category_id = $request->category;
+        $product->sub_category_id = $request->subCategory;
+        $product->promotion_id = $request->promotion;
+    
+        $product->save();
+    }
+    
+    private function updateProductImages($product, $request) {
+        $productImage = ProductsImages::find($product->images_id);
+        if (empty($productImage)) {
+            $productImage = new ProductsImages();
+        }
+    
+        $tempImage = TempImage::find($request->image_1);
+        $oldImage = $productImage->image_1;
+        $extArray = explode('.', $tempImage->name);
+        $ext = last($extArray);
+    
+        $newImageName = $product->id . '-1-' . time() . '.' . $ext;
+        $sPath = public_path() . '/temp/' . $tempImage->name;
+        $dPath = public_path() . '/uploads/product/products/products images/' . $newImageName;
+        File::copy($sPath, $dPath);
+    
+        $dPath = public_path() . '/uploads/product/products/thumb/' . $newImageName;
+        $img = Image::make($sPath);
+        $img->save($dPath);
+        $productImage->image_1 = $newImageName;
+        $productImage->save();
+        $product->images_id = $productImage->id;
+        $product->save();
+    
+        File::delete(public_path() . '/uploads/product/products/thumb/' . $oldImage);
+        File::delete(public_path() . '/uploads/product/products/products images/' . $oldImage);
+    
+        return $productImage;
+    }
+    
+    private function processImage($imageId, $productImage, $number) {
+        if (!empty($imageId)) {
+            $tempImage = TempImage::find($imageId);
+            $oldImage = $productImage->{'image_' . $number};
+            $extArray = explode('.', $tempImage->name);
+            $ext = last($extArray);
+    
+            $newImageName = $productImage->product_id . '-' . $number . '-' . time() . '.' . $ext;
+            $sPath = public_path() . '/temp/' . $tempImage->name;
+            $dPath = public_path() . '/uploads/product/products/products images/' . $newImageName;
+            File::copy($sPath, $dPath);
+    
+            $dPath = public_path() . '/uploads/product/products/thumb/' . $newImageName;
+            $img = Image::make($sPath);
+            $img->save($dPath);
+    
+            $productImage->{'image_' . $number} = $newImageName;
+            $productImage->save();
+    
+            File::delete(public_path() . '/uploads/product/products/thumb/' . $oldImage);
+            File::delete(public_path() . '/uploads/product/products/products images/' . $oldImage);
+        }
+    }
+    
 
     public function showHome($productId, Request $request) {
         $product = Product::find($productId);

@@ -141,10 +141,10 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <div id="image_id">
-                                                    <input type="hidden" id="image_1" name="image_1" >
-                                                    <input type="hidden" id="image_2" name="image_2" >
-                                                    <input type="hidden" id="image_3" name="image_3" >
-                                                    <input type="hidden" id="image_4" name="image_4" >
+                                                    <input  id="image_1" name="image_1" value="0">
+                                                    <input  id="image_2" name="image_2" value="0">
+                                                    <input  id="image_3" name="image_3" value="0">
+                                                    <input  id="image_4" name="image_4" value="0">
                                                 </div>
 												<div class="mb-3">
                                                     <label  class="form-label">Image <span id="count-images">0</span>/4</label>
@@ -406,10 +406,12 @@
             });
 
             this.on('removedfile', function(file) {
-            if (file.inputId) {
-                $(file.inputId).val('');
-            }
-    });
+                if (file.inputId) {
+                    $(file.inputId).val('0');
+                    let currentCount = parseInt($("#count-images").html());
+                    $("#count-images").html(currentCount - 1);
+                }
+            });
         },
         url: "{{ route('temp-images.create')}}",
         maxFiles: 4,
@@ -427,13 +429,15 @@
     function updateImageId(file, imageId) {
         for (let i = 1; i <= 4; i++) {
             let inputId = "#image_" + i;
-            if ($(inputId).val() === '' || $(inputId).val() === imageId) {
+            if ($(inputId).val() == '0' || $(inputId).val() === imageId) {
                 $(inputId).val(imageId);
                 file.inputId = inputId;
                 break;
             }
         }
     }
+
+
 
 </script>
 @endsection

@@ -20,7 +20,7 @@
             @endphp
             <div>
               <p class="second-introduce-name">{{$product->title}}</p>
-              <p class="second-introduce-price"><del>{{$product->price}}</del><del>VND</del> <span>{{$product->price * $product->promotion->value}}</span> VND</p>
+              <p class="second-introduce-price"><del>{{ number_format($product->price, 0, ',', '.') }}</del><del>VND</del> <span>{{ number_format($product->price * $product->promotion->value, 0, ',', '.') }}</span> VND</p>
             </div>
           </div>
           @endforeach

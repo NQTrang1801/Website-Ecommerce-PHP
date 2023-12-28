@@ -119,7 +119,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
 // Non-grouped routes
 Route::get('/', [IndexPageHomeController::class, 'index'])->name('home.index');
 Route::get('/profile', [HomeController::class, 'profile'])->name('home.profileshow');
-Route::get('/categories/{type}', [CategoriesPageHomeController::class, 'index'])->name('home.categories.index');
+Route::get('/categories/{type}/{subtype?}', [CategoriesPageHomeController::class, 'index'])->name('home.categories.index');
 Route::get('/get-featured-categories', [CategoryHomeController::class, 'getIsFeatured'])->name('categories.getIsFeatured');
 Route::get('/get-featured-sub-categories', [SubCategoryHomeController::class, 'getIsFeatured'])->name('sub-categories.getIsFeatured');
 Route::get('/products/{data}/{id}', [HomeController::class, 'products']);

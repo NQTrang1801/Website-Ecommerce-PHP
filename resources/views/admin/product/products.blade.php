@@ -105,7 +105,7 @@
 												</p>
 											</td>
                                             <td>
-                                                <p>{{$product->price}}</p>
+                                                <p>{{ number_format($product->price, 0, ',', '.') }}</p>
                                             </td>
 											<td>
                                                 <p>{{$product->promotion_value}}</p>

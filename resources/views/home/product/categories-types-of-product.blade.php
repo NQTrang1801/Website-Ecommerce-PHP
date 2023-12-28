@@ -6,33 +6,33 @@
             </div>
             <div class="dotgrid scrollto">
                 <div class="wrapper">
-                    @if ($category->isNotEmpty())
-                        @if ($category[0]->getSubCategories->isNotEmpty())
-                            @php
-                                $count = 1;
-                            @endphp
-                            @foreach ($category[0]->getSubCategories as $subCategory)
-                                @if ($subCategory->showHome == "Yes")
-                                    <div class="item">
-                                        <div class="dot-image">
-                                            <div class="thumbnail hover">
-                                                <a href="#" id="type-{{$count}}-link"><img src="{{ file_exists(public_path('uploads/sub category/thumb/' . $subCategory->image)) ? asset('uploads/sub category/thumb/' . $subCategory->image) : asset('uploads/sub category/thumb/null.png') }}" alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="dot-info">
-                                            <h3 class="dot-title">{{$subCategory->name}}</h3>
-                                            <!-- <p class="grey-color">lorem ipsum dolor sit amet consectetur</p> -->
+                    @if ($category && $category->getSubCategories->isNotEmpty())
+                        @php
+                            $count = 1;
+                        @endphp
+                        @foreach ($category->getSubCategories as $subCategory)
+                            @if ($subCategory->showHome == "Yes")
+                                <div class="item">
+                                    <div class="dot-image">
+                                        <div class="thumbnail hover">
+                                            <a href="#" id="type-{{$count}}-link">
+                                                <img src="{{ file_exists(public_path('uploads/sub category/thumb/' . $subCategory->image)) ? asset('uploads/sub category/thumb/' . $subCategory->image) : asset('uploads/sub category/thumb/null.png') }}" alt="">
+                                            </a>
                                         </div>
                                     </div>
-                                    @php
-                                        $count++;
-                                    @endphp
-                                @endif
-                            @endforeach
-                        @endif
-                        @else
-                        @if (1)
-                        @endif
+                                    <div class="dot-info">
+                                        <h3 class="dot-title">{{$subCategory->name}}</h3>
+                                        <!-- Add other information related to subCategory if needed -->
+                                    </div>
+                                </div>
+                                @php
+                                    $count++;
+                                @endphp
+                            @endif
+                        @endforeach
+                    @else
+                        <!-- Handle case when there are no categories or subcategories -->
+                        <p>No categories or subcategories found.</p>
                     @endif
                 </div>
             </div>

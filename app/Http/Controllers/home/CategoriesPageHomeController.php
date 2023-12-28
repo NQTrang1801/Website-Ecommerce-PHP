@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
@@ -8,39 +7,48 @@ use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Cache\RateLimiting\Limit;
 
 class CategoriesPageHomeController extends Controller
 {
-    public function index($keySearch) {
-        $categoryResults = Category::where('name', $keySearch)->limit(1)->get();
-        $data = [];
-        $products = [];
+    public function index($cateType, $subType = null) {
+        $category = Category::where('slug', $cateType)->with('getSubCategories')->first();
         $subCategoryResults = [];
-        if ($categoryResults->isEmpty()) {
-            $subCategoryResults = SubCategory::where('name', $keySearch)->limit(1)->get();
-            if (!$subCategoryResults->isEmpty()) {
-                $productResults = Product::where('sub_category_id', $subCategoryResults[0]->id)->get();
-                array_push($products, $productResults);
+        $products = [];
+        
+        
+        if ($category === null) {
+            $subCategory = SubCategory::where('slug', $cateType)->first();
+            if ($subCategory !== null) {
+                $products = Product::with('images', 'promotion', 'category', 'subCategory')
+                    ->where('sub_category_id', $subCategory->id)->get();
             }
         } else {
-                foreach($categoryResults[0]->getSubCategories as $sub)
-                {
-                    $productResults = Product::with('images')
-                                    ->with('promotion')
-                                    ->with('category')
-                                    ->with('subCategory')
-                                    ->where('category_id', $categoryResults[0]->id)
-                                    ->orWhere('sub_category_id', $sub->id)->get();
-                    array_push($products, $productResults);
-                }
+            foreach ($category->getSubCategories as $sub) {
+                $productResults = Product::with('images', 'promotion', 'category', 'subCategory')
+                    ->where(function ($query) use ($category, $sub) {
+                        $query->where('category_id', $category->id)
+                            ->orWhere('sub_category_id', $sub->id);
+                    })
+                    ->get();
+                $products[] = $productResults;
+            }
         }
-        $data['subCategory']=$subCategoryResults;
+
+        $productIds = collect($products)->flatten()->pluck('id')->toArray();
+
+        // Lọc danh sách sản phẩm có giá đặc biệt từ danh sách ID đã lấy
+        $specialPrices = Product::with('images', 'promotion', 'category', 'subCategory')
+            ->whereIn('id', $productIds)
+            ->whereHas('promotion', function ($query) {
+                $query->whereNotNull('promotion_id');
+            })
+            ->get();
+
+        $data['specialPrices'] = $specialPrices;
+        $data['subCategory'] = $subCategoryResults;
         $data['products'] = $products;
-        $data['category']=$categoryResults;
+        $data['category'] = $category;   
         return view('home.product.categories', $data);
     }
 }
-
-
 ?>
