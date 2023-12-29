@@ -1,4 +1,4 @@
-<div class="product-detail-exploring">
+{{-- <div class="product-detail-exploring">
     <p>KEEP EXPLORING</p>
     <div class="products-perfect-partner">
         <div class="perfect-partner">
@@ -23,4 +23,4 @@
             </a>
         </div>
     </div>
-</div>
+</div> --}}

@@ -18,16 +18,6 @@ class HomeController extends Controller
         return view('home.product.categories');
     }
 
-    public function products($data, $id)
-    {
-        return view('home.product detail.products-detail');
-    }
-
-    public function productUpdate($id, $color, $size, $index)
-    {
-        return view('home.product detail.products-detail');
-    }
-
     public function cart()
     {
         return view('home.cart.cart');

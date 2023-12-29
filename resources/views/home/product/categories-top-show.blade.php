@@ -7,6 +7,12 @@
             <div class="inner-wrapper">
                 <div class="dotgrid carouselbox">
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <button style="margin-right: 50px" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
                         <div class="carousel-inner">
                             @php
                                 $chunks = $specialPrices->chunk(4);
@@ -34,7 +40,7 @@
                                                                             <div class="actions">
                                                                                 <div><i class="ri-heart-line"></i></div>
                                                                                 <div class="js-btn-add-cart" data-product-id="{{ $product->id }}"><i class="ri-shopping-cart-line"></i></div>
-                                                                                <a href=""><i class="ri-eye-line"></i></a>
+                                                                                <a href="{{url('products', $product->id)}}"><i class="ri-eye-line"></i></a>
                                                                             </div>
                                                                             <div class="label"><span>-{{ $product->promotion->value * 100 }}%</span></div>
                                                                         </div>
@@ -57,12 +63,6 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </button>
                     </div>
                 </div>
                 <div class="pagination">

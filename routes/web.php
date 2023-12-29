@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\home\CartHomeController;
 use App\Http\Controllers\home\ProductHomeController;
 use App\Http\Controllers\home\IndexPageHomeController;
 use App\Http\Controllers\home\CategoriesPageHomeController;
@@ -122,17 +123,20 @@ Route::get('/profile', [HomeController::class, 'profile'])->name('home.profilesh
 Route::get('/categories/{type}/{subtype?}', [CategoriesPageHomeController::class, 'index'])->name('home.categories.index');
 Route::get('/get-featured-categories', [CategoryHomeController::class, 'getIsFeatured'])->name('categories.getIsFeatured');
 Route::get('/get-featured-sub-categories', [SubCategoryHomeController::class, 'getIsFeatured'])->name('sub-categories.getIsFeatured');
-Route::get('/products/{data}/{id}', [HomeController::class, 'products']);
+Route::get('/products/{id}', [ProductHomeController::class, 'index'])->name('home.productDetail.index');;
 Route::get('/products/{id}/{color}/{size}/{index}', [HomeController::class, 'productUpdate']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/checkout/{cost}', [HomeController::class, 'checkout']);
 Route::get('/order-history', [HomeController::class, 'orderHistory'])->name('user.order-histories');
 Route::get('/services', [HomeController::class, 'services'])->name('home.services');
+Route::get('/get-sizes-by-color/{productId}/{colorId}', [ProductHomeController::class, 'getSizesByColor'])->name('home.productDetail.getSizeByColor');
 
 //search
 Route::get('/search/products', [ProductHomeController::class, 'getByKeyWord'])->name('search.products.keyword');
 Route::get('/getSubCategories/{categoryId}', [SubCategoryController::class, 'getSubCategories']);
 
+//Cart
+Route::post('/add-to-cart-default', [CartHomeController::class, 'addToCartDefault'])->name('cart.addToCartDefault');
 Route::get('/getSlug', function (Request $request) {
     $slug = '';
     if (!empty($request->title)) {

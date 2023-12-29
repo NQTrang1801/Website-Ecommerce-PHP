@@ -1,4 +1,4 @@
-<div class="product-detail-partner">
+{{-- <div class="product-detail-partner">
     <p>THE PERFECT PARTNER</p>
     <div class="products-perfect-partner">
         <div class="perfect-partner">
@@ -31,4 +31,4 @@
         </div>
 
     </div>
-</div>
+</div> --}}

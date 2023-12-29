@@ -102,6 +102,69 @@
             });
         }
     });
+
+    
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(productId, colorId = null, sizeId = null) {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("cart.addToCartDefault") }}',
+                data: { productId: productId, colorId: colorId, sizeId: sizeId },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success == true) {
+                        let variant = response.variant;
+                        variant.QuantityPurchased = 1;
+                        variant.ColorName = response.color;
+                        variant.SizeName = response.size;
+                        variant.promo = response.promotion;
+                        cart.push(variant);
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                        renderDropDownCart();
+                    } else {
+                        console.error("Not found");
+                        
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("fail:", error);
+                }
+            });
+        }
+
+    renderDropDownCart();
+        function renderDropDownCart() {
+            let htmlDropdownCart = ``;
+            const divCartContent = document.querySelector('.js-cart-content');
+            let sumQuantityCart = 0;
+            let sumCost = 0;
+            cart.forEach(item => {
+                let priceProduct = item.price;
+                sumQuantityCart += item.QuantityPurchased
+                
+                sumCost += item.QuantityPurchased * Number(priceProduct);
+                htmlDropdownCart += `
+                            <div class="cart-box">
+                                <div class="cart-image">
+                                <img src="uploads/product/variantss/thumb/${item.image}">
+                                </div>
+                                <div class="cart-info">
+                                <p>${item.title}</p>
+                                <p>COLOR: <span>${item.ColorName}</span></p>
+                                <p>SIZE: <span>${item.SizeName}</span></p>
+                                        <p>QTY: <span>${item.QuantityPurchased}</span></p>
+                                        <p><span>${priceProduct}</span> VND</p>
+                                </div>
+                            </div>
+                            `;
+            });
+            divCartContent.innerHTML = htmlDropdownCart;
+            const shoppingBag = document.querySelector('.ri-shopping-bag-line');
+            shoppingBag.setAttribute('data-content', sumQuantityCart);
+            document.querySelector('.cart-price').querySelector('p').nextElementSibling.querySelector('span').innerHTML = sumCost;
+            document.querySelector('.cart-checkout').querySelector('span').innerHTML = sumQuantityCart;
+        }
   </script>
 </body>
 

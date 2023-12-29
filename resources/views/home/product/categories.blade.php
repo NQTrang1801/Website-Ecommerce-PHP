@@ -37,4 +37,14 @@
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script type="module" src="home/scripts/categories.js"></script>
+    <script>
+        document.querySelectorAll('.js-btn-add-cart')
+            .forEach(item => {
+                item.addEventListener('click', () => {
+                    let productId = item.dataset.productId;
+                    console.log("click: " + productId);
+                    addToCart(productId);
+                })
+            });
+    </script>
 @endsection

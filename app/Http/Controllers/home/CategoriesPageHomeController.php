@@ -36,7 +36,7 @@ class CategoriesPageHomeController extends Controller
                 ->whereHas('promotion', function ($query) {
                     $query->whereNotNull('promotion_id');
                 })
-                ->paginate(4);
+                ->paginate(8);
 
         $productFeatureds = Product::where('showHome', 'Yes')
                 ->where('is_featured', 1)
