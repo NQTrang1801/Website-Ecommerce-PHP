@@ -7,7 +7,7 @@
           @if (getIsFeaturedSubCategory()->isNotEmpty())
           @foreach (getIsFeaturedSubCategory() as $subCategory)
           <div>
-            <a href="{{url('categories', $subCategory->name)}}">
+            <a href="{{url('categories', [$subCategory->category->slug, $subCategory->slug])}}">
               <img src="{{ file_exists(public_path('uploads/sub category/thumb/' . $subCategory->image)) ? asset('uploads/sub category/thumb/' . $subCategory->image) : asset('uploads/sub category/thumb/null.png') }}" alt="">
             </a>
             <div>

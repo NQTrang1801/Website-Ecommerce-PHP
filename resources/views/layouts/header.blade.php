@@ -72,7 +72,7 @@
                     @foreach (getIsFeaturedSubCategory() as $subCategory)
                         @if ($count < 4)
                         <div>
-                            <a href="{{url('categories',$subCategory->name)}}">
+                            <a href="{{url('categories', [$subCategory->category->slug, $subCategory->slug])}}">
                                 <i class="ri-search-line"></i>
                                 {{$subCategory->name}}
                             </a>

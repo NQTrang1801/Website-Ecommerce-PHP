@@ -38,13 +38,16 @@ class ProductController extends Controller
             ->leftJoin('products_images', 'products.images_id', '=', 'products_images.id')
             ->latest();
     
-        if (!empty($request->get('keyword'))) {
-            $keyword = $request->get('keyword');
-            $products = $products->where(function ($query) use ($keyword) {
-                $query->where('keywords', 'like', '%' . $keyword . '%')
-                    ->orWhere('title', 'like', '%' . $keyword . '%');
-            });
-        }
+            if (!empty($request->get('keyword'))) {
+                $keyword = $request->get('keyword');
+                $products = $products->where(function ($query) use ($keyword) {
+                    $query->where('keywords', 'like', '%' . $keyword . '%')
+                        ->orWhere('title', 'like', '%' . $keyword . '%')
+                        ->orWhere('categories.name', 'like', '%' . $keyword . '%')
+                        ->orWhere('sub_categories.name', 'like', '%' . $keyword . '%');
+                });
+            }
+            
     
         $products = $products->paginate(10);
     

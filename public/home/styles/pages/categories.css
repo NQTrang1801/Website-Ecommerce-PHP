@@ -128,24 +128,33 @@
 .dotgrid .product-price .before{
     text-decoration: line-through;
 }
+/* CSS cho pagination */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
 
-.see-more {
-    width: 100%;
-    text-align: center;
+.pagination ul {
+    display: flex;
 }
-.see-more button{
-    padding: 8px;
-    border: none;
-    color: var(--primary-color);
-    background-color: var(--light-bg-color);
-    border-radius: 2px;
-    cursor: pointer;
-    margin-bottom: 20px;
+.pagination li {
+    margin: 0 2px; 
 }
-.see-more button:hover {
-    color: var(--light-bg-color);
-    background-color: var(--primary-color);
+
+.pagination .page-num {
+    display: flex;
 }
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
 
 .actions a i,
 .actions div i {
@@ -298,8 +307,9 @@ main > div .heading{
 }
 
 .products-categories .dotgrid .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .products-categories .dotgrid .wrapper > div {
@@ -315,7 +325,8 @@ main > div .heading{
 }
 
 :is(.products-categories) .dot-image .thumbnail img{
-    width: 100%;
+    width: 160px;
+    height: auto;
 }
 
 .products-categories .dot-title{
@@ -345,7 +356,7 @@ main > div .heading{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 30px;
-    
+    column-gap: 30px;
 }
 
 .special-prices .dotgrid .item,
@@ -372,6 +383,7 @@ main > div .heading{
     grid-column: span 2;
     width: 100%;
 }
+
 .category-view-1 .wrapper > div:nth-child(9n) img{
     height: 450px;
     width: 100%;

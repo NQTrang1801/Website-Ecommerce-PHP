@@ -10,11 +10,10 @@
 @section('content')
     <main>
         @include('home.product.categories-slider')
-        <!-- special price -->
-        @include('home.product.categories-top-show')
         <!-- products-categories -->
         @include('home.product.categories-types-of-product')
-
+        <!-- special price -->
+        @include('home.product.categories-top-show')
         <!-- categories -->
         @include('home.product.categories-products')
         <!-- banner -->

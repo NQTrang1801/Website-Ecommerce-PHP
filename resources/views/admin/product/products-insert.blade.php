@@ -67,30 +67,9 @@
                                             <div class="col-xxl-2">
                                                 <label class="form-label">Sub Category</label>
                                                 <div class="option-group">
-                                                   <select name="subCategory" id="subCategory" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
-                                                        <option value="">select</option>                                
-                                                        @if ($subCategories->isNotEmpty())
-                                                        @foreach ($subCategories as $subCategory)
-                                                            <option value="{{$subCategory->id}}">
-                                                                <?php 
-                                                                $exploded = explode("--", $subCategory->slug);
-                                                                if (count($exploded) >= 2) {
-                                                                    $CategoryName = '';
-                                                                    if (isset($categories)) {
-                                                                        $category = $categories->where('id', $exploded[1])->first();
-                                                                        if ($category !== null) {
-                                                                            $CategoryName = $category->name;
-                                                                        }
-                                                                    }
-                                                                    echo str_replace("-", " ", $exploded[0]). ' / ' . $CategoryName;
-                                                                } else {
-                                                                    echo str_replace("-", " ", $exploded[0]);
-                                                                }
-                                                                ?>
-                                                            </option>
-                                                        @endforeach                                                
-                                                        @endif               
-                                                   </select>
+                                                   <select name="subCategory" id="subCategory" class="form-control">
+                                                        <option value="">Select</option>
+                                                    </select>
                                                    <p></p>
                                                 </div>
                                             </div>
@@ -437,7 +416,22 @@
         }
     }
 
-
+    $(document).ready(function() {
+        $('#category').change(function() {
+            var categoryId = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '/getSubCategories/' + categoryId,
+                success: function(data) {
+                    var subCategorySelect = $('#subCategory');
+                    subCategorySelect.empty().append('<option value="">Select</option>');
+                    $.each(data, function(key, value) {
+                        subCategorySelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+    });
 
 </script>
 @endsection

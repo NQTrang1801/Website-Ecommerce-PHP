@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
@@ -10,45 +9,48 @@ use App\Models\Product;
 
 class CategoriesPageHomeController extends Controller
 {
-    public function index($cateType, $subType = null) {
-        $category = Category::where('slug', $cateType)->with('getSubCategories')->first();
+    public function index($type, $key = null)
+    {
+        $category = Category::where('slug', $type)->with('getSubCategories')->first();
         $subCategoryResults = [];
-        $products = [];
-        
-        
-        if ($category === null) {
-            $subCategory = SubCategory::where('slug', $cateType)->first();
-            if ($subCategory !== null) {
-                $products = Product::with('images', 'promotion', 'category', 'subCategory')
-                    ->where('sub_category_id', $subCategory->id)->get();
-            }
-        } else {
+        if ($category != null)
+        {
+            $cate_id = $category->id;
             foreach ($category->getSubCategories as $sub) {
-                $productResults = Product::with('images', 'promotion', 'category', 'subCategory')
-                    ->where(function ($query) use ($category, $sub) {
-                        $query->where('category_id', $category->id)
-                            ->orWhere('sub_category_id', $sub->id);
-                    })
-                    ->get();
-                $products[] = $productResults;
-            }
-        }
+                $sub->load(['products' => function ($query) use ($cate_id) {
+                    $query->where('showHome', 'Yes')->where('category_id', $cate_id);
+                }]);
+            
+                if ($sub->products->isNotEmpty()) {
+                    $subCategoryResults[] = $sub;
+                }
+            }  
+        }  
 
-        $productIds = collect($products)->flatten()->pluck('id')->toArray();
-
-        // Lọc danh sách sản phẩm có giá đặc biệt từ danh sách ID đã lấy
         $specialPrices = Product::with('images', 'promotion', 'category', 'subCategory')
-            ->whereIn('id', $productIds)
-            ->whereHas('promotion', function ($query) {
-                $query->whereNotNull('promotion_id');
-            })
-            ->get();
+                ->where('showHome', 'Yes')
+                ->whereHas('Category', function ($query) use ($type) {
+                    $query->where('slug', $type)
+                          ->where('showHome', 'Yes');
+                })
+                ->whereHas('promotion', function ($query) {
+                    $query->whereNotNull('promotion_id');
+                })
+                ->paginate(4);
 
-        $data['specialPrices'] = $specialPrices;
+        $productFeatureds = Product::where('showHome', 'Yes')
+                ->where('is_featured', 1)
+                ->with('images')
+                ->take(4)
+                ->get();
+
+        $data['specialPrices'] = $specialPrices;     
         $data['subCategory'] = $subCategoryResults;
-        $data['products'] = $products;
-        $data['category'] = $category;   
+        $data['category'] = $category;
+        $data['productFeatureds'] = $productFeatureds;
         return view('home.product.categories', $data);
     }
 }
+
 ?>
+

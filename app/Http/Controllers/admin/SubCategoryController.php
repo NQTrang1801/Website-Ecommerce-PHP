@@ -228,4 +228,11 @@ class SubCategoryController extends Controller
             'message' => 'sub Category deleted successfully'
         ]);
     }
+
+    public function getSubCategories($categoryId)
+    {
+        $subCategories = SubCategory::where('category_id', $categoryId)->get();
+
+        return response()->json($subCategories);
+    }
 }

@@ -54,45 +54,27 @@
                                             <div class="col-xxl-2">
                                                 <label class="form-label">Category</label>
                                                 <div class="option-group">
-                                                <select name="category" id="category" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
-                                                        <option value="">select</option>                                
+                                                    <select name="category" id="category" class="form-control">
+                                                        <option value="">select</option>
                                                         @if ($categories->isNotEmpty())
                                                             @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                                <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                                                    {{ $category->name }}
+                                                                </option>
                                                             @endforeach
-                                                        @endif               
-                                                </select>
-                                                <p></p>
+                                                        @endif
+                                                    </select>
+                                                    <p></p>
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-xxl-2">
                                                 <label class="form-label">Sub Category</label>
                                                 <div class="option-group">
-                                                   <select name="subCategory" id="subCategory" class="form-control" style="overflow: hidden; white-space: normal; word-wrap: break-word;">      
-                                                        <option value="">select</option>                                
-                                                        @if ($subCategories->isNotEmpty())
-                                                            @foreach ($subCategories as $subCategory)
-                                                                <option value="{{$subCategory->id}}" {{$product->sub_category_id == $subCategory->id ? 'selected' : ''}}>
-                                                                    <?php 
-                                                                    $exploded = explode("--", $subCategory->slug);
-                                                                    if (count($exploded) >= 2) {
-                                                                        $CategoryName = '';
-                                                                        if (isset($categories)) {
-                                                                            $category = $categories->where('id', $exploded[1])->first();
-                                                                            if ($category !== null) {
-                                                                                $CategoryName = $category->name;
-                                                                            }
-                                                                        }
-                                                                        echo str_replace("-", " ", $exploded[0]). ' / ' . $CategoryName;
-                                                                    } else {
-                                                                        echo str_replace("-", " ", $exploded[0]);
-                                                                    }
-                                                                    ?>
-                                                                </option>
-                                                            @endforeach
-                                                        @endif               
-                                                   </select>
-                                                   <p></p>
+                                                    <select name="subCategory" id="subCategory" class="form-control" data-sub-id="{{$product->sub_category_id}}">
+                                                        <option value="">select</option>
+                                                    </select>
+                                                    <p></p>
                                                 </div>
                                             </div>
                                             <div class="col-xxl-2">
@@ -889,6 +871,52 @@
                 }
             });
     }
+
+    $(document).ready(function () {
+        var categoryId = $('#category').val();
+        var subCategoryId = $('#subCategory').data('sub-id');
+
+        loadSubCategories(categoryId);
+
+        $('#category').change(function () {
+            var categoryId = $(this).val();
+            $('#subCategory').empty();
+            loadSubCategories(categoryId);
+            
+        });
+
+        function loadSubCategories(categoryId)
+        {
+            $.ajax({
+                url: '/getSubCategories/' + categoryId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $.each(data, function (index, subCategory) {
+                            var option = $('<option>', {
+                                value: subCategory.id,
+                                text: subCategory.name
+                            });
+
+                            if (subCategory.id == subCategoryId) {
+                                option.attr('selected', true);
+                            }
+                            $('#subCategory').append(option);
+                        });
+                    } else {
+                        $('#subCategory').append($('<option>', {
+                            value: '',
+                            text: 'No subcategory available'
+                        }));
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
 
 </script>
 @endsection

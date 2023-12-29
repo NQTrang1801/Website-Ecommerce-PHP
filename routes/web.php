@@ -131,6 +131,7 @@ Route::get('/services', [HomeController::class, 'services'])->name('home.service
 
 //search
 Route::get('/search/products', [ProductHomeController::class, 'getByKeyWord'])->name('search.products.keyword');
+Route::get('/getSubCategories/{categoryId}', [SubCategoryController::class, 'getSubCategories']);
 
 Route::get('/getSlug', function (Request $request) {
     $slug = '';
