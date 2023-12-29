@@ -11,27 +11,30 @@ use function Laravel\Prompts\alert;
 
 class SizeController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $sizes = Size::latest();
 
-        if (!empty($request->get('keyword'))){
-            $sizes = $sizes->where('name','like','%'.$request->get('keyword').'%');
+        if (!empty($request->get('keyword'))) {
+            $sizes = $sizes->where('name', 'like', '%' . $request->get('keyword') . '%');
         }
 
         $sizes = $sizes->paginate(10);
-        
+
         return view('admin.size.sizes', compact('sizes'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.size.sizes-insert');
     }
 
-    public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $size = new Size();
             $size->name = $request->name;
             $size->save();
@@ -48,7 +51,8 @@ class SizeController extends Controller
         }
     }
 
-    public function edit($sizeId, Request $request) {
+    public function edit($sizeId, Request $request)
+    {
         $size = Size::find($sizeId);
         if (empty($size)) {
             return redirect()->route('sizes.index');
@@ -56,7 +60,8 @@ class SizeController extends Controller
         return view('admin.size.sizes-edit', compact('size'));
     }
 
-    public function update($sizeId, Request $request) {
+    public function update($sizeId, Request $request)
+    {
         $size = Size::find($sizeId);
         if (empty($size)) {
             return response()->json([
@@ -66,10 +71,10 @@ class SizeController extends Controller
             ]);
         }
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $size->name = $request->name;
             $size->save();
             return response()->json([
@@ -84,10 +89,10 @@ class SizeController extends Controller
         }
     }
 
-    public function destroy($sizeId, Request $request){
+    public function destroy($sizeId, Request $request)
+    {
         $size = Size::find($sizeId);
-        if (empty($size))
-        {
+        if (empty($size)) {
             alert("size not found");
             return response()->json([
                 'status' => false,

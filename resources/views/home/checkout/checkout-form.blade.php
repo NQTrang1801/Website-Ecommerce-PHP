@@ -66,7 +66,8 @@
                     <p><span>0</span> VND</p>
                     <p>Standard Shipping</p>
                     <p><span>0</span> VND</p>
-                    <p>Free when you <a href="{{url('login')}}">Sign in</a> or <a href="{{url('login')}}">Create an Account</a></p>
+                    <p>Free when you <a href="{{ url('login') }}">Sign in</a> or <a href="{{ url('login') }}">Create
+                            an Account</a></p>
                     <p></p>
                     <p>Estimated Total</p>
                     <p><span>0</span> VND</p>

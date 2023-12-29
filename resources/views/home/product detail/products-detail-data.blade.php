@@ -1,5 +1,5 @@
 <div class="product-detail-info">
-    <div id="product-id" data-product-id="{{$product->id}}"></div>
+    <div id="product-id" data-product-id="{{ $product->id }}"></div>
     <div class="product-detail-image">
         <div class="detail-image-left">
             <div>
@@ -24,13 +24,16 @@
 <div class="product-detail-summary">
     <div class="detail-summary">
         <div class="summary-name">
-            <p>{{ isset($variantss[0]) ? $variantss[0]->title : '' }}</p>
-            <p class="detail-price">{{ isset($variantss[0]) ? $variantss[0]->price * (1 - $variantss[0]->promotion->value) : '' }}</p>
-        </div>        
+            <p id = "product-title">{{ $product->title }}</p>
+            <p class="detail-price">
+                {{ isset($variantss[0]) ? number_format($variantss[0]->price * (1 - ($variantss[0]->promotion ? $variantss[0]->promotion->value : 0)), 0, ',', '.') : number_format($product->price * (1 - ($product->promotion ? $product->promotion->value : 0)), 0, ',', '.') }}
+                VND</p>
+        </div>
         <div class="summary-color">
             <div>
                 <p>Color</p>
-                <p id="color-name" style="font-weight: 600;">{{ isset($variantss[0]->color->name) ? $variantss[0]->color->name : '' }}</p>
+                <p id="color-name" style="font-weight: 600;">
+                    {{ isset($variantss[0]->color->name) ? $variantss[0]->color->name : '' }}</p>
             </div>
             <div class="summary-color-item">
                 @php
@@ -41,17 +44,20 @@
                         $variantWithColor = $variantss->where('color_id', $uniqueColor->color_id)->first();
                     @endphp
                     <div class="block-color">
-                        <img src="{{ asset('uploads/product/variantss/thumb/' . $variantWithColor->image) }}"data-product-id="{{ $variantWithColor->product_id }}" data-color-id="{{ $variantWithColor->color_id }}" data-color-name="{{$variantWithColor->color->name}}" data-color-code="{{$variantWithColor->color->code}}" class="color-selector" alt="">
+                        <img src="{{ asset('uploads/product/variantss/thumb/' . $variantWithColor->image) }}"data-product-id="{{ $variantWithColor->product_id }}"
+                            data-color-id="{{ $variantWithColor->color_id }}"
+                            data-color-name="{{ $variantWithColor->color->name }}"
+                            data-color-code="{{ $variantWithColor->color->code }}" class="color-selector"
+                            alt="">
                     </div>
                 @endforeach
-            </div>            
+            </div>
         </div>
         <div class="summary-size">
             <div> Size <i class="ri-arrow-down-s-line"></i></div>
             <div>
-                <p class="product-size-guide">Size Guide</p>
-                <div class="product-size" id="size-list">
-                   
+                <div class="product-size" id="size-list" style="margin-top: 4px">
+
                 </div>
             </div>
         </div>
@@ -59,7 +65,7 @@
             <button class="js-btn-add-cart">Add to cart</button>
         </div>
         <div>
-            <pre>{{$product->description}}
+            <pre>{{ $product->description }}
             </pre>
         </div>
     </div>
@@ -67,13 +73,13 @@
         <div class="reference-title">
             <div> PRODUCTS DETAILS <i class="ri-arrow-down-s-line"></i> </div>
             <p>
-                {{$product->suggestion}}
+                {{ $product->suggestion }}
             </p>
         </div>
         <div class="reference-title">
             <div> CARE <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <pre>{{ $product->care }}</pre>
         </div>
-        <pre>{{$product->care}}</pre>
-    </div>
     </div>
 </div>

@@ -62,7 +62,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
     // ... (Other grouped routes)
     // Size
     Route::prefix('/sizes')->group(function () {
-        Route::get('/', [SizeController::class,'index'])->name('sizes.index');
+        Route::get('/', [SizeController::class, 'index'])->name('sizes.index');
         Route::get('/insert', [SizeController::class, 'create'])->name('sizes.create');
         Route::post('/', [SizeController::class, 'store'])->name('sizes.store');
         Route::get('/{size}/edit', [SizeController::class, 'edit'])->name('sizes.edit');
@@ -72,7 +72,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
 
     // Color
     Route::prefix('/colors')->group(function () {
-        Route::get('/', [ColorController::class,'index'])->name('colors.index');
+        Route::get('/', [ColorController::class, 'index'])->name('colors.index');
         Route::get('/insert', [ColorController::class, 'create'])->name('colors.create');
         Route::post('/', [ColorController::class, 'store'])->name('colors.store');
         Route::get('/{color}/edit', [ColorController::class, 'edit'])->name('colors.edit');
@@ -82,7 +82,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
 
     // Promotion
     Route::prefix('/promotions')->group(function () {
-        Route::get('/', [PromotionController::class,'index'])->name('promotions.index');
+        Route::get('/', [PromotionController::class, 'index'])->name('promotions.index');
         Route::get('/insert', [PromotionController::class, 'create'])->name('promotions.create');
         Route::post('/', [PromotionController::class, 'store'])->name('promotions.store');
         Route::get('/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
@@ -105,7 +105,7 @@ Route::group(['middleware' => 'check.usertype'], function () {
 
     // Variants
     Route::prefix('/variantss')->group(function () {
-        Route::get('/', [VariantsController::class,'index'])->name('variantss.index');
+        Route::get('/', [VariantsController::class, 'index'])->name('variantss.index');
         Route::get('/insert', [VariantsController::class, 'create'])->name('variantss.create');
         Route::get('/{product}/add', [VariantsController::class, 'add'])->name('products.add');
         Route::post('/', [VariantsController::class, 'store'])->name('variantss.store');
@@ -124,17 +124,18 @@ Route::get('/categories/{type}/{subtype?}', [CategoriesPageHomeController::class
 Route::get('/get-featured-categories', [CategoryHomeController::class, 'getIsFeatured'])->name('categories.getIsFeatured');
 Route::get('/get-featured-sub-categories', [SubCategoryHomeController::class, 'getIsFeatured'])->name('sub-categories.getIsFeatured');
 Route::get('/products/{id}', [ProductHomeController::class, 'index'])->name('home.productDetail.index');;
-Route::get('/products/{id}/{color}/{size}/{index}', [HomeController::class, 'productUpdate']);
+Route::get('/Products/UpdateCart', [ProductHomeController::class, 'updateCart'])->name('updateCart');
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/checkout/{cost}', [HomeController::class, 'checkout']);
 Route::get('/order-history', [HomeController::class, 'orderHistory'])->name('user.order-histories');
 Route::get('/services', [HomeController::class, 'services'])->name('home.services');
 Route::get('/get-sizes-by-color/{productId}/{colorId}', [ProductHomeController::class, 'getSizesByColor'])->name('home.productDetail.getSizeByColor');
 
+
 //search
 Route::get('/search/products', [ProductHomeController::class, 'getByKeyWord'])->name('search.products.keyword');
 Route::get('/getSubCategories/{categoryId}', [SubCategoryController::class, 'getSubCategories']);
-
+Route::get('/getVariantByColorAndSize/{productId}/{colorId}/{sizeId}', [VariantsController::class, 'getVariantByColorAndSize']);
 //Cart
 Route::post('/add-to-cart-default', [CartHomeController::class, 'addToCartDefault'])->name('cart.addToCartDefault');
 Route::get('/getSlug', function (Request $request) {
@@ -148,5 +149,3 @@ Route::get('/getSlug', function (Request $request) {
         'slug' => $slug
     ]);
 })->name('getSlug');
-
-  

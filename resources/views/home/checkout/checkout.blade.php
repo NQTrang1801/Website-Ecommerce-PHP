@@ -1,10 +1,10 @@
 @extends('layouts.app-home')
 
 @section('styles')
-<base href="/public">
-<link rel="stylesheet" href="home/styles/pages/checkout.css">
+    <base href="/public">
+    <link rel="stylesheet" href="home/styles/pages/checkout.css">
 @endsection
-    
+
 
 @section('content')
     <main>

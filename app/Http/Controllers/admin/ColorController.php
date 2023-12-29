@@ -11,28 +11,31 @@ use function Laravel\Prompts\alert;
 
 class colorController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $colors = Color::latest();
 
-        if (!empty($request->get('keyword'))){
-            $colors = $colors->where('name','like','%'.$request->get('keyword').'%');
+        if (!empty($request->get('keyword'))) {
+            $colors = $colors->where('name', 'like', '%' . $request->get('keyword') . '%');
         }
 
         $colors = $colors->paginate(10);
-        
+
         return view('admin.color.colors', compact('colors'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.color.colors-insert');
     }
 
-    public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'code' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $color = new Color();
             $color->name = $request->name;
             $color->code = $request->code;
@@ -50,7 +53,8 @@ class colorController extends Controller
         }
     }
 
-    public function edit($colorId, Request $request) {
+    public function edit($colorId, Request $request)
+    {
         $color = Color::find($colorId);
         if (empty($color)) {
             return redirect()->route('colors.index');
@@ -58,7 +62,8 @@ class colorController extends Controller
         return view('admin.color.colors-edit', compact('color'));
     }
 
-    public function update($colorId, Request $request) {
+    public function update($colorId, Request $request)
+    {
         $color = Color::find($colorId);
         if (empty($color)) {
             return response()->json([
@@ -68,11 +73,11 @@ class colorController extends Controller
             ]);
         }
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'code' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $color->name = $request->name;
             $color->code = $request->code;
             $color->save();
@@ -88,10 +93,10 @@ class colorController extends Controller
         }
     }
 
-    public function destroy($colorId, Request $request){
+    public function destroy($colorId, Request $request)
+    {
         $color = Color::find($colorId);
-        if (empty($color))
-        {
+        if (empty($color)) {
             alert("color not found");
             return response()->json([
                 'status' => false,

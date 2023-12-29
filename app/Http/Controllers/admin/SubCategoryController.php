@@ -14,39 +14,41 @@ use function Laravel\Prompts\alert;
 
 class SubCategoryController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $subCategories = SubCategory::select(
             'sub_categories.*',
             'categories.name as category_name',
-            )
+        )
             ->leftJoin('categories', 'sub_categories.category_id', '=', 'categories.id')
             ->latest();
 
-        if (!empty($request->get('keyword'))){
-            $subCategories = $subCategories->where('sub_categories.name','like','%'.$request->get('keyword').'%')
-                                            ->orWhere('categories.name','like','%'.$request->get('keyword').'%');
+        if (!empty($request->get('keyword'))) {
+            $subCategories = $subCategories->where('sub_categories.name', 'like', '%' . $request->get('keyword') . '%')
+                ->orWhere('categories.name', 'like', '%' . $request->get('keyword') . '%');
         }
 
         $subCategories = $subCategories->paginate(10);
-        
+
         return view('admin.sub_category.sub-categories', compact('subCategories'));
     }
 
     public function create()
     {
         $categories = Category::orderBy('name', 'ASC')->get();
-        $data['categories']=$categories;
+        $data['categories'] = $categories;
         return view('admin.sub_category.sub-categories-insert', $data);
     }
 
-    public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required|unique:sub_categories',
             'category' => 'required',
             'status' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $subCategory = new SubCategory();
             $subCategory->name = $request->name;
             $subCategory->slug = $request->slug;
@@ -59,19 +61,18 @@ class SubCategoryController extends Controller
                 $extArray = explode('.', $tempImage->name);
                 $ext = last($extArray);
 
-                $newImageName = $subCategory->id.'.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/sub category/'.$newImageName;
+                $newImageName = $subCategory->id . '.' . $ext;
+                $sPath = public_path() . '/temp/' . $tempImage->name;
+                $dPath = public_path() . '/uploads/sub category/' . $newImageName;
                 File::copy($sPath, $dPath);
 
-                $dPath = public_path().'/uploads/sub category/thumb/'.$newImageName;
+                $dPath = public_path() . '/uploads/sub category/thumb/' . $newImageName;
                 $img = Image::make($sPath);
                 $img->resize(450, 600);
                 $img->save($dPath);
 
                 $subCategory->image = $newImageName;
                 $subCategory->save();
-
             }
 
             return response()->json([
@@ -85,12 +86,13 @@ class SubCategoryController extends Controller
             ]);
         }
     }
-    public function edit($subCategoryId, Request $request) {
+    public function edit($subCategoryId, Request $request)
+    {
         $subCategory = SubCategory::find($subCategoryId);
 
         $categories = Category::orderBy('name', 'ASC')->get();
-        $data['subCategory']=$subCategory;
-        $data['categories']= $categories;
+        $data['subCategory'] = $subCategory;
+        $data['categories'] = $categories;
 
         if (empty($subCategory)) {
             return redirect()->route('sub-categories.index');
@@ -98,9 +100,10 @@ class SubCategoryController extends Controller
         return view('admin.sub_category.sub-categories-edit', $data);
     }
 
-    public function update($subCategoryId, Request $request) {
+    public function update($subCategoryId, Request $request)
+    {
         $subCategory = SubCategory::find($subCategoryId);
-        
+
 
         if (empty($subCategory)) {
             return response()->json([
@@ -110,13 +113,13 @@ class SubCategoryController extends Controller
             ]);
         }
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:categories,slug,'.$subCategory->id.',id',
+            'slug' => 'required|unique:categories,slug,' . $subCategory->id . ',id',
             'category' => 'required',
             'status' => 'required'
         ]);
-        if ($validator->passes()){
+        if ($validator->passes()) {
             $subCategory->name = $request->name;
             $subCategory->slug = $request->slug;
             $subCategory->status = $request->status;
@@ -134,12 +137,12 @@ class SubCategoryController extends Controller
                 $extArray = explode('.', $tempImage->name);
                 $ext = last($extArray);
 
-                $newImageName = $subCategory->id.'-'.time().'.'.$ext;
-                $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/sub category/'.$newImageName;
+                $newImageName = $subCategory->id . '-' . time() . '.' . $ext;
+                $sPath = public_path() . '/temp/' . $tempImage->name;
+                $dPath = public_path() . '/uploads/sub category/' . $newImageName;
                 File::copy($sPath, $dPath);
 
-                $dPath = public_path().'/uploads/sub category/thumb/'.$newImageName;
+                $dPath = public_path() . '/uploads/sub category/thumb/' . $newImageName;
                 $img = Image::make($sPath);
                 $img->resize(600, 600);
                 $img->save($dPath);
@@ -147,9 +150,8 @@ class SubCategoryController extends Controller
                 $subCategory->image = $newImageName;
                 $subCategory->save();
 
-                File::delete(public_path().'/uploads/sub category/thumb/'.$oldImage);
-                File::delete(public_path().'/uploads/sub category/'.$oldImage);
-
+                File::delete(public_path() . '/uploads/sub category/thumb/' . $oldImage);
+                File::delete(public_path() . '/uploads/sub category/' . $oldImage);
             }
 
             return response()->json([
@@ -164,7 +166,8 @@ class SubCategoryController extends Controller
         }
     }
 
-    public function showHome($subCategoryId, Request $request) {
+    public function showHome($subCategoryId, Request $request)
+    {
         $subCategory = SubCategory::find($subCategoryId);
         if (empty($subCategory)) {
             return response()->json([
@@ -185,7 +188,8 @@ class SubCategoryController extends Controller
         ]);
     }
 
-    public function isFeatured($subcategoryId, Request $request) {
+    public function isFeatured($subcategoryId, Request $request)
+    {
         $subCategory = SubCategory::find($subcategoryId);
         if (empty($subCategory)) {
             return response()->json([
@@ -209,8 +213,7 @@ class SubCategoryController extends Controller
     public function destroy($subCategoryId, Request $request)
     {
         $subCategory = SubCategory::find($subCategoryId);
-        if (empty($subCategory))
-        {
+        if (empty($subCategory)) {
             alert("sub category not found");
             return response()->json([
                 'status' => false,
@@ -218,8 +221,8 @@ class SubCategoryController extends Controller
             ]);
         }
 
-        File::delete(public_path().'/uploads/sub category/thumb/'.$subCategory->image);
-        File::delete(public_path().'/uploads/sub category/'.$subCategory->image);
+        File::delete(public_path() . '/uploads/sub category/thumb/' . $subCategory->image);
+        File::delete(public_path() . '/uploads/sub category/' . $subCategory->image);
 
         $subCategory->delete();
 

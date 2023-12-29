@@ -1,6 +1,8 @@
 body {
     margin-top: 68px !important;
     height: auto !important;
+    margin-left: 40px !important;
+    margin-right: 40px !important;
 }
 
 .private-header {
@@ -50,10 +52,19 @@ body {
 }
 
 .item-attb p {
-    font-size: 12px;
+    font-size: 16px;
     margin: 10px 0px 10px 20px;
+    
 }
 
+.item-attb p span {
+
+}
+.item-attb p:nth-child(1) {
+    font-size: 18px;
+    color: #996e40;
+    font-weight: bold;
+}
 .item-sale {
     font-size: 12px;
     color: #996e40;
@@ -63,12 +74,12 @@ body {
 .item-quantity {
     color: #212529;
     display: flex;
-    width: 128px;
+    width: 150px;
     margin: 20px 0px;
 }
 
 .item-quantity button {
-    padding: 0 12px;
+    padding: 0 20px;
     border: none;
     background-color: var(--light-color);
     cursor: pointer;
@@ -89,7 +100,7 @@ body {
 }
 
 .item-quantity p {
-    font-size: 10px;
+    font-size: 14px;
     padding-right: 10px;
     text-align: center;
     padding: 10px 0;
@@ -142,7 +153,7 @@ body {
 
 .price-container {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 16px;
     height: 160px;
 }
 
@@ -154,6 +165,7 @@ body {
 .price-container>p:nth-child(3) {
     float: right;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .inf-sale {

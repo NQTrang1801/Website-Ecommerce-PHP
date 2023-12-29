@@ -21,6 +21,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.getElementById('special-prices-link').addEventListener('click', function (e) {
+  e.preventDefault(); // Prevent default behavior of the link
+
+  const section = document.getElementById('special-prices');
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+});
+
+document.getElementById('products-categories-link').addEventListener('click', function (e) {
+  e.preventDefault(); // Prevent default behavior of the link
+
+  const section = document.getElementById('products-categories');
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+});
+
+
 
 // Function to handle smooth scrolling to a section
 function scrollToSection(id) {

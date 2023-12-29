@@ -184,4 +184,14 @@ class VariantsController extends Controller
             'message' => 'variant deleted successfully'
         ]);
     }
+
+    public function getVariantByColorAndSize($productId, $colorId, $sizeId)
+    {
+        $variant = Variants::where('product_id', $productId)
+                            ->where('color_id', $colorId)
+                            ->where('size_id', $sizeId)
+                            ->get();
+
+        return response()->json($variant);
+    }
 }

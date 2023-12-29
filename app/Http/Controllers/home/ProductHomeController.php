@@ -34,9 +34,34 @@ class ProductHomeController extends Controller
                 return $item->first();
             })->values();
 
-        $categories = Category::where('ShowHome', 'Yes')->get();
+        return view('home.product detail.products-detail', compact('variantss', 'product', 'distinctColors'));
+    }
 
-        return view('home.product detail.products-detail', compact('categories', 'variantss', 'product', 'distinctColors'));
+    public function updateCart(Request $request)
+    {
+        $indexCart = $request->input('indexCart');
+        $productId = $request->input('productId');
+
+        $product = Product::with(['Category', 'Images', 'Promotion', 'SubCategory'])
+            ->where('id', $productId)
+            ->where('ShowHome', 'Yes')
+            ->first();
+
+        if (!$product) {
+            return abort(404);
+        }
+
+        $variantss = Variants::with(['Size', 'Color'])
+            ->where('product_id', $productId)
+            ->where('Status', 1)
+            ->get();
+
+        $distinctColors = $variantss->groupBy('ColorId')
+            ->map(function ($item) {
+                return $item->first();
+            })->values();
+
+        return view('home.product detail.products-detail', compact('variantss', 'product', 'distinctColors', 'indexCart'));
     }
 
     public function getSizesByColor($productId, $colorId)

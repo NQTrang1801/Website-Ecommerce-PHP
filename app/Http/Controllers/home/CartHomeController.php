@@ -27,13 +27,15 @@ class CartHomeController extends Controller
             if ($variantDetails) {
                 $colorName = optional($variantDetails->color)->name;
                 $sizeName = optional($variantDetails->size)->name;
+                $promoValue = optional($variantDetails->promotion)->value;
 
                 return response()->json([
                     'success' => true,
                     'message' => 'Success add to cart.',
                     'variant' => $variantDetails,
                     'color' => $colorName,
-                    'size' => $sizeName
+                    'size' => $sizeName,
+                    'promotion' => $promoValue
                 ]);
             }
 

@@ -12,7 +12,7 @@
           @if ($productsSale->isNotEmpty())
           @foreach ($productsSale as $product)
           <div>
-            <a href="">
+            <a href="{{url('products', $product->id)}}">
               <img src="{{ file_exists(public_path('uploads/product/products/thumb/'.$product->images->image_1)) ? asset('uploads/product/products/thumb/'.$product->images->image_1) : asset('uploads/product/products/thumb/null.png') }}" alt="">
             </a>
             <div>
