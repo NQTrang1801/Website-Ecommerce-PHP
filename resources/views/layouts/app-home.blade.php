@@ -17,9 +17,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <style>
+        df-messenger {
+            --df-messenger-button-titlebar-color: var(--secondary-color);
+            --df-messenger-chat-background-color: var(--light-color);
+            --df-messenger-send-icon: var(--secondary-color);
+            height: 100px;
+        }
+    </style>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 </head>
 
 <body>
+    <df-messenger intent="WELCOME" chat-title="Chatbot" agent-id="22d65df3-3149-4a2d-8e57-4c8cdafcafb6"
+        language-code="vi"></df-messenger>
     <!-- HEADER -->
     @include('layouts.header')
 
@@ -46,7 +58,7 @@
                     dataType: 'json',
                     success: function(response) {
                         const categoriesContainer = document.querySelector(
-                        '.search-matched-categories');
+                            '.search-matched-categories');
                         categoriesContainer.innerHTML = '';
 
                         response.featuredCategories.forEach(category => {
@@ -188,6 +200,19 @@
                 sumCost.toLocaleString('vi-VN');
             document.querySelector('.cart-checkout').querySelector('span').innerHTML = sumQuantityCart;
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            window.addEventListener('dfMessengerLoaded', function(event) {
+                $r1 = document.querySelector("df-messenger");
+                $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+                $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input");
+                var sheet = new CSSStyleSheet;
+                sheet.replaceSync(`div.chat-wrapper[opened="true"] { height: 500px }`);
+                $r2.shadowRoot.adoptedStyleSheets = [sheet];
+            });
+        });
     </script>
 </body>
 
