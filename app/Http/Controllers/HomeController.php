@@ -23,15 +23,18 @@ class HomeController extends Controller
         return view('home.cart.cart');
     }
 
-    public function checkout($cost)
+    public function checkoutSuccess()
     {
-        return view('home.checkout.checkout');
+
+        return view('home.checkout.check-out-success');
     }
 
     public function orderHistory()
     {
         return view('home.order history.order-histories');
     }
+
+
 
     public function services()
     {

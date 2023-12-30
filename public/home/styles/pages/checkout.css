@@ -20,6 +20,9 @@ body {
     padding: 20px 56px;
 }
 
+.container-2 {
+    padding: 200px 100px !important;
+}
 /* rightcontainer */
 .r-container {
     background-color: var(--light-bg-color);

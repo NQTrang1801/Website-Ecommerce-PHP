@@ -13,6 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'add-to-cart-default',
+        'updateVnpayCode',
+        'AddOrderDetails'
     ];
 
 }

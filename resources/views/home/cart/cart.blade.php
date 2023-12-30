@@ -180,8 +180,8 @@
         }
 
         $(".checkout-wapper button").on("click", function() {
-            let total = $("#cost-cart").text();
-            window.location.href = `/Orders?total=${total}`;
+            let total = sumCartTotal();
+            window.location.href = `/checkout/${total}`;
         });
 
         });

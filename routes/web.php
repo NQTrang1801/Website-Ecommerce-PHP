@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\home\CheckOutPageHomeController;
+use App\Http\Controllers\home\PaymentController;
 use App\Http\Controllers\home\CartHomeController;
 use App\Http\Controllers\home\ProductHomeController;
 use App\Http\Controllers\home\IndexPageHomeController;
@@ -126,9 +128,10 @@ Route::get('/get-featured-sub-categories', [SubCategoryHomeController::class, 'g
 Route::get('/products/{id}', [ProductHomeController::class, 'index'])->name('home.productDetail.index');;
 Route::get('/Products/UpdateCart', [ProductHomeController::class, 'updateCart'])->name('updateCart');
 Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/checkout/{cost}', [HomeController::class, 'checkout']);
+Route::get('/checkout/{cost}', [CheckOutPageHomeController::class, 'index']);
 Route::get('/order-history', [HomeController::class, 'orderHistory'])->name('user.order-histories');
 Route::get('/services', [HomeController::class, 'services'])->name('home.services');
+Route::get('/checkout-success', [HomeController::class, 'checkoutSuccess'])->name('home.checkoutSuccess');
 Route::get('/get-sizes-by-color/{productId}/{colorId}', [ProductHomeController::class, 'getSizesByColor'])->name('home.productDetail.getSizeByColor');
 
 
@@ -149,3 +152,8 @@ Route::get('/getSlug', function (Request $request) {
         'slug' => $slug
     ]);
 })->name('getSlug');
+
+//VNPAY
+Route::post('/vnpay_payment',[PaymentController::class,'vnpay_payment'])->name('vnpay.payment');
+Route::post('/updateVnpayCode', [PaymentController::class,'updateVnpayCode'])->name('updateVnpayCode');
+Route::post('/AddOrderDetails', [PaymentController::class,'AddOrderDetails'])->name('AddOrderDetails');

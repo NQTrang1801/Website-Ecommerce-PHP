@@ -14,4 +14,7 @@
 
 @section('scripts')
     <script src="home/scripts/checkout.js"></script>
+    <script>
+
+    </script>
 @endsection
