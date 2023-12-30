@@ -47,7 +47,13 @@
                     </i>
                 </div>
                 <div class="checkout-wapper">
-                    <button>PROCEED TO CHECKOUT</button>
+                    @if (Route::has('login'))
+                        @auth
+                        <button>PROCEED TO CHECKOUT</button>
+                        @else
+                        <a href="/login" style="font-weight: bold">SIGN IN BEFORE CHECKOUT</a>
+                        @endauth
+                    @endif
                 </div>
             </div>
         </div>

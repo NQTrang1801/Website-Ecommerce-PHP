@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -43,14 +44,25 @@ class HomeController extends Controller
 
     public function redirect()
     {
-        $usertype = Auth::user()->usertype;
+        if (Auth::user() != null)
+        {
+            $usertype = Auth::user()->usertype;
         if ($usertype == '1')
         {
             return view('admin.home');
         }
         else
         {
-            return view('home.index.index');
+            $productsSale = Product::where('showHome', 'Yes')
+            ->where('is_featured', 1)
+            ->whereNotNull('promotion_id')
+            ->with('promotion')
+            ->with('images')
+            ->get();                   
+
+            return view('home.index.index', compact('productsSale'));
+            
         }
+     }
     }
 }

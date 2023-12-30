@@ -22,11 +22,11 @@
                     </div>
                     @if (Route::has('login'))
                     @auth
-                    <input type="text" name="amount" id="amount-form" value="{{$cost}}">
-                    <input type="text" name="userId" id="amount-form" value="{{Auth::user()->id}}">
+                    <input readonly type="hidden" name="amount" id="amount-form" value="{{$cost}}">
+                    <input readonly type="hidden" name="userId" id="amount-form" value="{{Auth::user()->id}}">
                     @else
-                    <input type="text" name="amount" id="amount-form" value="{{$cost+40000}}">
-                    <input type="text" name="userId" id="amount-form" value="">
+                    <input readonly type="hidden" id="amount-form" value="{{$cost+40000}}">
+                    <input readonly type="hidden" name="userId" id="amount-form" value="">
                     @endauth
                     @endif
                 </div>
