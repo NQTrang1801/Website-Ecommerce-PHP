@@ -139,16 +139,7 @@
         </ul>
         <ul class="nav--infor">
             <li>
-                <a href="">About Private</a>
-            </li>
-            <li>
-                <a href="{{ route('home.services') }}">Services</a>
-            </li>
-            <li>
-                <a href="">Call us</a>
-            </li>
-            <li>
-                <a href="">Find a Store</a>
+                <a href="{{ route('home.services') }}">CONTACT US</a>
             </li>
         </ul>
     </nav>

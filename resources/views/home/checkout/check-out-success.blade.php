@@ -78,6 +78,7 @@
                 url: "{{ route('AddOrderDetails') }}",
                 contentType: 'application/json',
                 data: JSON.stringify({
+                    code: "{{ $_GET['vnp_TxnRef'] }}",
                     cart: cart
                 }),
                 success: function(response) {

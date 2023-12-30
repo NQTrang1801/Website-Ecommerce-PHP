@@ -86,9 +86,11 @@ class PaymentController extends Controller
 
     public function AddOrderDetails(Request $request) {
         $cart = $request->cart;
-    
+        $code = $request->code;
+        $order = Order::where('code', $code)->first();
         foreach ($cart as $item) {
             $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $order->id;
             $orderDetail->variant_id = $item['id'];
             $orderDetail->quantity = $item['QuantityPurchased'];
             $orderDetail->price = $item['price'];
