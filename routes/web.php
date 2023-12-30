@@ -18,6 +18,7 @@ use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\PromotionController;
 use App\Http\Controllers\admin\VariantsController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\UserController;
 use App\Models\Variants;
 use Illuminate\Http\Request;
@@ -114,6 +115,16 @@ Route::group(['middleware' => 'check.usertype'], function () {
         Route::put('/{variant}', [VariantsController::class, 'update'])->name('variantss.update');
         Route::delete('/{variant}', [VariantsController::class, 'destroy'])->name('variantss.delete');
     });
+
+    //Orders
+    Route::prefix('/Orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.news');
+        Route::get('/Confirmed', [OrderController::class, 'indexConfirmed'])->name('orders.confirmed');
+        Route::get('/Transit', [OrderController::class, 'indexTransit'])->name('orders.transit');
+        Route::get('/cancelled', [OrderController::class, 'indexCancelled'])->name('orders.Cancelled');
+        Route::put('/update-order-status/{orderId}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    });
+
 
     // Temp Images
     Route::post('/upload-temp-image', [TempImagesController::class, 'create'])->name('temp-images.create');

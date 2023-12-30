@@ -9,16 +9,16 @@
                 <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="#">New orders</a>
+                            <a href="{{ route('orders.news')}}">New orders</a>
                         </li>
                         <li>
-                            <a href="#">Approved orders</a>
+                            <a href="{{ route('orders.transit')}}">Approved orders</a>
                         </li>
                         <li>
-                            <a href="#"> Completed Order</a>
+                            <a href="{{ route('orders.confirmed')}}"> Completed Order</a>
                         </li>
                         <li>
-                            <a href="#">Cancelled Order</a>
+                            <a href="{{ route('orders.Cancelled')}}">Cancelled Order</a>
                         </li>
                     </ul>
                 </div>
