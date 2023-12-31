@@ -1,10 +1,10 @@
 <header>
     <div class="private-header">
         <div class="private-header-left-section">
-            {{-- <div class="header-menu js-menu-btn">
+            <div class="header-menu js-menu-btn">
                 <i class="ri-menu-line"></i>
                 <span>Menu</span>
-            </div> --}}
+            </div>
             <div class="header-search">
                 <i class="ri-search-line"></i>
                 <span>Search</span>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="private-header-middle-section">
-            <a href="{{ url('/') }}"class="title">Private Báo cáo 2</a>
+            <a href="{{ url('/') }}"class="title">Private</a>
         </div>
 
         <div class="private-header-right-section">
@@ -109,7 +109,7 @@
     </nav>
 
     <!-- Menu container -->
-    {{-- <nav class="menu-navbar js-menu-navbar">
+    <nav class="menu-navbar js-menu-navbar">
         <div class="nav-close js-nav-close">
             <i class="ri-close-line"></i>
             Close
@@ -142,6 +142,6 @@
                 <a href="{{ route('home.services') }}">CONTACT US</a>
             </li>
         </ul>
-    </nav> --}}
+    </nav>
     <div id="overlay"></div>
 </header>
