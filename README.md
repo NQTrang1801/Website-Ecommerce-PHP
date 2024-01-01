@@ -18,7 +18,7 @@ Thành viên nhóm 16
 3. Tạo databases
    + truy cập vào phpmyadmin -> tạo database mới tên là laravel
          -> chạy script tạo databases sau: https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=sharing
-   + thay thế thư mục uploads trong thư mục public của project Website-private bằng thư mục được tải ở: https://drive.google.com/drive/folders/1n9I1NGpBQAL9D9I4Sf-dAz0lC1u1NsL4?usp=drive_link
+   + thay thế thư mục uploads trong thư mục public của project Website-private bằng thư mục được tải ở: https://drive.google.com/drive/folders/1TxL174_OpTI-e3eo6VVlxAqjXmxA2MsE?usp=sharing
 4. Sau đó tiếp tục mở 2 cửa sổ cmd tại thư muc website-private
    + cửa sổ 1: chạy lệnh -> php artisan serve
    + cửa sổ 2: chạy lệnh -> npm run dev
