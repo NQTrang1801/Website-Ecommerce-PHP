@@ -11,7 +11,7 @@ Thành viên nhóm 16
 # Thông tin dự án
 1. website giới thiệu nhóm: https://sites.google.com/view/nhom16-web/home?authuser=0
 2. repository: https://github.com/NQTrang1801/Website-Private
-3. driver: https://drive.google.com/drive/folders/1OFxRNZDL-Ie_FInNuQscq5JMUtzLimkc?usp=sharing
+3. drive: https://drive.google.com/drive/folders/1OFxRNZDL-Ie_FInNuQscq5JMUtzLimkc?usp=sharing
 # Cài đặt project
 1. Tạo thư mục mới C:\xampp\htdocs -> vào thư mục vừa tạo -> git clone https://github.com/NQTrang1801/Website-Private.git
 2. Mở cmd tại thư mục webiste-private và thực hiện lần lượt các cài đặt sau:
