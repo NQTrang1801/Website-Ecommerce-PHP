@@ -1,33 +1,36 @@
 # Fashion Business Website
-# PrivateTeam - NHÓM: 16
-# Phát triển ứng dụng web - IS207.O11.2 - GVHD: Trịnh Thị Thanh Trúc
-Thành viên nhóm 16 
-|  MSSV  |          HOTEN           |          GMAIL         |
-|:------:|:------------------------:|:----------------------:|
-|21522812|Nguyễn Triệu Vy - leader  |21522812@gm.uit.edu.vn  |
-|21520086|Huỳnh Lê Phong            |21520086@gm.uit.edu.vn  |
-|21521556|Nguyễn Quốc Trạng         |21521556@gm.uit.edu.vn  |
+# Group: 16
+# Web Application Development - IS207.O11.2 - Instructor: Trịnh Thị Thanh Trúc
 
-# Thông tin dự án
-1. website giới thiệu nhóm: https://sites.google.com/view/nhom16-web/home?authuser=0
-2. repository: https://github.com/NQTrang1801/Website-Private
-3. drive: https://drive.google.com/drive/folders/1OFxRNZDL-Ie_FInNuQscq5JMUtzLimkc?usp=sharing
-# Cài đặt project
-1. Tạo thư mục mới C:\xampp\htdocs -> vào thư mục vừa tạo -> git clone https://github.com/NQTrang1801/Website-Private.git
-2. Mở cmd tại thư mục webiste-private và thực hiện lần lượt các cài đặt sau:
-    + composer install
-    + npm install
-    + copy .env.example .env
-    + php artisan key:generate
-3. Tạo databases
-   + truy cập vào phpmyadmin -> tạo database mới tên là laravel
-         -> chạy script tạo databases sau: https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=drive_link
-   + thay thế thư mục uploads trong thư mục public của project Website-private bằng thư mục được tải ở: https://drive.google.com/drive/folders/13ShlVrtiTSDRvH5NpFrvIfM320GoikcC?usp=sharing
-4. Sau đó tiếp tục mở 2 cửa sổ cmd tại thư muc website-private
-   + cửa sổ 1: chạy lệnh -> php artisan serve
-   + cửa sổ 2: chạy lệnh -> npm run dev
-5. truy cập website: localhost:8000
-6. vào account -> đăng nhập bằng user Admin: admin@gmail.com / password: 12345678
+## Team 16 Members
+
+|  Student ID |         Full Name           |            Gmail           |
+|:-----------:|:---------------------------:|:--------------------------:|
+|  21522812   | Nguyễn Triệu Vy - Leader    | 21522812@gm.uit.edu.vn     |
+|  21520086   | Huỳnh Lê Phong              | 21520086@gm.uit.edu.vn     |
+|  21521556   | Nguyễn Quốc Trạng           | 21521556@gm.uit.edu.vn     |
+
+## Project Information
+1. Group introduction website: [Link](https://sites.google.com/view/nhom16-web/home?authuser=0)
+2. Repository: [Link](https://github.com/NQTrang1801/Website-Private)
+3. Drive: [Link](https://drive.google.com/drive/folders/1OFxRNZDL-Ie_FInNuQscq5JMUtzLimkc?usp=sharing)
+
+## Project Setup
+1. Create a new folder `C:\xampp\htdocs` -> go to the created folder -> run `git clone https://github.com/NQTrang1801/Website-Private.git`
+2. Open CMD in the `website-private` folder and run the following commands:
+    + `composer install`
+    + `npm install`
+    + `copy .env.example .env`
+    + `php artisan key:generate`
+3. Create databases:
+   + Access phpMyAdmin -> create a new database named `laravel`
+   + Run the database creation script: [Link](https://drive.google.com/file/d/15N6dvxlNk40sDk4J2aMZm8ZH32hFRcsa/view?usp=drive_link)
+   + Replace the `uploads` folder in the `public` folder of the `Website-private` project with the folder downloaded from: [Link](https://drive.google.com/drive/folders/13ShlVrtiTSDRvH5NpFrvIfM320GoikcC?usp=sharing)
+4. Open 2 CMD windows in the `website-private` folder:
+   + Window 1: run the command -> `php artisan serve`
+   + Window 2: run the command -> `npm run dev`
+5. Access the website: `localhost:8000`
+6. Go to the account section -> login with Admin user: `admin@gmail.com` / password: `12345678`
 
 ## Project Overview
 In an increasingly evolving society, everything is constantly changing to adapt to the times, and the fashion industry is no exception. Previously, geographical limitations posed challenges for many individuals. However, with technological advancements, shopping has become more accessible and convenient through websites. Building a website not only supports business growth but also serves as an effective platform to introduce products to a wide audience.
