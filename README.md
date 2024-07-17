@@ -1,4 +1,4 @@
-# Website-Private
+# Fashion Business Website
 # PrivateTeam - NHÓM: 16
 # Phát triển ứng dụng web - IS207.O11.2 - GVHD: Trịnh Thị Thanh Trúc
 Thành viên nhóm 16 
@@ -28,8 +28,6 @@ Thành viên nhóm 16
    + cửa sổ 2: chạy lệnh -> npm run dev
 5. truy cập website: localhost:8000
 6. vào account -> đăng nhập bằng user Admin: admin@gmail.com / password: 12345678
-
-# Fashion Business Website
 
 ## Project Overview
 In an increasingly evolving society, everything is constantly changing to adapt to the times, and the fashion industry is no exception. Previously, geographical limitations posed challenges for many individuals. However, with technological advancements, shopping has become more accessible and convenient through websites. Building a website not only supports business growth but also serves as an effective platform to introduce products to a wide audience.
